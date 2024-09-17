@@ -24,7 +24,7 @@ public class AuthController {
   private final AuthAdapterMapper authAdapterMapper;
 
   @PostMapping(value = "/signup")
-  public ApiResponse<Data> postSignup(@Validated  @RequestBody Signup.RequestBody requestBody)
+  public ApiResponse<Data> postSignup(@Validated @RequestBody Signup.RequestBody requestBody)
       throws AuthException {
     AuthCommand.SignupCommand command = this.authAdapterMapper.toCommand(requestBody);
     AuthInfo.SignupInfo info = this.authApplication.signup(command);

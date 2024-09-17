@@ -4,20 +4,30 @@ import com.minho.backend.api.auth.adapter.out.persistence.UserJpaEntity;
 import java.util.Date;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
-@Builder
 @ToString
 @Getter
 public class User {
 
-  private final Long id;
-  private final String email;
-  private final String password;
-  private final Date createdAt;
-  private final Date updatedAt;
+  private Long id;
+  private String email;
 
-  // hash 처리는 여기서
+  @Setter
+  private String password;
+
+  private Date createdAt;
+
+  private Date updatedAt;
+
+  @Builder
+  public User(Long id, String email, String password) {
+    this.id = id;
+    this.email = email;
+    this.password = password;
+  }
+
   public UserJpaEntity toJpaEntity() {
     return UserJpaEntity
         .builder()

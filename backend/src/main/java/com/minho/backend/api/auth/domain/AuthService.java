@@ -6,6 +6,8 @@ import com.minho.backend.api.auth.domain.entity.User;
 import com.minho.backend.api.auth.domain.mapper.AuthDomainMapper;
 import com.minho.backend.exception.AuthException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,15 +16,17 @@ public class AuthService {
 
   private final AuthPersistenceAdapter userPersistenceAdapter;
   private final AuthDomainMapper authDomainMapper;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
   public AuthInfo.SignupInfo signup(AuthCommand.SignupCommand command) throws AuthException {
     User user = command.toEntity();
-    System.out.println("@@@ 1");
-    System.out.println(user);
 
     if (this.userPersistenceAdapter.findUserByEmail(user.getEmail()).isPresent()) {
       throw new AuthException("user already exists");
     }
+
+    String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+    user.setPassword(encodedPassword);
 
     User createdUser = this.userPersistenceAdapter.createUser(user);
 
