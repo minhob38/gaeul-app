@@ -1,6 +1,5 @@
 package com.minho.backend.api.auth.domain;
 
-import com.minho.backend.api.auth.adapter.out.persistence.AuthPersistenceAdapter;
 import com.minho.backend.api.auth.domain.dto.AuthCommand;
 import com.minho.backend.api.auth.domain.dto.AuthInfo;
 import com.minho.backend.api.auth.domain.entity.User;
