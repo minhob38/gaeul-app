@@ -5,24 +5,22 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+// domain에 port interface를 만들면...
 @RequiredArgsConstructor
 @Component
 public class AuthPersistenceAdapter {
 
   private final UserJpaRepository userRepository;
-  private final AuthPersistenceMapper authPersistenceMapper;
 
   public Optional<User> findUserByEmail(String email) {
     UserJpaEntity userJpaEntity = this.userRepository.findUserJpaEntityByEmail(email);
-    User user = this.authPersistenceMapper.toEntity(userJpaEntity);
-    return Optional.ofNullable(user);
+    return Optional.ofNullable(userJpaEntity).map(jpaEntity -> jpaEntity.toEntity());
   }
 
-  public User createUser(UserJpaEntity userJpaEntity) {
+  public User createUser(User user) {
+    UserJpaEntity userJpaEntity = user.toJpaEntity();
     UserJpaEntity savedUserJpaEntity = this.userRepository.save(userJpaEntity);
-    System.out.println(savedUserJpaEntity);
-    User user = this.authPersistenceMapper.toEntity(savedUserJpaEntity);
-    System.out.println(user);
-    return user;
+    User savedUser = savedUserJpaEntity.toEntity();
+    return savedUser;
   }
 }

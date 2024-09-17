@@ -9,7 +9,7 @@ public class AuthInfo {
   @Getter
   public static class SignupInfo {
 
-    private final Long userId;
+    private final Long id;
   }
 
   @RequiredArgsConstructor

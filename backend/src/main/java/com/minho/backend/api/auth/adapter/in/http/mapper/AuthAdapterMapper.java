@@ -5,6 +5,7 @@ import com.minho.backend.api.auth.domain.dto.AuthCommand;
 import com.minho.backend.api.auth.domain.dto.AuthInfo;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(
@@ -15,6 +16,8 @@ import org.mapstruct.ReportingPolicy;
 public interface AuthAdapterMapper {
 
   AuthCommand.SignupCommand toCommand(AuthDto.Signup.RequestBody requestBody);
-  AuthDto.Signup.Data toData(AuthInfo.SignupInfo info);
 
+  @Mapping(source="id", target = "userId")
+  AuthDto.Signup.Data toData(AuthInfo.SignupInfo info);
 }
+

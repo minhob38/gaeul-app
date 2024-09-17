@@ -1,10 +1,9 @@
 package com.minho.backend.api.auth.domain.mapper;
 
-import com.minho.backend.api.auth.adapter.out.persistence.UserJpaEntity;
-import com.minho.backend.api.auth.domain.dto.AuthCommand;
+import com.minho.backend.api.auth.domain.dto.AuthInfo;
+import com.minho.backend.api.auth.domain.entity.User;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(
@@ -14,9 +13,5 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface AuthDomainMapper {
 
-
-  @Mapping(target = "id", ignore = true)
-  @Mapping(target = "createdAt", ignore = true)
-  @Mapping(target = "updatedAt", ignore = true)
-  UserJpaEntity toJpaEntity(AuthCommand.SignupCommand command);
+  AuthInfo.SignupInfo toInfo(User user);
 }

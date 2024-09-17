@@ -1,20 +1,23 @@
 package com.minho.backend.api.auth.domain.dto;
 
-import com.minho.backend.api.auth.adapter.in.http.dto.AuthDto;
+import com.minho.backend.api.auth.domain.entity.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 public class AuthCommand {
 
   @Getter
+  @RequiredArgsConstructor
   public static class SignupCommand {
 
     private final String email;
     private final String password;
 
-    public SignupCommand(AuthDto.Signup.RequestBody requestBody) {
-      this.email = requestBody.getEmail();
-      this.password = requestBody.getPassword();
+    public User toEntity() {
+      return User.builder()
+          .email(this.email)
+          .password(this.password)
+          .build();
     }
   }
 

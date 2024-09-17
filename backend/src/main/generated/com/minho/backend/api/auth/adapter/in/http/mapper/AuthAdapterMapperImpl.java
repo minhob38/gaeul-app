@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-09-16T16:56:59+0900",
+    date = "2024-09-17T21:07:53+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
@@ -20,11 +20,13 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
             return null;
         }
 
-        AuthDto.Signup.RequestBody requestBody1 = null;
+        String email = null;
+        String password = null;
 
-        requestBody1 = requestBody;
+        email = requestBody.getEmail();
+        password = requestBody.getPassword();
 
-        AuthCommand.SignupCommand signupCommand = new AuthCommand.SignupCommand( requestBody1 );
+        AuthCommand.SignupCommand signupCommand = new AuthCommand.SignupCommand( email, password );
 
         return signupCommand;
     }
@@ -37,7 +39,7 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
 
         Long userId = null;
 
-        userId = info.getUserId();
+        userId = info.getId();
 
         AuthDto.Signup.Data data = new AuthDto.Signup.Data( userId );
 
