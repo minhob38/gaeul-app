@@ -1,5 +1,6 @@
 package com.minho.backend.util;
 
+import com.minho.backend.config.SecretConfig;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import java.time.Instant;
@@ -15,6 +16,9 @@ public class AuthUtil {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	@Autowired
+	private SecretConfig secretConfig;
+
 	public String encodePassword(String password) {
 		return this.bCryptPasswordEncoder.encode(password);
 	}
@@ -27,7 +31,7 @@ public class AuthUtil {
 		Date now = Date.from(Instant.now());
 		Date expireAt = new Date(now.getTime() + expireMinutes * 60 * 1000);
 
-		SecretKey key = Keys.hmacShaKeyFor("".getBytes());
+		SecretKey key = Keys.hmacShaKeyFor(this.secretConfig.getJwtSecretKey().getBytes());
 		return Jwts.builder().signWith(key).claim("user_id", userId).expiration(expireAt).compact();
 	}
 }
