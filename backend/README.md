@@ -3,14 +3,14 @@
 ### 초기 설정
 - spring initializer
 <img src="https://github.com/user-attachments/assets/d3aa5c84-39e6-40f0-8e28-5eaad5006282" />
-
 - compiler
-
 - lombok
-
 - formatter
-
 - docker
+
+## Spring 실행
+### 환경변수
+`application.properties`의 `spring.profiles.active={환경}` 설정에 따라, `application.properties-{환경}`의 값을 가져옴
 
 ## 아키텍처
 ### Hexagonal(Port-Adapter) Architecture

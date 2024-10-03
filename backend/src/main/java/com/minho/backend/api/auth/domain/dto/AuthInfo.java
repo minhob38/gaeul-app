@@ -9,21 +9,22 @@ public class AuthInfo {
   @Getter
   public static class SignupInfo {
 
-    private final Long id;
+    private final String key;
   }
 
   @RequiredArgsConstructor
   @Getter
   public static class SigninInfo {
 
-    private final Long userId;
+    private final String key;
+    private final String accessToken;
   }
 
   @RequiredArgsConstructor
   @Getter
   public static class MeInfo {
 
-    private final Long userId;
+    private final String key;
     private final String email;
   }
 }

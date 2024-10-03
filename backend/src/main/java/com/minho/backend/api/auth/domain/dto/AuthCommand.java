@@ -27,6 +27,13 @@ public class AuthCommand {
 
     private final String email;
     private final String password;
+
+    public User toEntity() {
+      return User.builder()
+          .email(this.email)
+          .password(this.password)
+          .build();
+    }
   }
 
   @Getter

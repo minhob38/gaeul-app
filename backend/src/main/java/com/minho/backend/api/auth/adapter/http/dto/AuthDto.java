@@ -27,26 +27,50 @@ public class AuthDto {
     @RequiredArgsConstructor
     public static class Data {
 
-      private final Long userId;
+      private final String key;
+    }
+  }
+
+  // POST:api/auth/signin
+  public static class Signin {
+
+    @Getter
+    @ToString
+    public static class RequestBody {
+
+      @NotBlank(message = "email is required - '':(X) / ' ':(X) / null:(X)")
+      String email;
+
+      @NotBlank(message = "password is required - '':(O) / ' ':(O) / null:(X)")
+      String password;
+    }
+
+    @ToString
+    @Getter
+    @RequiredArgsConstructor
+    public static class Data {
+
+      private final String key;
+      private final String accessToken;
     }
   }
 
   // GET:api/auth/me
-  static class ReadMe {
-
-    @ToString
-    @Getter
-    static class Data {
-
-      private final Long userId;
-      private final String email;
-
-      Data(AuthInfo.MeInfo userInfo) {
-        this.userId = userInfo.getUserId();
-        this.email = userInfo.getEmail();
-      }
-    }
-  }
+//  static class ReadMe {
+//
+//    @ToString
+//    @Getter
+//    static class Data {
+//
+//      private final String key;
+//      private final String email;
+//
+//      Data(AuthInfo.MeInfo userInfo) {
+//        this.key = userInfo.getKey();
+//        this.email = userInfo.getEmail();
+//      }
+//    }
+//  }
 
 //  // Patch-api/auth/password
 //  static class ModifyPassword {

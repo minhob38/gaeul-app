@@ -27,11 +27,11 @@ public class AuthUtil {
 		return bCryptPasswordEncoder.matches(plainPassword, encodedPassword);
 	}
 
-	public String createJwt(Long userId, Long expireMinutes) {
+	public String createJwt(String userKey, Long expireMinutes) {
 		Date now = Date.from(Instant.now());
 		Date expireAt = new Date(now.getTime() + expireMinutes * 60 * 1000);
 
-		SecretKey key = Keys.hmacShaKeyFor(this.secretConfig.getJwtSecretKey().getBytes());
-		return Jwts.builder().signWith(key).claim("user_id", userId).expiration(expireAt).compact();
+		SecretKey secretKey = Keys.hmacShaKeyFor(this.secretConfig.getJwtSecretKey().getBytes());
+		return Jwts.builder().signWith(secretKey).claim("user_key", userKey).expiration(expireAt).compact();
 	}
 }

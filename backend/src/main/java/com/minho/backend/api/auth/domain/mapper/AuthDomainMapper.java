@@ -13,5 +13,6 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface AuthDomainMapper {
 
-  AuthInfo.SignupInfo toInfo(User user);
+  AuthInfo.SignupInfo toSignupInfo(User user);
+  AuthInfo.SigninInfo toSigninInfo(String key, String accessToken);
 }

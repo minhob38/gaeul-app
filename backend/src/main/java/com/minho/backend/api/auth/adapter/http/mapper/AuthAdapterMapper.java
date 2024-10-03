@@ -9,15 +9,19 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(
-    componentModel = "spring",
-    injectionStrategy = InjectionStrategy.CONSTRUCTOR,
-    unmappedTargetPolicy = ReportingPolicy.ERROR
+		componentModel = "spring",
+		injectionStrategy = InjectionStrategy.CONSTRUCTOR,
+		unmappedTargetPolicy = ReportingPolicy.ERROR
 )
 public interface AuthAdapterMapper {
 
-  AuthCommand.SignupCommand toCommand(AuthDto.Signup.RequestBody requestBody);
+	AuthCommand.SignupCommand toSignupCommand(AuthDto.Signup.RequestBody requestBody);
 
-  @Mapping(source="id", target = "userId")
-  AuthDto.Signup.Data toData(AuthInfo.SignupInfo info);
+	AuthCommand.SigninCommand toSigninCommand(AuthDto.Signin.RequestBody requestBody);
+
+//	@Mapping(source = "id", target = "userId")
+  AuthDto.Signup.Data toSignupData(AuthInfo.SignupInfo info);
+
+	AuthDto.Signin.Data toSigninData(AuthInfo.SigninInfo info);
 }
 
