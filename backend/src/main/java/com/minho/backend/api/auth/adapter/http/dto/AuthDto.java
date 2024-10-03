@@ -1,4 +1,4 @@
-package com.minho.backend.api.auth.adapter.in.http.dto;
+package com.minho.backend.api.auth.adapter.http.dto;
 
 import com.minho.backend.api.auth.domain.dto.AuthInfo;
 import jakarta.validation.constraints.NotBlank;

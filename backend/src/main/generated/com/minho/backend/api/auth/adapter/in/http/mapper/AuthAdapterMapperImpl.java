@@ -1,6 +1,7 @@
 package com.minho.backend.api.auth.adapter.in.http.mapper;
 
-import com.minho.backend.api.auth.adapter.in.http.dto.AuthDto;
+import com.minho.backend.api.auth.adapter.http.dto.AuthDto;
+import com.minho.backend.api.auth.adapter.http.mapper.AuthAdapterMapper;
 import com.minho.backend.api.auth.domain.dto.AuthCommand;
 import com.minho.backend.api.auth.domain.dto.AuthInfo;
 import javax.annotation.processing.Generated;

@@ -1,6 +1,6 @@
-package com.minho.backend.api.auth.adapter.out.persistence;
+package com.minho.backend.api.auth.adapter.persistence;
 
-import com.minho.backend.api.auth.domain.AuthPersistenceAdapter;
+import com.minho.backend.api.auth.domain.port.AuthPersistencePort;
 import com.minho.backend.api.auth.domain.entity.User;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 // domain에 port interface를 만들면...
 @RequiredArgsConstructor
 @Component
-public class AuthPersistenceAdapterImpl implements AuthPersistenceAdapter {
+public class AuthPersistenceAdapter implements AuthPersistencePort {
 
   private final UserJpaRepository userRepository;
 

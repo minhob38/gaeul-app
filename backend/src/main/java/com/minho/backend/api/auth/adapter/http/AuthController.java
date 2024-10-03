@@ -1,8 +1,8 @@
-package com.minho.backend.api.auth.adapter.in.http;
+package com.minho.backend.api.auth.adapter.http;
 
-import com.minho.backend.api.auth.adapter.in.http.dto.AuthDto.Signup;
-import com.minho.backend.api.auth.adapter.in.http.dto.AuthDto.Signup.Data;
-import com.minho.backend.api.auth.adapter.in.http.mapper.AuthAdapterMapper;
+import com.minho.backend.api.auth.adapter.http.dto.AuthDto.Signup;
+import com.minho.backend.api.auth.adapter.http.dto.AuthDto.Signup.Data;
+import com.minho.backend.api.auth.adapter.http.mapper.AuthAdapterMapper;
 import com.minho.backend.api.auth.application.AuthApplication;
 import com.minho.backend.api.auth.domain.dto.AuthCommand;
 import com.minho.backend.api.auth.domain.dto.AuthInfo;

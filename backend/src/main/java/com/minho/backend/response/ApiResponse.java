@@ -33,6 +33,7 @@ public class ApiResponse<T> {
     return failure(data, null);
   }
 
+  // TODO: enum 소문자로 바꾸기
   enum Status {
     SUCCESS, FAILURE
   }

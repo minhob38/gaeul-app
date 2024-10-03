@@ -1,4 +1,4 @@
-package com.minho.backend.api.auth.adapter.out.persistence;
+package com.minho.backend.api.auth.adapter.persistence;
 
 import com.minho.backend.api.auth.domain.entity.User;
 import jakarta.persistence.Column;

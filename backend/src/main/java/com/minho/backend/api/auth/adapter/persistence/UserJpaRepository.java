@@ -1,4 +1,4 @@
-package com.minho.backend.api.auth.adapter.out.persistence;
+package com.minho.backend.api.auth.adapter.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

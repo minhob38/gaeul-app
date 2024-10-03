@@ -1,6 +1,6 @@
 package com.minho.backend.api.auth.domain.entity;
 
-import com.minho.backend.api.auth.adapter.out.persistence.UserJpaEntity;
+import com.minho.backend.api.auth.adapter.persistence.UserJpaEntity;
 import java.util.Date;
 import lombok.Builder;
 import lombok.Getter;

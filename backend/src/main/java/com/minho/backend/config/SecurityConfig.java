@@ -12,20 +12,20 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-  @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http
-        .csrf(csrf -> csrf.disable())
-        .httpBasic(Customizer.withDefaults())
-        .authorizeHttpRequests(authorize -> authorize
-            .anyRequest().permitAll()
-        );
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http
+				.csrf(csrf -> csrf.disable())
+				.httpBasic(Customizer.withDefaults())
+				.authorizeHttpRequests(authorize -> authorize
+						.anyRequest().permitAll()
+				);
 
-    return http.build();
-  }
+		return http.build();
+	}
 
-  @Bean
-  public BCryptPasswordEncoder encodePassword() {
-    return new BCryptPasswordEncoder();
-  }
+	@Bean
+	public BCryptPasswordEncoder encodePassword() {
+		return new BCryptPasswordEncoder();
+	}
 }
