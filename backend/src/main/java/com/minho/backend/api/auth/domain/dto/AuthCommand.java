@@ -6,49 +6,52 @@ import lombok.RequiredArgsConstructor;
 
 public class AuthCommand {
 
-  @Getter
-  @RequiredArgsConstructor
-  public static class SignupCommand {
+    @Getter
+    @RequiredArgsConstructor
+    public static class SignupCommand {
 
-    private final String email;
-    private final String password;
+        private final String email;
 
-    public User toEntity() {
-      return User.builder()
-          .email(this.email)
-          .password(this.password)
-          .build();
+        private final String password;
+
+        public User toEntity() {
+            return User.builder().email(this.email).password(this.password).build();
+        }
+
     }
-  }
 
-  @Getter
-  @RequiredArgsConstructor
-  public static class SigninCommand {
+    @Getter
+    @RequiredArgsConstructor
+    public static class SigninCommand {
 
-    private final String email;
-    private final String password;
+        private final String email;
 
-    public User toEntity() {
-      return User.builder()
-          .email(this.email)
-          .password(this.password)
-          .build();
+        private final String password;
+
+        public User toEntity() {
+            return User.builder().email(this.email).password(this.password).build();
+        }
+
     }
-  }
 
-  @Getter
-  @RequiredArgsConstructor
-  public static class ModifyPasswordCommand {
+    @Getter
+    @RequiredArgsConstructor
+    public static class ModifyPasswordCommand {
 
-    private final Long userId;
-    private final String newPassword;
-    private final String currentPassword;
-  }
+        private final Long userId;
 
-  @Getter
-  @RequiredArgsConstructor
-  public static class SignoutCommand {
+        private final String newPassword;
 
-    private final Long userId;
-  }
+        private final String currentPassword;
+
+    }
+
+    @Getter
+    @RequiredArgsConstructor
+    public static class SignoutCommand {
+
+        private final Long userId;
+
+    }
+
 }

@@ -2,18 +2,20 @@ package com.minho.backend.response;
 
 public class ErrorResponse {
 
-  private final String status = "error";
-  private String message;
+    private final String status = "error";
 
-  public void setMessage(String message) {
-    this.message = message;
-  }
+    private String message;
 
-  public String getStatus() {
-    return status;
-  }
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-  public String getMessage() {
-    return message;
-  }
+    public String getStatus() {
+        return status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
 }

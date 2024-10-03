@@ -6,7 +6,8 @@ import com.minho.backend.exception.AuthException;
 
 public interface AuthServicePort {
 
-	AuthInfo.SignupInfo signup(AuthCommand.SignupCommand command) throws AuthException;
+    AuthInfo.SignupInfo signup(AuthCommand.SignupCommand command) throws AuthException;
 
-	AuthInfo.SigninInfo signin(AuthCommand.SigninCommand command) throws AuthException;
+    AuthInfo.SigninInfo signin(AuthCommand.SigninCommand command) throws AuthException;
+
 }

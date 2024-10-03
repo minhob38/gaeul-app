@@ -20,50 +20,52 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthService implements AuthServicePort {
 
-  private final AuthPersistencePort userPersistenceAdapter;
-  private final AuthDomainMapper authDomainMapper;
+    private final AuthPersistencePort userPersistenceAdapter;
 
-  private final AuthUtil authUtil;
+    private final AuthDomainMapper authDomainMapper;
 
-  @Override
-  public AuthInfo.SignupInfo signup(AuthCommand.SignupCommand command) throws AuthException {
-    User user = command.toEntity();
+    private final AuthUtil authUtil;
 
-    if (this.userPersistenceAdapter.findUserByEmail(user.getEmail()).isPresent()) {
-      throw new AuthException("user already exists");
+    @Override
+    public AuthInfo.SignupInfo signup(AuthCommand.SignupCommand command) throws AuthException {
+        User user = command.toEntity();
+
+        if (this.userPersistenceAdapter.findUserByEmail(user.getEmail()).isPresent()) {
+            throw new AuthException("user already exists");
+        }
+
+        String encodedPassword = this.authUtil.encodePassword(user.getPassword());
+        user.setPassword(encodedPassword);
+
+        User createdUser = this.userPersistenceAdapter.createUser(user);
+
+        return this.authDomainMapper.toSignupInfo(createdUser);
     }
 
-    String encodedPassword = this.authUtil.encodePassword(user.getPassword());
-    user.setPassword(encodedPassword);
+    @Override
+    public AuthInfo.SigninInfo signin(AuthCommand.SigninCommand command) throws AuthException {
+        User user = command.toEntity();
 
-    User createdUser = this.userPersistenceAdapter.createUser(user);
+        Optional<User> foundUser = this.userPersistenceAdapter.findUserByEmail(user.getEmail());
 
-    return this.authDomainMapper.toSignupInfo(createdUser);
-  }
+        if (foundUser.isEmpty()) {
+            throw new AuthException("user does not exists");
+        }
 
-  @Override
-  public AuthInfo.SigninInfo signin(AuthCommand.SigninCommand command) throws AuthException {
-    User user = command.toEntity();
+        String plainPassword = user.getPassword();
+        String encodedPassword = foundUser.get().getPassword();
+        String key = foundUser.get().getKey();
 
-    Optional<User> foundUser = this.userPersistenceAdapter.findUserByEmail(user.getEmail());
+        Boolean isPasswordMatched = this.authUtil.matchPassword(plainPassword, encodedPassword);
 
-    if (foundUser.isEmpty()) {
-      throw new AuthException("user does not exists");
+        if (!isPasswordMatched) {
+            throw new AuthException("password does not matches");
+        }
+
+        String accessToken = this.authUtil.createJwt(key, 15L);
+
+        // TODO: String 대신, JWT Class로 만들기
+        return this.authDomainMapper.toSigninInfo(key, accessToken);
     }
 
-    String plainPassword = user.getPassword();
-    String encodedPassword = foundUser.get().getPassword();
-    String key = foundUser.get().getKey();
-
-    Boolean isPasswordMatched = this.authUtil.matchPassword(plainPassword, encodedPassword);
-
-    if (!isPasswordMatched) {
-      throw new AuthException("password does not matches");
-    }
-
-    String accessToken = this.authUtil.createJwt(key, 15L);
-
-    // TODO: String 대신, JWT Class로 만들기
-    return this.authDomainMapper.toSigninInfo(key, accessToken);
-  }
 }

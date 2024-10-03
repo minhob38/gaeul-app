@@ -11,38 +11,31 @@ import lombok.ToString;
 @Getter
 public class User {
 
-	private Long id;
-	private String key;
-	private String email;
+    private Long id;
 
-	@Setter
-	private String password;
+    private String key;
 
-	private Date createdAt;
+    private String email;
 
-	private Date updatedAt;
+    @Setter
+    private String password;
 
-	@Builder
-	public User(
-			Long id,
-			String key,
-			String email,
-			String password,
-			Date createdAt,
-			Date updatedAt) {
-		this.id = id;
-		this.key = key;
-		this.email = email;
-		this.password = password;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-	}
+    private Date createdAt;
 
-	public UserJpaEntity toJpaEntity() {
-		return UserJpaEntity
-				.builder()
-				.email(this.email)
-				.password(this.password)
-				.build();
-	}
+    private Date updatedAt;
+
+    @Builder
+    public User(Long id, String key, String email, String password, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.key = key;
+        this.email = email;
+        this.password = password;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public UserJpaEntity toJpaEntity() {
+        return UserJpaEntity.builder().email(this.email).password(this.password).build();
+    }
+
 }

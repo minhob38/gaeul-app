@@ -11,19 +11,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthPersistenceAdapter implements AuthPersistencePort {
 
-  private final UserJpaRepository userRepository;
+    private final UserJpaRepository userRepository;
 
-  @Override
-  public Optional<User> findUserByEmail(String email) {
-    UserJpaEntity userJpaEntity = this.userRepository.findUserJpaEntityByEmail(email);
-    return Optional.ofNullable(userJpaEntity).map(jpaEntity -> jpaEntity.toEntity());
-  }
+    @Override
+    public Optional<User> findUserByEmail(String email) {
+        UserJpaEntity userJpaEntity = this.userRepository.findUserJpaEntityByEmail(email);
+        return Optional.ofNullable(userJpaEntity).map(jpaEntity -> jpaEntity.toEntity());
+    }
 
-  @Override
-  public User createUser(User user) {
-    UserJpaEntity userJpaEntity = user.toJpaEntity();
-    UserJpaEntity savedUserJpaEntity = this.userRepository.save(userJpaEntity);
-    User savedUser = savedUserJpaEntity.toEntity();
-    return savedUser;
-  }
+    @Override
+    public User createUser(User user) {
+        UserJpaEntity userJpaEntity = user.toJpaEntity();
+        UserJpaEntity savedUserJpaEntity = this.userRepository.save(userJpaEntity);
+        User savedUser = savedUserJpaEntity.toEntity();
+        return savedUser;
+    }
+
 }

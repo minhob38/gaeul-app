@@ -66,3 +66,6 @@ command
 query
 
 mapstruct는 setter 또는 constructor가 필요...
+
+
+./gradlew format 

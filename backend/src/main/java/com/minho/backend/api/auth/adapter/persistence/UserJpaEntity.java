@@ -25,45 +25,45 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Table(name = "user")
 public class UserJpaEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @Column(name = "`key`") // TODO: 다른컬럼으로 이름 바꾸기
-  private String key;
+    @Column(name = "`key`") // TODO: 다른컬럼으로 이름 바꾸기
+    private String key;
 
-	private String email;
+    private String email;
 
-	private String password;
+    private String password;
 
-	@Column(name = "created_at")
-	@CreationTimestamp
-	private Date createdAt;
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private Date createdAt;
 
-	@Column(name = "updated_at")
-	@UpdateTimestamp
-	private Date updatedAt;
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private Date updatedAt;
 
-	@PrePersist
-	public void generateKey() {
-		this.key = RandomStringUtils.randomAlphanumeric(16).toLowerCase();
-	}
+    @PrePersist
+    public void generateKey() {
+        this.key = RandomStringUtils.randomAlphanumeric(16).toLowerCase();
+    }
 
-	@Builder
-	public UserJpaEntity(String email, String password) {
-		this.email = email;
-		this.password = password;
-	}
+    @Builder
+    public UserJpaEntity(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
-	public User toEntity() {
-		return User
-				.builder()
-				.id(this.id)
-				.key(this.key)
-				.email(this.email)
-				.password(this.password)
-				.createdAt(this.createdAt)
-				.updatedAt(this.updatedAt)
-				.build();
-	}
+    public User toEntity() {
+        return User.builder()
+            .id(this.id)
+            .key(this.key)
+            .email(this.email)
+            .password(this.password)
+            .createdAt(this.createdAt)
+            .updatedAt(this.updatedAt)
+            .build();
+    }
+
 }

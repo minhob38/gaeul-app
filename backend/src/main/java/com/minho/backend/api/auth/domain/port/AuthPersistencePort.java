@@ -5,7 +5,8 @@ import java.util.Optional;
 
 public interface AuthPersistencePort {
 
-  Optional<User> findUserByEmail(String email);
+    Optional<User> findUserByEmail(String email);
 
-  User createUser(User user);
+    User createUser(User user);
+
 }

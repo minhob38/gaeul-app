@@ -8,92 +8,100 @@ import lombok.ToString;
 
 public class AuthDto {
 
-  // POST:api/auth/signup
-  public static class Signup {
+    // POST:api/auth/signup
+    public static class Signup {
 
-    @Getter
-    @ToString
-    public static class RequestBody {
+        @Getter
+        @ToString
+        public static class RequestBody {
 
-      @NotBlank(message = "email is required - '':(X) / ' ':(X) / null:(X)")
-      String email;
+            @NotBlank(message = "email is required - '':(X) / ' ':(X) / null:(X)")
+            String email;
 
-      @NotBlank(message = "password is required - '':(O) / ' ':(O) / null:(X)")
-      String password;
+            @NotBlank(message = "password is required - '':(O) / ' ':(O) / null:(X)")
+            String password;
+
+        }
+
+        @ToString
+        @Getter
+        @RequiredArgsConstructor
+        public static class Data {
+
+            private final String key;
+
+        }
+
     }
 
-    @ToString
-    @Getter
-    @RequiredArgsConstructor
-    public static class Data {
+    // POST:api/auth/signin
+    public static class Signin {
 
-      private final String key;
+        @Getter
+        @ToString
+        public static class RequestBody {
+
+            @NotBlank(message = "email is required - '':(X) / ' ':(X) / null:(X)")
+            String email;
+
+            @NotBlank(message = "password is required - '':(O) / ' ':(O) / null:(X)")
+            String password;
+
+        }
+
+        @ToString
+        @Getter
+        @RequiredArgsConstructor
+        public static class Data {
+
+            private final String key;
+
+            private final String accessToken;
+
+        }
+
     }
-  }
 
-  // POST:api/auth/signin
-  public static class Signin {
+    // GET:api/auth/me
+    // static class ReadMe {
+    //
+    // @ToString
+    // @Getter
+    // static class Data {
+    //
+    // private final String key;
+    // private final String email;
+    //
+    // Data(AuthInfo.MeInfo userInfo) {
+    // this.key = userInfo.getKey();
+    // this.email = userInfo.getEmail();
+    // }
+    // }
+    // }
 
-    @Getter
-    @ToString
-    public static class RequestBody {
+    // // Patch-api/auth/password
+    // static class ModifyPassword {
+    // @Getter
+    // static class Form {
+    // @NotBlank(message = "current password is required")
+    // @Length(max = 10)
+    // String currentPassword;
+    //
+    // @NotBlank
+    // @Length(max = 10)
+    // String newPassword;
+    //
+    //
+    // // ModelAttribute는 member 할당을 위해, setter 함수가 있어야합니다.
+    // public void setCurrentPassword(String currentPassword) {
+    // this.currentPassword = currentPassword;
+    // }
+    //
+    // public void setNewPassword(String newPassword) {
+    // this.newPassword = newPassword;
+    // }
+    // }
+    //
+    // }
 
-      @NotBlank(message = "email is required - '':(X) / ' ':(X) / null:(X)")
-      String email;
-
-      @NotBlank(message = "password is required - '':(O) / ' ':(O) / null:(X)")
-      String password;
-    }
-
-    @ToString
-    @Getter
-    @RequiredArgsConstructor
-    public static class Data {
-
-      private final String key;
-      private final String accessToken;
-    }
-  }
-
-  // GET:api/auth/me
-//  static class ReadMe {
-//
-//    @ToString
-//    @Getter
-//    static class Data {
-//
-//      private final String key;
-//      private final String email;
-//
-//      Data(AuthInfo.MeInfo userInfo) {
-//        this.key = userInfo.getKey();
-//        this.email = userInfo.getEmail();
-//      }
-//    }
-//  }
-
-//  // Patch-api/auth/password
-//  static class ModifyPassword {
-//    @Getter
-//    static class Form {
-//      @NotBlank(message = "current password is required")
-//      @Length(max = 10)
-//      String currentPassword;
-//
-//      @NotBlank
-//      @Length(max = 10)
-//      String newPassword;
-//
-//
-//      // ModelAttribute는 member 할당을 위해, setter 함수가 있어야합니다.
-//      public void setCurrentPassword(String currentPassword) {
-//        this.currentPassword = currentPassword;
-//      }
-//
-//      public void setNewPassword(String newPassword) {
-//        this.newPassword = newPassword;
-//      }
-//    }
-//
-//  }
 }
