@@ -1,5 +1,6 @@
 package com.minho.backend.response;
 
+import com.minho.backend.constant.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,32 +14,42 @@ import lombok.ToString;
 @AllArgsConstructor
 public class ApiResponse<T> {
 
-    private Status status;
+    private String status;
 
     private T data;
 
     private String message;
 
+    private String code;
+
     public static <T> ApiResponse<T> success(T data, String message) {
-        return new ApiResponse<T>(Status.SUCCESS, data, message);
+        return (ApiResponse<T>) ApiResponse.builder()
+            .status(Status.SUCCESS.toString())
+            .data(data)
+            .message(message)
+            .build();
     }
 
     public static <T> ApiResponse<T> success(T data) {
         return success(data, null);
     }
 
-    public static <T> ApiResponse<T> failure(T data, String message) {
-        return new ApiResponse<T>(Status.SUCCESS, data, message);
+    public static ApiResponse failure(String message) {
+        return ApiResponse.builder().status(Status.FAILURE.toString()).message(message).build();
     }
 
-    public static <T> ApiResponse<T> failure(T data) {
-        return failure(data, null);
+    public static ApiResponse error(String code, String message) {
+        return ApiResponse.builder().status(Status.ERROR.toString()).code(code).message(message).build();
     }
 
-    // TODO: enum 소문자로 바꾸기
     enum Status {
 
-        SUCCESS, FAILURE
+        SUCCESS, FAILURE, ERROR;
+
+        @Override
+        public String toString() {
+            return name().toLowerCase();
+        }
 
     }
 
