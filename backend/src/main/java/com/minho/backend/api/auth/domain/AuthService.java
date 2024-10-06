@@ -6,14 +6,11 @@ import com.minho.backend.api.auth.domain.entity.User;
 import com.minho.backend.api.auth.domain.mapper.AuthDomainMapper;
 import com.minho.backend.api.auth.domain.port.AuthPersistencePort;
 import com.minho.backend.api.auth.domain.port.AuthServicePort;
+import com.minho.backend.constant.ErrorCode;
 import com.minho.backend.exception.AuthException;
 import com.minho.backend.util.AuthUtil;
-import java.time.Instant;
-import java.util.Date;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.mapstruct.control.MappingControl.Use;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,7 +28,7 @@ public class AuthService implements AuthServicePort {
         User user = command.toEntity();
 
         if (this.userPersistenceAdapter.findUserByEmail(user.getEmail()).isPresent()) {
-            throw new AuthException("user already exists");
+            throw new AuthException(ErrorCode.Auth.AUTH_0001);
         }
 
         String encodedPassword = this.authUtil.encodePassword(user.getPassword());
@@ -49,7 +46,7 @@ public class AuthService implements AuthServicePort {
         Optional<User> foundUser = this.userPersistenceAdapter.findUserByEmail(user.getEmail());
 
         if (foundUser.isEmpty()) {
-            throw new AuthException("user does not exists");
+            throw new AuthException(ErrorCode.Auth.AUTH_0001);
         }
 
         String plainPassword = user.getPassword();
@@ -59,7 +56,7 @@ public class AuthService implements AuthServicePort {
         Boolean isPasswordMatched = this.authUtil.matchPassword(plainPassword, encodedPassword);
 
         if (!isPasswordMatched) {
-            throw new AuthException("password does not matches");
+            throw new AuthException(ErrorCode.Auth.AUTH_0011);
         }
 
         String accessToken = this.authUtil.createJwt(key, 15L);

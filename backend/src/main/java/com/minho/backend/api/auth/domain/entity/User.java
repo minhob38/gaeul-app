@@ -4,11 +4,13 @@ import com.minho.backend.api.auth.adapter.persistence.UserJpaEntity;
 import java.util.Date;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @ToString
 @Getter
+@RequiredArgsConstructor
 public class User {
 
     private Long id;
@@ -17,7 +19,7 @@ public class User {
 
     private String email;
 
-    @Setter
+    @Setter // TODO: 별도의 메소드로 만들기
     private String password;
 
     private Date createdAt;

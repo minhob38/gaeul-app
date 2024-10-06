@@ -6,4 +6,6 @@ interface UserJpaRepository extends JpaRepository<UserJpaEntity, Long> {
 
     UserJpaEntity findUserJpaEntityByEmail(String email);
 
+    UserJpaEntity findUserJpaEntityByKey(String key);
+
 }

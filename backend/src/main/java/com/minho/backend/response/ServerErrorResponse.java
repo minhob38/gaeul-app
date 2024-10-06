@@ -1,6 +1,6 @@
 package com.minho.backend.response;
 
-public class ErrorResponse {
+public class ServerErrorResponse {
 
     private final String status = "error";
 

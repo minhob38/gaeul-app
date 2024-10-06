@@ -7,6 +7,8 @@ public interface AuthPersistencePort {
 
     Optional<User> findUserByEmail(String email);
 
+    Optional<User> findUserByKey(String key);
+
     User createUser(User user);
 
 }

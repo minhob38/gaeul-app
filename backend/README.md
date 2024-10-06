@@ -36,7 +36,7 @@
 - domain entity mapper
 ```java
 /**
- * domain entity는 setter가 없어야 하기에, mapstruct interface가 아닌 별도의 method로 mapping을 처리
+ * domain entity는 setter가 없어야 하기에, mapstruct interface가 아닌 별도의 method로 mapping을 처리 (@RequiredConstructor가 없으면 안 만들어지는듯)
  */
 public interface AuthDomainMapper {
   User toEntity(AuthCommand.SignupCommand command); -> x
@@ -67,5 +67,7 @@ query
 
 mapstruct는 setter 또는 constructor가 필요...
 
-
+### Git
+Formatting
+./gradlew checkFormat
 ./gradlew format 

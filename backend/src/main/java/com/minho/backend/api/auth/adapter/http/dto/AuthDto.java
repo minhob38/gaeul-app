@@ -63,21 +63,25 @@ public class AuthDto {
     }
 
     // GET:api/auth/me
-    // static class ReadMe {
-    //
-    // @ToString
-    // @Getter
-    // static class Data {
-    //
-    // private final String key;
-    // private final String email;
-    //
-    // Data(AuthInfo.MeInfo userInfo) {
-    // this.key = userInfo.getKey();
-    // this.email = userInfo.getEmail();
-    // }
-    // }
-    // }
+    public static class ReadMe {
+
+        @ToString
+        @Getter
+        @RequiredArgsConstructor
+        public static class Data {
+
+            private final String key;
+
+            private final String email;
+
+            Data(AuthInfo.MeInfo userInfo) {
+                this.key = userInfo.getKey();
+                this.email = userInfo.getEmail();
+            }
+
+        }
+
+    }
 
     // // Patch-api/auth/password
     // static class ModifyPassword {
