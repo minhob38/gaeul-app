@@ -1,7 +1,7 @@
 package com.minho.backend.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.minho.backend.response.ServerErrorResponse;
+import com.minho.backend.response.ApiResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,14 +21,27 @@ public class AuthenticationCheckEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
-            AuthenticationException authException) throws IOException, ServletException {
+            AuthenticationException authenticationException) throws IOException, ServletException {
 
-        ServerErrorResponse serverErrorResponse = new ServerErrorResponse();
-        serverErrorResponse.setMessage("invalid jwt");
-        String responseBody = objectMapper.writeValueAsString(serverErrorResponse);
+        ApiResponse apiResponse;
+
+        if (authenticationException instanceof JwtAuthenticationException) {
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+
+            apiResponse = ApiResponse.error(((JwtAuthenticationException) authenticationException).getCode(),
+                    authenticationException.getMessage());
+
+        }
+        else {
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+
+            apiResponse = ApiResponse.error(((ServerAuthenticationException) authenticationException).getCode(),
+                    authenticationException.getMessage());
+        }
+
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setCharacterEncoding("UTF-8");
+        String responseBody = objectMapper.writeValueAsString(apiResponse);
         response.getWriter().write(responseBody);
     }
 

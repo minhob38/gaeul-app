@@ -5,7 +5,24 @@ import lombok.Getter;
 public class ErrorCode {
 
     @Getter
+    public enum Server {
+
+        // normal
+        SERVER_0000("server error");
+
+        private final String description;
+
+        Server(String description) {
+            this.description = description;
+        }
+
+    }
+
+    @Getter
     public enum Auth {
+
+        // normal
+        AUTH_0000("auth error"),
 
         // user
         AUTH_0001("user already exists"), AUTH_0002("user does not exists"),

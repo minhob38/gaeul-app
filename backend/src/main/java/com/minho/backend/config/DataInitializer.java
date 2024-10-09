@@ -21,7 +21,7 @@ public class DataInitializer implements CommandLineRunner {
         System.out.println("### Initializing Data ###");
 
         String password = this.authUtil.encodePassword("qwerasdf");
-        User user = User.builder().email("gaeul@gmail.com").password(password).build();
+        User user = User.builder().email("gaeul@gmail.com").password(password).key("dysufedgoyafjp0d").build();
         this.authPersistenceAdapter.createUser(user);
 
         System.out.println("### Initialized Data ###");

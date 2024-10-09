@@ -36,7 +36,8 @@
 - domain entity mapper
 ```java
 /**
- * domain entity는 setter가 없어야 하기에, mapstruct interface가 아닌 별도의 method로 mapping을 처리 (@RequiredConstructor가 없으면 안 만들어지는듯)
+ * domain entity는 setter가 없어야 하기에, mapstruct interface가 아닌 별도의 method로 mapping을 처리
+ * (entity class는 final로 변수를 선언하지 않기 때문에, @RequiredConstructor로 생성자가 만들어지지 않음)
  */
 public interface AuthDomainMapper {
   User toEntity(AuthCommand.SignupCommand command); -> x
@@ -71,3 +72,7 @@ mapstruct는 setter 또는 constructor가 필요...
 Formatting
 ./gradlew checkFormat
 ./gradlew format 
+
+
+### 인증
+https://javadevjournal.com/spring-security/spring-security-authentication/

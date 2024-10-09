@@ -59,7 +59,7 @@ public class AuthService implements AuthServicePort {
             throw new AuthException(ErrorCode.Auth.AUTH_0011);
         }
 
-        String accessToken = this.authUtil.createJwt(key, 15L);
+        String accessToken = this.authUtil.createJwt(key, 1500000L);
 
         // TODO: String 대신, JWT Class로 만들기
         return this.authDomainMapper.toSigninInfo(key, accessToken);

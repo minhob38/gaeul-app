@@ -1,13 +1,19 @@
-package com.minho.backend.filter;
+package com.minho.backend.config.security;
 
-import com.minho.backend.config.security.AuthenticatedUserService;
+import com.minho.backend.constant.ErrorCode;
+import com.minho.backend.exception.AuthException;
+import com.minho.backend.exception.ServerException;
 import com.minho.backend.util.AuthUtil;
+import com.minho.backend.util.JwtPayload;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.PatternMatchUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+@Slf4j
 @RequiredArgsConstructor
 @Component
 public class JwtFilter extends OncePerRequestFilter {
@@ -25,14 +32,16 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private final AuthenticatedUserService authenticatedUserService;
 
+    private final AuthenticationCheckEntryPoint authenticationCheckEntryPoint;
+
     private boolean checkIsAuthCheckPath(String requestURI) {
-        System.out.println(requestURI);
         return !PatternMatchUtils.simpleMatch(nochecks, requestURI);
     }
 
     @Override
-    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) {
-        System.out.println("do filter");
+    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        log.info("### jwt filter ###");
 
         HttpServletRequest httpRequest = request;
         String requestURI = httpRequest.getRequestURI();
@@ -45,28 +54,24 @@ public class JwtFilter extends OncePerRequestFilter {
             }
 
             String jwt = httpRequest.getHeader("access_token");
-            System.out.println(jwt);
             Jws<Claims> claims = this.authUtil.validJwt(jwt);
-            Claims payload = this.authUtil.parseJwt(claims);
-            System.out.println(payload);
-            payload.get("user_key");
-            // this.authenticatedUserService.findUserByKey(p)
-            // throw new AuthException("hahahah");
-            // this.authUtil.validJwt()
+            JwtPayload payload = this.authUtil.parseJwt(claims);
 
-            // SecurityContextHolder.getContext().setAuthentication(authentication);
-            // this.authUtil.validJwt()
-            // new UsernamePasswordAuthenticationToken()
+            AuthenticatedUser authenticatedUser = this.authenticatedUserService.findUserByKey(payload.getUserKey());
 
-            // chain.doFilter(request, response);
+            Authentication authentication = new UsernamePasswordAuthenticationToken(authenticatedUser, null,
+                    authenticatedUser.getAuthorities());
 
-            // Authentication authentication = this.authUtil.getAuthentication(jwt);
-            // SecurityContextHolder.getContext().setAuthentication(authentication);
-            // security 복잡하지만, 결론은
-            // SecurityContextHolder.getContext().setAuthentication(authentication)
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            chain.doFilter(request, response);
+        }
+        catch (AuthException e) {
+            authenticationCheckEntryPoint.commence(request, response, new JwtAuthenticationException(e));
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            authenticationCheckEntryPoint.commence(request, response,
+                    new ServerAuthenticationException(new ServerException(ErrorCode.Server.SERVER_0000)));
         }
     }
 

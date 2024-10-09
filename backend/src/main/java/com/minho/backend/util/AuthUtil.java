@@ -1,6 +1,6 @@
 package com.minho.backend.util;
 
-import com.minho.backend.config.SecretConfig;
+import com.minho.backend.config.EnvironmentConfig;
 import com.minho.backend.constant.ErrorCode;
 import com.minho.backend.exception.AuthException;
 import io.jsonwebtoken.Claims;
@@ -24,11 +24,8 @@ public class AuthUtil {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private final SecretConfig secretConfig;
-
     @Autowired
-    public AuthUtil(SecretConfig secretConfig) {
-        this.secretConfig = secretConfig;
+    public AuthUtil() {
         this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 
@@ -44,45 +41,39 @@ public class AuthUtil {
         Date now = Date.from(Instant.now());
         Date expireAt = new Date(now.getTime() + expireMinutes * 60 * 1000);
 
-        SecretKey secretKey = Keys.hmacShaKeyFor(this.secretConfig.getJwtSecretKey().getBytes());
+        SecretKey secretKey = Keys.hmacShaKeyFor(EnvironmentConfig.getJwtSecretKey().getBytes());
         return Jwts.builder()
             .signWith(secretKey)
             .claim("user_key", userKey)
             .expiration(expireAt)
-            .claim("my_temp_key", "my_temp_value")
+            .claim("service", "my service")
             .compact();
     }
 
     public Jws<Claims> validJwt(String jwt) throws AuthException {
-        SecretKey secretKey = Keys.hmacShaKeyFor(this.secretConfig.getJwtSecretKey().getBytes());
+        SecretKey secretKey = Keys.hmacShaKeyFor(EnvironmentConfig.getJwtSecretKey().getBytes());
 
         try {
             Jws<Claims> claims = Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(jwt);
             return claims;
         }
         catch (SecurityException | MalformedJwtException e) {
+            log.info("### invalid jwt");
             throw new AuthException(ErrorCode.Auth.AUTH_0022);
         }
         catch (ExpiredJwtException e) {
+            log.info("### expired jwt");
             throw new AuthException(ErrorCode.Auth.AUTH_0023);
         }
         catch (Exception e) {
+            log.info("### jwt error");
             throw new AuthException(ErrorCode.Auth.AUTH_0022);
         }
     }
 
-    public Claims parseJwt(Jws<Claims> claims) {
+    public JwtPayload parseJwt(Jws<Claims> claims) {
         Claims payload = claims.getPayload();
-        return payload;
+        return new JwtPayload(payload.get("user_key", String.class));
     }
-
-    // public Authentication getAuthentication(String jwt) {
-    // Claims claims = this.validJwt(jwt);
-    // List authorities = Arrays.stream(claims.get("user_key").toString().split(",")).map(
-    // SimpleGrantedAuthority::new)
-    // .collect(Collectors.toList());
-    //
-    // return new UsernamePasswordAuthenticationToken("admin", "abc", authorities);
-    // }
 
 }

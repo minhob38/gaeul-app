@@ -1,7 +1,7 @@
 package com.minho.backend.exception;
 
+import com.minho.backend.constant.ErrorCode;
 import com.minho.backend.response.ApiResponse;
-import com.minho.backend.response.ServerErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -12,19 +12,19 @@ public class Advice {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public ServerErrorResponse exceptionHandler(Exception e) {
-        System.out.println("controller advice - Exception");
-        System.out.println(e);
-        ServerErrorResponse serverErrorResponse = new ServerErrorResponse();
-        serverErrorResponse.setMessage(e.getMessage());
-        return serverErrorResponse;
+    public ApiResponse exceptionHandler(Exception e) {
+        return ApiResponse.error(ErrorCode.Server.SERVER_0000.name(), e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(ServerException.class)
+    public ApiResponse serverExceptionHandler(ServerException e) {
+        return ApiResponse.error(e.getCode(), e.getMessage());
     }
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(AuthException.class)
     public ApiResponse authExceptionHandler(AuthException e) {
-        ServerErrorResponse serverErrorResponse = new ServerErrorResponse();
-        serverErrorResponse.setMessage(e.getMessage());
         return ApiResponse.error(e.getCode(), e.getMessage());
     }
 

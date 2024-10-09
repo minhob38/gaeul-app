@@ -1,6 +1,5 @@
 package com.minho.backend.config.security;
 
-import com.minho.backend.filter.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

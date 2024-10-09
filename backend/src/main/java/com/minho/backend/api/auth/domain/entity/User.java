@@ -37,7 +37,7 @@ public class User {
     }
 
     public UserJpaEntity toJpaEntity() {
-        return UserJpaEntity.builder().email(this.email).password(this.password).build();
+        return UserJpaEntity.builder().email(this.email).password(this.password).key(this.key).build();
     }
 
 }

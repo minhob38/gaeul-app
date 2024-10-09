@@ -46,12 +46,15 @@ public class UserJpaEntity {
 
     @PrePersist
     public void generateKey() {
-        this.key = RandomStringUtils.randomAlphanumeric(16).toLowerCase();
+        if (this.key == null) {
+            this.key = RandomStringUtils.randomAlphanumeric(16).toLowerCase();
+        }
     }
 
     @Builder
-    public UserJpaEntity(String email, String password) {
+    public UserJpaEntity(String email, String password, String key) {
         this.email = email;
+        this.key = key;
         this.password = password;
     }
 

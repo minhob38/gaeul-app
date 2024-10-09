@@ -28,7 +28,6 @@ public class AuthPersistenceAdapter implements AuthPersistencePort {
     @Override
     public User createUser(User user) {
         UserJpaEntity userJpaEntity = user.toJpaEntity();
-        System.out.println(user.toString());
         UserJpaEntity savedUserJpaEntity = this.userRepository.save(userJpaEntity);
         User savedUser = savedUserJpaEntity.toEntity();
         return savedUser;
