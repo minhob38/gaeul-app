@@ -10,6 +10,35 @@ import lombok.ToString;
 
 public class AuthDto {
 
+    @ToString
+    @Getter
+    @RequiredArgsConstructor
+    public static class Data {
+
+        private final String key;
+
+        private final String email;
+
+        private final String name;
+
+        // private final String password; <- password는 숨기기
+
+        private final ZonedDateTime passwordChangedAt;
+
+        private final ZonedDateTime signedupAt;
+
+        private final Date signedinAt;
+
+        private final ZonedDateTime signedoutAt;
+
+        private final Date createdAt;
+
+        private final Date updatedAt;
+
+        private final String accessToken;
+
+    }
+
     // POST:api/auth/signup
     public static class Signup {
 
@@ -22,15 +51,6 @@ public class AuthDto {
 
             @NotBlank(message = "password is required - '':(X) / '':(X) / null:(X)")
             String password;
-
-        }
-
-        @ToString
-        @Getter
-        @RequiredArgsConstructor
-        public static class Data {
-
-            private final String key;
 
         }
 
@@ -51,66 +71,10 @@ public class AuthDto {
 
         }
 
-        @ToString
-        @Getter
-        @RequiredArgsConstructor
-        public static class Data {
-
-            private final String key;
-
-            private final String email;
-
-            private final String name;
-
-            // private final String password; <- password는 숨기기
-
-            private final ZonedDateTime passwordChangedAt;
-
-            private final ZonedDateTime signedupAt;
-
-            private final Date signedinAt;
-
-            private final ZonedDateTime signedoutAt;
-
-            private final Date createdAt;
-
-            private final Date updatedAt;
-
-            private final String accessToken;
-
-        }
-
     }
 
     // GET:api/auth/me
     public static class ReadMe {
-
-        @ToString
-        @Getter
-        @RequiredArgsConstructor
-        public static class Data {
-
-            private final String key;
-
-            private final String email;
-
-            private final String name;
-
-            // private final String password; <- password는 숨기기
-
-            private final ZonedDateTime passwordChangedAt;
-
-            private final ZonedDateTime signedupAt;
-
-            private final Date signedinAt;
-
-            private final ZonedDateTime signedoutAt;
-
-            private final Date createdAt;
-
-            private final Date updatedAt;
-
-        }
 
     }
 
@@ -126,33 +90,6 @@ public class AuthDto {
             String currentPassword;
 
             String newPassword;
-
-        }
-
-        @ToString
-        @Getter
-        @RequiredArgsConstructor
-        public static class Data {
-
-            private final String key;
-
-            private final String email;
-
-            private final String name;
-
-            // private final String password; <- password는 숨기기
-
-            private final ZonedDateTime passwordChangedAt;
-
-            private final ZonedDateTime signedupAt;
-
-            private final Date signedinAt;
-
-            private final ZonedDateTime signedoutAt;
-
-            private final Date createdAt;
-
-            private final Date updatedAt;
 
         }
 

@@ -16,18 +16,21 @@ public interface AuthAdapterMapper {
     AuthCommand.Signup toSignupCommand(AuthDto.Signup.RequestBody requestBody);
 
     // @Mapping(source = "id", target = "userId")
-    AuthDto.Signup.Data toSignupData(AuthInfo.Signup info);
+    @Mapping(target = "accessToken", ignore = true)
+    AuthDto.Data toSignupData(AuthInfo info);
 
     AuthCommand.Signin toSigninCommand(AuthDto.Signin.RequestBody requestBody);
 
-    AuthDto.Signin.Data toSigninData(AuthInfo.Signin info);
+    AuthDto.Data toSigninData(AuthInfo info);
 
     AuthQuery.ReadMe toReadMeQuery(Long userId);
 
-    AuthDto.ReadMe.Data toReadMeData(AuthInfo.ReadMe info);
+    @Mapping(target = "accessToken", ignore = true)
+    AuthDto.Data toReadMeData(AuthInfo info);
 
     AuthCommand.ModifyMe toModifyMeCommand(AuthDto.ModifyMe.RequestBody requestBody, Long userId);
 
-    AuthDto.ModifyMe.Data toModifyMeData(AuthInfo.ModifyMe info);
+    @Mapping(target = "accessToken", ignore = true)
+    AuthDto.Data toModifyMeData(AuthInfo info);
 
 }

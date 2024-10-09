@@ -27,7 +27,7 @@ public class AuthService implements AuthServicePort {
     private final AuthUtil authUtil;
 
     @Override
-    public AuthInfo.Signup signup(AuthCommand.Signup command) throws AuthException {
+    public AuthInfo signup(AuthCommand.Signup command) throws AuthException {
         User user = command.toEntity();
 
         if (this.userPersistenceAdapter.findUserByEmail(user.getEmail()).isPresent()) {
@@ -43,7 +43,7 @@ public class AuthService implements AuthServicePort {
     }
 
     @Override
-    public AuthInfo.Signin signin(AuthCommand.Signin command) throws AuthException {
+    public AuthInfo signin(AuthCommand.Signin command) throws AuthException {
         User user = command.toEntity();
 
         Optional<User> foundUser = this.userPersistenceAdapter.findUserByEmail(user.getEmail());
@@ -69,7 +69,7 @@ public class AuthService implements AuthServicePort {
     }
 
     @Override
-    public AuthInfo.ModifyMe modifyMe(AuthCommand.ModifyMe command) throws AuthException, ServerException {
+    public AuthInfo modifyMe(AuthCommand.ModifyMe command) throws AuthException, ServerException {
         User user = this.userPersistenceAdapter.findUserById(command.getUserId()).get();
 
         Optional<String> currentPassword = Optional.ofNullable(command.getCurrentPassword());
@@ -103,7 +103,7 @@ public class AuthService implements AuthServicePort {
     }
 
     @Override
-    public AuthInfo.ReadMe readMe(AuthQuery.ReadMe query) throws AuthException {
+    public AuthInfo readMe(AuthQuery.ReadMe query) throws AuthException {
         User user = this.userPersistenceAdapter.findUserById(query.getUserId()).get();
 
         return this.authDomainMapper.toReadMeInfo(user);

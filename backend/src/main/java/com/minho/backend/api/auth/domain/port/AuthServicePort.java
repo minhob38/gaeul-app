@@ -8,12 +8,12 @@ import com.minho.backend.exception.ServerException;
 
 public interface AuthServicePort {
 
-    AuthInfo.Signup signup(AuthCommand.Signup command) throws AuthException;
+    AuthInfo signup(AuthCommand.Signup command) throws AuthException;
 
-    AuthInfo.Signin signin(AuthCommand.Signin command) throws AuthException;
+    AuthInfo signin(AuthCommand.Signin command) throws AuthException;
 
-    AuthInfo.ModifyMe modifyMe(AuthCommand.ModifyMe command) throws AuthException, ServerException;
+    AuthInfo modifyMe(AuthCommand.ModifyMe command) throws AuthException, ServerException;
 
-    AuthInfo.ReadMe readMe(AuthQuery.ReadMe query) throws AuthException;
+    AuthInfo readMe(AuthQuery.ReadMe query) throws AuthException;
 
 }

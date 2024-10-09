@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-09T20:48:55+0900",
+    date = "2024-10-09T21:05:35+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
 public class AuthDomainMapperImpl implements AuthDomainMapper {
 
     @Override
-    public AuthInfo.Signup toSignupInfo(User user) {
+    public AuthInfo toSignupInfo(User user) {
         if ( user == null ) {
             return null;
         }
@@ -43,13 +43,15 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         createdAt = user.getCreatedAt();
         updatedAt = user.getUpdatedAt();
 
-        AuthInfo.Signup signup = new AuthInfo.Signup( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt );
+        String accessToken = null;
 
-        return signup;
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+
+        return authInfo;
     }
 
     @Override
-    public AuthInfo.Signin toSigninInfo(User user, String accessToken) {
+    public AuthInfo toSigninInfo(User user, String accessToken) {
         if ( user == null && accessToken == null ) {
             return null;
         }
@@ -79,13 +81,13 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         String accessToken1 = null;
         accessToken1 = accessToken;
 
-        AuthInfo.Signin signin = new AuthInfo.Signin( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken1 );
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken1 );
 
-        return signin;
+        return authInfo;
     }
 
     @Override
-    public AuthInfo.ModifyMe toModifyMe(User user) {
+    public AuthInfo toModifyMe(User user) {
         if ( user == null ) {
             return null;
         }
@@ -112,13 +114,15 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         createdAt = user.getCreatedAt();
         updatedAt = user.getUpdatedAt();
 
-        AuthInfo.ModifyMe modifyMe = new AuthInfo.ModifyMe( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt );
+        String accessToken = null;
 
-        return modifyMe;
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+
+        return authInfo;
     }
 
     @Override
-    public AuthInfo.ReadMe toReadMeInfo(User user) {
+    public AuthInfo toReadMeInfo(User user) {
         if ( user == null ) {
             return null;
         }
@@ -145,8 +149,10 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         createdAt = user.getCreatedAt();
         updatedAt = user.getUpdatedAt();
 
-        AuthInfo.ReadMe readMe = new AuthInfo.ReadMe( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt );
+        String accessToken = null;
 
-        return readMe;
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+
+        return authInfo;
     }
 }

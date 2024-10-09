@@ -16,23 +16,23 @@ public class AuthApplication {
 
     private final AuthServicePort authService;
 
-    public AuthInfo.Signup signup(AuthCommand.Signup command) throws AuthException {
-        AuthInfo.Signup info = this.authService.signup(command);
+    public AuthInfo signup(AuthCommand.Signup command) throws AuthException {
+        AuthInfo info = this.authService.signup(command);
         return info;
     }
 
-    public AuthInfo.Signin signin(AuthCommand.Signin command) throws AuthException {
-        AuthInfo.Signin info = this.authService.signin(command);
+    public AuthInfo signin(AuthCommand.Signin command) throws AuthException {
+        AuthInfo info = this.authService.signin(command);
         return info;
     }
 
-    public AuthInfo.ModifyMe modifyMe(AuthCommand.ModifyMe command) throws AuthException, ServerException {
-        AuthInfo.ModifyMe info = this.authService.modifyMe(command);
+    public AuthInfo modifyMe(AuthCommand.ModifyMe command) throws AuthException, ServerException {
+        AuthInfo info = this.authService.modifyMe(command);
         return info;
     }
 
-    public AuthInfo.ReadMe readMe(AuthQuery.ReadMe query) throws AuthException {
-        AuthInfo.ReadMe info = this.authService.readMe(query);
+    public AuthInfo readMe(AuthQuery.ReadMe query) throws AuthException {
+        AuthInfo info = this.authService.readMe(query);
         return info;
     }
 

@@ -1,7 +1,6 @@
 package com.minho.backend.api.auth.adapter.http;
 
 import com.minho.backend.api.auth.adapter.http.dto.AuthDto;
-import com.minho.backend.api.auth.adapter.http.dto.AuthDto.ReadMe.Data;
 import com.minho.backend.api.auth.adapter.http.mapper.AuthAdapterMapper;
 import com.minho.backend.api.auth.application.AuthApplication;
 import com.minho.backend.api.auth.domain.dto.AuthCommand;
@@ -13,8 +12,6 @@ import com.minho.backend.exception.AuthException;
 import com.minho.backend.exception.ServerException;
 import com.minho.backend.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -33,43 +30,43 @@ public class AuthController {
     private final AuthAdapterMapper authAdapterMapper;
 
     @PostMapping(value = "/signup")
-    public ApiResponse<AuthDto.Signup.Data> postSignup(@Validated @RequestBody AuthDto.Signup.RequestBody requestBody)
+    public ApiResponse<AuthDto.Data> postSignup(@Validated @RequestBody AuthDto.Signup.RequestBody requestBody)
             throws AuthException {
         AuthCommand.Signup command = this.authAdapterMapper.toSignupCommand(requestBody);
-        AuthInfo.Signup info = this.authApplication.signup(command);
-        AuthDto.Signup.Data data = this.authAdapterMapper.toSignupData(info);
+        AuthInfo info = this.authApplication.signup(command);
+        AuthDto.Data data = this.authAdapterMapper.toSignupData(info);
 
         return ApiResponse.success(data);
     }
 
     @PostMapping(value = "/signin")
-    public ApiResponse<AuthDto.Signin.Data> postSignin(@Validated @RequestBody AuthDto.Signin.RequestBody requestBody)
+    public ApiResponse<AuthDto.Data> postSignin(@Validated @RequestBody AuthDto.Signin.RequestBody requestBody)
             throws AuthException {
         AuthCommand.Signin command = this.authAdapterMapper.toSigninCommand(requestBody);
-        AuthInfo.Signin info = this.authApplication.signin(command);
-        AuthDto.Signin.Data data = this.authAdapterMapper.toSigninData(info);
+        AuthInfo info = this.authApplication.signin(command);
+        AuthDto.Data data = this.authAdapterMapper.toSigninData(info);
 
         return ApiResponse.success(data);
     }
 
     @PatchMapping(value = "/me")
-    public ApiResponse<AuthDto.ModifyMe.Data> patchMe(@Validated @RequestBody AuthDto.ModifyMe.RequestBody requestBody,
+    public ApiResponse<AuthDto.Data> patchMe(@Validated @RequestBody AuthDto.ModifyMe.RequestBody requestBody,
             @SigninUser AuthenticatedUser user) throws AuthException, ServerException {
         Long userId = user.getId();
         AuthCommand.ModifyMe command = this.authAdapterMapper.toModifyMeCommand(requestBody, userId);
-        AuthInfo.ModifyMe info = this.authApplication.modifyMe(command);
-        AuthDto.ModifyMe.Data data = this.authAdapterMapper.toModifyMeData(info);
+        AuthInfo info = this.authApplication.modifyMe(command);
+        AuthDto.Data data = this.authAdapterMapper.toModifyMeData(info);
 
         return ApiResponse.success(data);
     }
 
     @GetMapping(value = "/me")
-    public ApiResponse<AuthDto.ReadMe.Data> getMe(@SigninUser AuthenticatedUser user) throws AuthException {
+    public ApiResponse<AuthDto.Data> getMe(@SigninUser AuthenticatedUser user) throws AuthException {
         Long userId = user.getId();
 
         AuthQuery.ReadMe query = this.authAdapterMapper.toReadMeQuery(userId);
-        AuthInfo.ReadMe info = this.authApplication.readMe(query);
-        AuthDto.ReadMe.Data data = this.authAdapterMapper.toReadMeData(info);
+        AuthInfo info = this.authApplication.readMe(query);
+        AuthDto.Data data = this.authAdapterMapper.toReadMeData(info);
 
         return ApiResponse.success(data);
     }
