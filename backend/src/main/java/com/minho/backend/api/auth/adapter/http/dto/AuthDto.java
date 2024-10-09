@@ -2,6 +2,8 @@ package com.minho.backend.api.auth.adapter.http.dto;
 
 import com.minho.backend.api.auth.domain.dto.AuthInfo;
 import jakarta.validation.constraints.NotBlank;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -56,6 +58,24 @@ public class AuthDto {
 
             private final String key;
 
+            private final String email;
+
+            private final String name;
+
+            // private final String password; <- password는 숨기기
+
+            private final ZonedDateTime passwordChangedAt;
+
+            private final ZonedDateTime signedupAt;
+
+            private final Date signedinAt;
+
+            private final ZonedDateTime signedoutAt;
+
+            private final Date createdAt;
+
+            private final Date updatedAt;
+
             private final String accessToken;
 
         }
@@ -73,6 +93,22 @@ public class AuthDto {
             private final String key;
 
             private final String email;
+
+            private final String name;
+
+            // private final String password; <- password는 숨기기
+
+            private final ZonedDateTime passwordChangedAt;
+
+            private final ZonedDateTime signedupAt;
+
+            private final Date signedinAt;
+
+            private final ZonedDateTime signedoutAt;
+
+            private final Date createdAt;
+
+            private final Date updatedAt;
 
         }
 
@@ -101,6 +137,22 @@ public class AuthDto {
             private final String key;
 
             private final String email;
+
+            private final String name;
+
+            // private final String password; <- password는 숨기기
+
+            private final ZonedDateTime passwordChangedAt;
+
+            private final ZonedDateTime signedupAt;
+
+            private final Date signedinAt;
+
+            private final ZonedDateTime signedoutAt;
+
+            private final Date createdAt;
+
+            private final Date updatedAt;
 
         }
 

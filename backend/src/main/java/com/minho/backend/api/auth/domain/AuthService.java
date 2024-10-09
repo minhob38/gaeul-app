@@ -13,6 +13,7 @@ import com.minho.backend.exception.ServerException;
 import com.minho.backend.util.AuthUtil;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.mapstruct.control.MappingControl.Use;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -64,7 +65,7 @@ public class AuthService implements AuthServicePort {
         String accessToken = this.authUtil.createJwt(key, 1500000L);
 
         // TODO: String 대신, JWT Class로 만들기
-        return this.authDomainMapper.toSigninInfo(key, accessToken);
+        return this.authDomainMapper.toSigninInfo(foundUser.get(), accessToken);
     }
 
     @Override

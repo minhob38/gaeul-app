@@ -4,12 +4,14 @@ import com.minho.backend.api.auth.adapter.http.dto.AuthDto;
 import com.minho.backend.api.auth.domain.dto.AuthCommand;
 import com.minho.backend.api.auth.domain.dto.AuthInfo;
 import com.minho.backend.api.auth.domain.dto.AuthQuery;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-09T19:34:17+0900",
+    date = "2024-10-09T20:48:55+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
@@ -71,12 +73,28 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         }
 
         String key = null;
+        String email = null;
+        String name = null;
+        ZonedDateTime passwordChangedAt = null;
+        ZonedDateTime signedupAt = null;
+        Date signedinAt = null;
+        ZonedDateTime signedoutAt = null;
+        Date createdAt = null;
+        Date updatedAt = null;
         String accessToken = null;
 
         key = info.getKey();
+        email = info.getEmail();
+        name = info.getName();
+        passwordChangedAt = info.getPasswordChangedAt();
+        signedupAt = info.getSignedupAt();
+        signedinAt = info.getSignedinAt();
+        signedoutAt = info.getSignedoutAt();
+        createdAt = info.getCreatedAt();
+        updatedAt = info.getUpdatedAt();
         accessToken = info.getAccessToken();
 
-        AuthDto.Signin.Data data = new AuthDto.Signin.Data( key, accessToken );
+        AuthDto.Signin.Data data = new AuthDto.Signin.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
 
         return data;
     }
@@ -104,11 +122,25 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
 
         String key = null;
         String email = null;
+        String name = null;
+        ZonedDateTime passwordChangedAt = null;
+        ZonedDateTime signedupAt = null;
+        Date signedinAt = null;
+        ZonedDateTime signedoutAt = null;
+        Date createdAt = null;
+        Date updatedAt = null;
 
         key = info.getKey();
         email = info.getEmail();
+        name = info.getName();
+        passwordChangedAt = info.getPasswordChangedAt();
+        signedupAt = info.getSignedupAt();
+        signedinAt = info.getSignedinAt();
+        signedoutAt = info.getSignedoutAt();
+        createdAt = info.getCreatedAt();
+        updatedAt = info.getUpdatedAt();
 
-        AuthDto.ReadMe.Data data = new AuthDto.ReadMe.Data( key, email );
+        AuthDto.ReadMe.Data data = new AuthDto.ReadMe.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt );
 
         return data;
     }
@@ -143,11 +175,25 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
 
         String key = null;
         String email = null;
+        String name = null;
+        ZonedDateTime passwordChangedAt = null;
+        ZonedDateTime signedupAt = null;
+        Date signedinAt = null;
+        ZonedDateTime signedoutAt = null;
+        Date createdAt = null;
+        Date updatedAt = null;
 
         key = info.getKey();
         email = info.getEmail();
+        name = info.getName();
+        passwordChangedAt = info.getPasswordChangedAt();
+        signedupAt = info.getSignedupAt();
+        signedinAt = info.getSignedinAt();
+        signedoutAt = info.getSignedoutAt();
+        createdAt = info.getCreatedAt();
+        updatedAt = info.getUpdatedAt();
 
-        AuthDto.ModifyMe.Data data = new AuthDto.ModifyMe.Data( key, email );
+        AuthDto.ModifyMe.Data data = new AuthDto.ModifyMe.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt );
 
         return data;
     }

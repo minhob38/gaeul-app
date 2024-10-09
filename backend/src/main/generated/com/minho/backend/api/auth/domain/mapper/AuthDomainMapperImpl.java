@@ -2,12 +2,14 @@ package com.minho.backend.api.auth.domain.mapper;
 
 import com.minho.backend.api.auth.domain.dto.AuthInfo;
 import com.minho.backend.api.auth.domain.entity.User;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-09T19:34:16+0900",
+    date = "2024-10-09T20:48:55+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
@@ -19,27 +21,65 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
             return null;
         }
 
+        Long id = null;
         String key = null;
+        String email = null;
+        String name = null;
+        ZonedDateTime passwordChangedAt = null;
+        ZonedDateTime signedupAt = null;
+        Date signedinAt = null;
+        ZonedDateTime signedoutAt = null;
+        Date createdAt = null;
+        Date updatedAt = null;
 
+        id = user.getId();
         key = user.getKey();
+        email = user.getEmail();
+        name = user.getName();
+        passwordChangedAt = user.getPasswordChangedAt();
+        signedupAt = user.getSignedupAt();
+        signedinAt = user.getSignedinAt();
+        signedoutAt = user.getSignedoutAt();
+        createdAt = user.getCreatedAt();
+        updatedAt = user.getUpdatedAt();
 
-        AuthInfo.Signup signup = new AuthInfo.Signup( key );
+        AuthInfo.Signup signup = new AuthInfo.Signup( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt );
 
         return signup;
     }
 
     @Override
-    public AuthInfo.Signin toSigninInfo(String key, String accessToken) {
-        if ( key == null && accessToken == null ) {
+    public AuthInfo.Signin toSigninInfo(User user, String accessToken) {
+        if ( user == null && accessToken == null ) {
             return null;
         }
 
-        String key1 = null;
-        key1 = key;
+        Long id = null;
+        String key = null;
+        String email = null;
+        String name = null;
+        ZonedDateTime passwordChangedAt = null;
+        ZonedDateTime signedupAt = null;
+        Date signedinAt = null;
+        ZonedDateTime signedoutAt = null;
+        Date createdAt = null;
+        Date updatedAt = null;
+        if ( user != null ) {
+            id = user.getId();
+            key = user.getKey();
+            email = user.getEmail();
+            name = user.getName();
+            passwordChangedAt = user.getPasswordChangedAt();
+            signedupAt = user.getSignedupAt();
+            signedinAt = user.getSignedinAt();
+            signedoutAt = user.getSignedoutAt();
+            createdAt = user.getCreatedAt();
+            updatedAt = user.getUpdatedAt();
+        }
         String accessToken1 = null;
         accessToken1 = accessToken;
 
-        AuthInfo.Signin signin = new AuthInfo.Signin( key1, accessToken1 );
+        AuthInfo.Signin signin = new AuthInfo.Signin( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken1 );
 
         return signin;
     }
@@ -50,13 +90,29 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
             return null;
         }
 
+        Long id = null;
         String key = null;
         String email = null;
+        String name = null;
+        ZonedDateTime passwordChangedAt = null;
+        ZonedDateTime signedupAt = null;
+        Date signedinAt = null;
+        ZonedDateTime signedoutAt = null;
+        Date createdAt = null;
+        Date updatedAt = null;
 
+        id = user.getId();
         key = user.getKey();
         email = user.getEmail();
+        name = user.getName();
+        passwordChangedAt = user.getPasswordChangedAt();
+        signedupAt = user.getSignedupAt();
+        signedinAt = user.getSignedinAt();
+        signedoutAt = user.getSignedoutAt();
+        createdAt = user.getCreatedAt();
+        updatedAt = user.getUpdatedAt();
 
-        AuthInfo.ModifyMe modifyMe = new AuthInfo.ModifyMe( key, email );
+        AuthInfo.ModifyMe modifyMe = new AuthInfo.ModifyMe( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt );
 
         return modifyMe;
     }
@@ -67,13 +123,29 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
             return null;
         }
 
+        Long id = null;
         String key = null;
         String email = null;
+        String name = null;
+        ZonedDateTime passwordChangedAt = null;
+        ZonedDateTime signedupAt = null;
+        Date signedinAt = null;
+        ZonedDateTime signedoutAt = null;
+        Date createdAt = null;
+        Date updatedAt = null;
 
+        id = user.getId();
         key = user.getKey();
         email = user.getEmail();
+        name = user.getName();
+        passwordChangedAt = user.getPasswordChangedAt();
+        signedupAt = user.getSignedupAt();
+        signedinAt = user.getSignedinAt();
+        signedoutAt = user.getSignedoutAt();
+        createdAt = user.getCreatedAt();
+        updatedAt = user.getUpdatedAt();
 
-        AuthInfo.ReadMe readMe = new AuthInfo.ReadMe( key, email );
+        AuthInfo.ReadMe readMe = new AuthInfo.ReadMe( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt );
 
         return readMe;
     }

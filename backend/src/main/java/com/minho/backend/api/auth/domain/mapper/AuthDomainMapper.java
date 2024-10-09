@@ -12,7 +12,7 @@ public interface AuthDomainMapper {
 
     AuthInfo.Signup toSignupInfo(User user);
 
-    AuthInfo.Signin toSigninInfo(String key, String accessToken);
+    AuthInfo.Signin toSigninInfo(User user, String accessToken);
 
     AuthInfo.ModifyMe toModifyMe(User user);
 
