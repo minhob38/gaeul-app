@@ -8,6 +8,7 @@ import com.minho.backend.api.auth.domain.dto.AuthCommand;
 import com.minho.backend.api.auth.domain.dto.AuthInfo;
 import com.minho.backend.api.auth.domain.dto.AuthQuery;
 import com.minho.backend.config.security.AuthenticatedUser;
+import com.minho.backend.config.security.SigninUser;
 import com.minho.backend.exception.AuthException;
 import com.minho.backend.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -50,10 +51,12 @@ public class AuthController {
     }
 
     @GetMapping(value = "/me")
-    public ApiResponse<AuthDto.ReadMe.Data> getMe() throws AuthException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        AuthenticatedUser authenticatedUser = (AuthenticatedUser) authentication.getPrincipal();
-        Long userId = authenticatedUser.getId();
+    public ApiResponse<AuthDto.ReadMe.Data> getMe(@SigninUser AuthenticatedUser user) throws AuthException {
+        // Authentication authentication =
+        // SecurityContextHolder.getContext().getAuthentication();
+        // AuthenticatedUser authenticatedUser = (AuthenticatedUser)
+        // authentication.getPrincipal();
+        Long userId = user.getId();
 
         AuthQuery.ReadMe query = this.authAdapterMapper.toReadMeQuery(userId);
         AuthInfo.ReadMe info = this.authApplication.readMe(query);
