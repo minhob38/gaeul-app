@@ -1,4 +1,4 @@
-package com.minho.backend.config;
+package com.minho.backend.config.environment;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,6 @@
-package com.minho.backend.config;
+package com.minho.backend.config.web;
 
-import com.minho.backend.config.security.SigninUserArgumentResolver;
+import com.minho.backend.config.security.annotation.SigninUserArgumentResolver;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

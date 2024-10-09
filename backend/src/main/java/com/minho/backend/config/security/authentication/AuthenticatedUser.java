@@ -1,4 +1,4 @@
-package com.minho.backend.config.security;
+package com.minho.backend.config.security.authentication;
 
 import java.util.ArrayList;
 import java.util.Collection;

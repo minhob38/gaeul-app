@@ -1,4 +1,4 @@
-package com.minho.backend.config;
+package com.minho.backend.config.dataseed;
 
 import com.minho.backend.api.auth.domain.entity.User;
 import com.minho.backend.api.auth.domain.port.AuthPersistencePort;

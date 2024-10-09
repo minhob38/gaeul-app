@@ -1,6 +1,8 @@
-package com.minho.backend.config.security;
+package com.minho.backend.config.security.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.minho.backend.config.security.exception.ServerAuthenticationException;
+import com.minho.backend.config.security.exception.JwtAuthenticationException;
 import com.minho.backend.response.ApiResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

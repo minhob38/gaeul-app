@@ -1,4 +1,4 @@
-package com.minho.backend.config.security;
+package com.minho.backend.config.security.jwt;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;

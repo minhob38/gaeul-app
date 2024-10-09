@@ -1,7 +1,8 @@
-package com.minho.backend.config.security;
+package com.minho.backend.config.security.authentication;
 
 import com.minho.backend.api.auth.domain.entity.User;
 import com.minho.backend.api.auth.domain.port.AuthPersistencePort;
+import com.minho.backend.config.security.authentication.AuthenticatedUser;
 import com.minho.backend.constant.ErrorCode;
 import com.minho.backend.exception.AuthException;
 import java.util.Optional;

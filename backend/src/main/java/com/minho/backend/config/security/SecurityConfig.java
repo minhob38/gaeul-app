@@ -1,5 +1,7 @@
 package com.minho.backend.config.security;
 
+import com.minho.backend.config.security.exception.AuthenticationCheckEntryPoint;
+import com.minho.backend.config.security.jwt.JwtConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,5 +1,10 @@
-package com.minho.backend.config.security;
+package com.minho.backend.config.security.jwt;
 
+import com.minho.backend.config.security.authentication.AuthenticatedUser;
+import com.minho.backend.config.security.authentication.AuthenticatedUserService;
+import com.minho.backend.config.security.exception.AuthenticationCheckEntryPoint;
+import com.minho.backend.config.security.exception.JwtAuthenticationException;
+import com.minho.backend.config.security.exception.ServerAuthenticationException;
 import com.minho.backend.constant.ErrorCode;
 import com.minho.backend.exception.AuthException;
 import com.minho.backend.exception.ServerException;

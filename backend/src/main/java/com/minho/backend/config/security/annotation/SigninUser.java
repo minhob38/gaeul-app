@@ -1,4 +1,4 @@
-package com.minho.backend.config.security;
+package com.minho.backend.config.security.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

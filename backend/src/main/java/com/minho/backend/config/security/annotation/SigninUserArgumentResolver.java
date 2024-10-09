@@ -1,5 +1,6 @@
-package com.minho.backend.config.security;
+package com.minho.backend.config.security.annotation;
 
+import com.minho.backend.config.security.authentication.AuthenticatedUser;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
