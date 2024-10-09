@@ -69,6 +69,11 @@ public class User {
         return builder.build();
     }
 
+    public void signup() {
+        this.signedupAt = ZonedDateTime.now();
+        this.passwordChangedAt = ZonedDateTime.now();
+    }
+
     public void signin() {
         this.signedinAt = new Date();
     }

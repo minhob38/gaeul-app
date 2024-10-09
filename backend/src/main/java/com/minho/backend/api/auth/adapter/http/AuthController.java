@@ -41,7 +41,7 @@ public class AuthController {
 
     @PostMapping(value = "/signin")
     public ApiResponse<AuthDto.Data> postSignin(@Validated @RequestBody AuthDto.Signin.RequestBody requestBody)
-            throws AuthException {
+            throws AuthException, ServerException {
         AuthCommand.Signin command = this.authAdapterMapper.toSigninCommand(requestBody);
         AuthInfo info = this.authApplication.signin(command);
         AuthDto.Data data = this.authAdapterMapper.toSigninData(info);

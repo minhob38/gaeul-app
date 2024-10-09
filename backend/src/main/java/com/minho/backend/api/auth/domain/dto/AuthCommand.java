@@ -40,7 +40,7 @@ public class AuthCommand {
 
         private final Long userId;
 
-        private final String email;
+        private final String name;
 
         private final String currentPassword;
 

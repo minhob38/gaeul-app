@@ -10,7 +10,7 @@ public interface AuthServicePort {
 
     AuthInfo signup(AuthCommand.Signup command) throws AuthException;
 
-    AuthInfo signin(AuthCommand.Signin command) throws AuthException;
+    AuthInfo signin(AuthCommand.Signin command) throws AuthException, ServerException;
 
     AuthInfo modifyMe(AuthCommand.ModifyMe command) throws AuthException, ServerException;
 

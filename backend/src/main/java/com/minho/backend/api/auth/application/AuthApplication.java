@@ -21,7 +21,7 @@ public class AuthApplication {
         return info;
     }
 
-    public AuthInfo signin(AuthCommand.Signin command) throws AuthException {
+    public AuthInfo signin(AuthCommand.Signin command) throws AuthException, ServerException {
         AuthInfo info = this.authService.signin(command);
         return info;
     }

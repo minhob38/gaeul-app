@@ -36,6 +36,7 @@ public class AuthService implements AuthServicePort {
 
         String encodedPassword = this.authUtil.encodePassword(user.getPassword());
         user.setPassword(encodedPassword);
+        user.signup();
 
         User createdUser = this.userPersistenceAdapter.createUser(user);
 
@@ -43,18 +44,19 @@ public class AuthService implements AuthServicePort {
     }
 
     @Override
-    public AuthInfo signin(AuthCommand.Signin command) throws AuthException {
+    public AuthInfo signin(AuthCommand.Signin command) throws AuthException, ServerException {
         User user = command.toEntity();
 
-        Optional<User> foundUser = this.userPersistenceAdapter.findUserByEmail(user.getEmail());
+        Optional<User> foundUserOpt = this.userPersistenceAdapter.findUserByEmail(user.getEmail());
 
-        if (foundUser.isEmpty()) {
+        if (foundUserOpt.isEmpty()) {
             throw new AuthException(ErrorCode.Auth.AUTH_0002);
         }
 
+        User foundUser = foundUserOpt.get();
         String plainPassword = user.getPassword();
-        String encodedPassword = foundUser.get().getPassword();
-        String key = foundUser.get().getKey();
+        String encodedPassword = foundUserOpt.get().getPassword();
+        String key = foundUserOpt.get().getKey();
 
         Boolean isPasswordMatched = this.authUtil.matchPassword(plainPassword, encodedPassword);
 
@@ -64,8 +66,12 @@ public class AuthService implements AuthServicePort {
 
         String accessToken = this.authUtil.createJwt(key, 1500000L);
 
+        foundUser.signin();
+
+        this.userPersistenceAdapter.updateUser(foundUser);
+
         // TODO: String 대신, JWT Class로 만들기
-        return this.authDomainMapper.toSigninInfo(foundUser.get(), accessToken);
+        return this.authDomainMapper.toSigninInfo(foundUser, accessToken);
     }
 
     @Override
@@ -95,7 +101,7 @@ public class AuthService implements AuthServicePort {
             user.changePassword(newEncodedPassword);
         }
 
-        user.updateUser(command.getEmail());
+        user.updateUser(command.getName());
 
         User updatedUser = this.userPersistenceAdapter.updateUser(user);
 

@@ -3,28 +3,35 @@ package com.minho.backend.config;
 import com.minho.backend.api.auth.domain.entity.User;
 import com.minho.backend.api.auth.domain.port.AuthPersistencePort;
 import com.minho.backend.util.AuthUtil;
+import java.time.ZonedDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
 
-    private final AuthPersistencePort authPersistenceAdapter;
+	private final AuthPersistencePort authPersistenceAdapter;
 
-    private final AuthUtil authUtil;
+	private final AuthUtil authUtil;
 
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println("### Initializing Data ###");
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println("### Initializing Data ###");
 
-        String password = this.authUtil.encodePassword("qwerasdf");
-        User user = User.builder().email("gaeul@gmail.com").password(password).key("dysufedgoyafjp0d").build();
-        this.authPersistenceAdapter.createUser(user);
+		String password = this.authUtil.encodePassword("qwerasdf");
+		User user = User.builder()
+				.key("dysufedgoyafjp0d")
+				.email("gaeul@gmail.com")
+				.name("gaeul")
+				.password(password)
+				.passwordChangedAt(ZonedDateTime.now())
+				.signedupAt(ZonedDateTime.now())
+				.build();
 
-        System.out.println("### Initialized Data ###");
-    }
+		this.authPersistenceAdapter.createUser(user);
 
+		System.out.println("### Initialized Data ###");
+	}
 }

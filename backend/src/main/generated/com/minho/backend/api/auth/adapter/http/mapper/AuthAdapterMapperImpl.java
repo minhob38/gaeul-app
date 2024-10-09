@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-09T21:05:35+0900",
+    date = "2024-10-09T21:09:08+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
@@ -202,7 +202,6 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         ZonedDateTime signedoutAt = null;
         Date createdAt = null;
         Date updatedAt = null;
-        String accessToken = null;
 
         key = info.getKey();
         email = info.getEmail();
@@ -213,7 +212,8 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         signedoutAt = info.getSignedoutAt();
         createdAt = info.getCreatedAt();
         updatedAt = info.getUpdatedAt();
-        accessToken = info.getAccessToken();
+
+        String accessToken = null;
 
         AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
 
