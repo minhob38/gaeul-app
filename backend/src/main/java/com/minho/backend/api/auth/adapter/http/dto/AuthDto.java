@@ -85,7 +85,7 @@ public class AuthDto {
         @ToString
         public static class RequestBody {
 
-            String email;
+            String name;
 
             String currentPassword;
 

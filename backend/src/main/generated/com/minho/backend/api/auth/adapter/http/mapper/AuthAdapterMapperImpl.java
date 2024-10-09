@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-09T21:09:08+0900",
+    date = "2024-10-09T21:49:23+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
@@ -68,6 +68,54 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
     }
 
     @Override
+    public AuthCommand.RemoveMe toRemoveMeCommand(Long userId) {
+        if ( userId == null ) {
+            return null;
+        }
+
+        Long userId1 = null;
+
+        userId1 = userId;
+
+        AuthCommand.RemoveMe removeMe = new AuthCommand.RemoveMe( userId1 );
+
+        return removeMe;
+    }
+
+    @Override
+    public AuthDto.Data toRemoveMeData(AuthInfo info) {
+        if ( info == null ) {
+            return null;
+        }
+
+        String key = null;
+        String email = null;
+        String name = null;
+        ZonedDateTime passwordChangedAt = null;
+        ZonedDateTime signedupAt = null;
+        Date signedinAt = null;
+        ZonedDateTime signedoutAt = null;
+        Date createdAt = null;
+        Date updatedAt = null;
+        String accessToken = null;
+
+        key = info.getKey();
+        email = info.getEmail();
+        name = info.getName();
+        passwordChangedAt = info.getPasswordChangedAt();
+        signedupAt = info.getSignedupAt();
+        signedinAt = info.getSignedinAt();
+        signedoutAt = info.getSignedoutAt();
+        createdAt = info.getCreatedAt();
+        updatedAt = info.getUpdatedAt();
+        accessToken = info.getAccessToken();
+
+        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+
+        return data;
+    }
+
+    @Override
     public AuthCommand.Signin toSigninCommand(AuthDto.Signin.RequestBody requestBody) {
         if ( requestBody == null ) {
             return null;
@@ -108,6 +156,54 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         signedupAt = info.getSignedupAt();
         signedinAt = info.getSignedinAt();
         signedoutAt = info.getSignedoutAt();
+        createdAt = info.getCreatedAt();
+        updatedAt = info.getUpdatedAt();
+        accessToken = info.getAccessToken();
+
+        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+
+        return data;
+    }
+
+    @Override
+    public AuthCommand.Signout toSignoutCommand(Long userId) {
+        if ( userId == null ) {
+            return null;
+        }
+
+        Long userId1 = null;
+
+        userId1 = userId;
+
+        AuthCommand.Signout signout = new AuthCommand.Signout( userId1 );
+
+        return signout;
+    }
+
+    @Override
+    public AuthDto.Data toSignoutData(AuthInfo info) {
+        if ( info == null ) {
+            return null;
+        }
+
+        String key = null;
+        ZonedDateTime signedoutAt = null;
+        String email = null;
+        String name = null;
+        ZonedDateTime passwordChangedAt = null;
+        ZonedDateTime signedupAt = null;
+        Date signedinAt = null;
+        Date createdAt = null;
+        Date updatedAt = null;
+        String accessToken = null;
+
+        key = info.getKey();
+        signedoutAt = info.getSignedoutAt();
+        email = info.getEmail();
+        name = info.getName();
+        passwordChangedAt = info.getPasswordChangedAt();
+        signedupAt = info.getSignedupAt();
+        signedinAt = info.getSignedinAt();
         createdAt = info.getCreatedAt();
         updatedAt = info.getUpdatedAt();
         accessToken = info.getAccessToken();
@@ -171,18 +267,18 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
             return null;
         }
 
-        String email = null;
+        String name = null;
         String currentPassword = null;
         String newPassword = null;
         if ( requestBody != null ) {
-            email = requestBody.getEmail();
+            name = requestBody.getName();
             currentPassword = requestBody.getCurrentPassword();
             newPassword = requestBody.getNewPassword();
         }
         Long userId1 = null;
         userId1 = userId;
 
-        AuthCommand.ModifyMe modifyMe = new AuthCommand.ModifyMe( userId1, email, currentPassword, newPassword );
+        AuthCommand.ModifyMe modifyMe = new AuthCommand.ModifyMe( userId1, name, currentPassword, newPassword );
 
         return modifyMe;
     }

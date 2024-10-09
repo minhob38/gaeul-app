@@ -21,8 +21,18 @@ public class AuthApplication {
         return info;
     }
 
+    public AuthInfo removeMe(AuthCommand.RemoveMe command) throws AuthException, ServerException {
+        AuthInfo info = this.authService.removeMe(command);
+        return info;
+    }
+
     public AuthInfo signin(AuthCommand.Signin command) throws AuthException, ServerException {
         AuthInfo info = this.authService.signin(command);
+        return info;
+    }
+
+    public AuthInfo signout(AuthCommand.Signout command) throws AuthException, ServerException {
+        AuthInfo info = this.authService.signout(command);
         return info;
     }
 

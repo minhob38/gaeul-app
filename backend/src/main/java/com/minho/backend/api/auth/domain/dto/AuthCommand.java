@@ -22,6 +22,14 @@ public class AuthCommand {
 
     @Getter
     @RequiredArgsConstructor
+    public static class RemoveMe {
+
+        private final Long userId;
+
+    }
+
+    @Getter
+    @RequiredArgsConstructor
     public static class Signin {
 
         private final String email;
@@ -36,6 +44,14 @@ public class AuthCommand {
 
     @Getter
     @RequiredArgsConstructor
+    public static class Signout {
+
+        private final Long userId;
+
+    }
+
+    @Getter
+    @RequiredArgsConstructor
     public static class ModifyMe {
 
         private final Long userId;
@@ -45,14 +61,6 @@ public class AuthCommand {
         private final String currentPassword;
 
         private final String newPassword;
-
-    }
-
-    @Getter
-    @RequiredArgsConstructor
-    public static class Signout {
-
-        private final Long userId;
 
     }
 

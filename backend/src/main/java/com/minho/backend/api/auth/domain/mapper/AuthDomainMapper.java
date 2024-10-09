@@ -14,7 +14,13 @@ public interface AuthDomainMapper {
     @Mapping(target = "accessToken", ignore = true)
     AuthInfo toSignupInfo(User user);
 
+    @Mapping(target = "accessToken", ignore = true)
+    AuthInfo toRemoveMeInfo(User user);
+
     AuthInfo toSigninInfo(User user, String accessToken);
+
+    @Mapping(target = "accessToken", ignore = true)
+    AuthInfo toSignoutInfo(User user);
 
     @Mapping(target = "accessToken", ignore = true)
     AuthInfo toModifyMe(User user);

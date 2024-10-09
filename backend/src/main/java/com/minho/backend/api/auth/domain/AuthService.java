@@ -44,6 +44,15 @@ public class AuthService implements AuthServicePort {
     }
 
     @Override
+    public AuthInfo removeMe(AuthCommand.RemoveMe command) throws AuthException, ServerException {
+        User user = this.userPersistenceAdapter.findUserById(command.getUserId()).get();
+        user.remove();
+        User updatedUser = this.userPersistenceAdapter.updateUser(user);
+
+        return this.authDomainMapper.toRemoveMeInfo(updatedUser);
+    }
+
+    @Override
     public AuthInfo signin(AuthCommand.Signin command) throws AuthException, ServerException {
         User user = command.toEntity();
 
@@ -75,6 +84,15 @@ public class AuthService implements AuthServicePort {
     }
 
     @Override
+    public AuthInfo signout(AuthCommand.Signout command) throws AuthException, ServerException {
+        User user = this.userPersistenceAdapter.findUserById(command.getUserId()).get();
+        user.signout();
+        User updatedUser = this.userPersistenceAdapter.updateUser(user);
+
+        return this.authDomainMapper.toSignoutInfo(updatedUser);
+    }
+
+    @Override
     public AuthInfo modifyMe(AuthCommand.ModifyMe command) throws AuthException, ServerException {
         User user = this.userPersistenceAdapter.findUserById(command.getUserId()).get();
 
@@ -101,7 +119,7 @@ public class AuthService implements AuthServicePort {
             user.changePassword(newEncodedPassword);
         }
 
-        user.updateUser(command.getName());
+        user.modifyInformation(command.getName());
 
         User updatedUser = this.userPersistenceAdapter.updateUser(user);
 

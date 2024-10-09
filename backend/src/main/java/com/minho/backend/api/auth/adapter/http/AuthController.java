@@ -13,6 +13,7 @@ import com.minho.backend.exception.ServerException;
 import com.minho.backend.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,12 +40,34 @@ public class AuthController {
         return ApiResponse.success(data);
     }
 
+    @DeleteMapping(value = "/me")
+    public ApiResponse<AuthDto.Data> deleteMe(@SigninUser AuthenticatedUser user)
+            throws AuthException, ServerException {
+        Long userId = user.getId();
+        AuthCommand.RemoveMe command = this.authAdapterMapper.toRemoveMeCommand(userId);
+        AuthInfo info = this.authApplication.removeMe(command);
+        AuthDto.Data data = this.authAdapterMapper.toRemoveMeData(info);
+
+        return ApiResponse.success(data);
+    }
+
     @PostMapping(value = "/signin")
     public ApiResponse<AuthDto.Data> postSignin(@Validated @RequestBody AuthDto.Signin.RequestBody requestBody)
             throws AuthException, ServerException {
         AuthCommand.Signin command = this.authAdapterMapper.toSigninCommand(requestBody);
         AuthInfo info = this.authApplication.signin(command);
         AuthDto.Data data = this.authAdapterMapper.toSigninData(info);
+
+        return ApiResponse.success(data);
+    }
+
+    @PostMapping(value = "/signout")
+    public ApiResponse<AuthDto.Data> postSignout(@SigninUser AuthenticatedUser user)
+            throws AuthException, ServerException {
+        Long userId = user.getId();
+        AuthCommand.Signout command = this.authAdapterMapper.toSignoutCommand(userId);
+        AuthInfo info = this.authApplication.signout(command);
+        AuthDto.Data data = this.authAdapterMapper.toSignoutData(info);
 
         return ApiResponse.success(data);
     }

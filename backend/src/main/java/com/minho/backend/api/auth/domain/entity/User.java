@@ -39,18 +39,6 @@ public class User {
 
     private Date updatedAt;
 
-    // @Builder
-    // public User(Long id, String key, String email, String password, Date createdAt,
-    // Date updatedAt) {
-    // this.id = id;
-    // this.key = key;
-    // this.email = email;
-    // this.name = name;
-    // this.password = password;
-    // this.createdAt = createdAt;
-    // this.updatedAt = updatedAt;
-    // }
-
     public UserJpaEntity toJpaEntity() {
         UserJpaEntity.UserJpaEntityBuilder builder = UserJpaEntity.builder()
             .id(this.id)
@@ -74,6 +62,9 @@ public class User {
         this.passwordChangedAt = ZonedDateTime.now();
     }
 
+    public void remove() {
+    }
+
     public void signin() {
         this.signedinAt = new Date();
     }
@@ -87,7 +78,7 @@ public class User {
         this.passwordChangedAt = ZonedDateTime.now();
     }
 
-    public void updateUser(String name) {
+    public void modifyInformation(String name) {
         if (name != null) {
             this.name = name;
         }

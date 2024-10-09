@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-09T21:09:08+0900",
+    date = "2024-10-09T21:49:23+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
@@ -17,6 +17,41 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
 
     @Override
     public AuthInfo toSignupInfo(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        Long id = null;
+        String key = null;
+        String email = null;
+        String name = null;
+        ZonedDateTime passwordChangedAt = null;
+        ZonedDateTime signedupAt = null;
+        Date signedinAt = null;
+        ZonedDateTime signedoutAt = null;
+        Date createdAt = null;
+        Date updatedAt = null;
+
+        id = user.getId();
+        key = user.getKey();
+        email = user.getEmail();
+        name = user.getName();
+        passwordChangedAt = user.getPasswordChangedAt();
+        signedupAt = user.getSignedupAt();
+        signedinAt = user.getSignedinAt();
+        signedoutAt = user.getSignedoutAt();
+        createdAt = user.getCreatedAt();
+        updatedAt = user.getUpdatedAt();
+
+        String accessToken = null;
+
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+
+        return authInfo;
+    }
+
+    @Override
+    public AuthInfo toRemoveMeInfo(User user) {
         if ( user == null ) {
             return null;
         }
@@ -82,6 +117,41 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         accessToken1 = accessToken;
 
         AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken1 );
+
+        return authInfo;
+    }
+
+    @Override
+    public AuthInfo toSignoutInfo(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        Long id = null;
+        String key = null;
+        String email = null;
+        String name = null;
+        ZonedDateTime passwordChangedAt = null;
+        ZonedDateTime signedupAt = null;
+        Date signedinAt = null;
+        ZonedDateTime signedoutAt = null;
+        Date createdAt = null;
+        Date updatedAt = null;
+
+        id = user.getId();
+        key = user.getKey();
+        email = user.getEmail();
+        name = user.getName();
+        passwordChangedAt = user.getPasswordChangedAt();
+        signedupAt = user.getSignedupAt();
+        signedinAt = user.getSignedinAt();
+        signedoutAt = user.getSignedoutAt();
+        createdAt = user.getCreatedAt();
+        updatedAt = user.getUpdatedAt();
+
+        String accessToken = null;
+
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
 
         return authInfo;
     }

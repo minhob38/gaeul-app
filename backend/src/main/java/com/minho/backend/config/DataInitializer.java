@@ -12,26 +12,27 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
 
-	private final AuthPersistencePort authPersistenceAdapter;
+    private final AuthPersistencePort authPersistenceAdapter;
 
-	private final AuthUtil authUtil;
+    private final AuthUtil authUtil;
 
-	@Override
-	public void run(String... args) throws Exception {
-		System.out.println("### Initializing Data ###");
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println("### Initializing Data ###");
 
-		String password = this.authUtil.encodePassword("qwerasdf");
-		User user = User.builder()
-				.key("dysufedgoyafjp0d")
-				.email("gaeul@gmail.com")
-				.name("gaeul")
-				.password(password)
-				.passwordChangedAt(ZonedDateTime.now())
-				.signedupAt(ZonedDateTime.now())
-				.build();
+        String password = this.authUtil.encodePassword("qwerasdf");
+        User user = User.builder()
+            .key("dysufedgoyafjp0d")
+            .email("gaeul@gmail.com")
+            .name("gaeul")
+            .password(password)
+            .passwordChangedAt(ZonedDateTime.now())
+            .signedupAt(ZonedDateTime.now())
+            .build();
 
-		this.authPersistenceAdapter.createUser(user);
+        this.authPersistenceAdapter.createUser(user);
 
-		System.out.println("### Initialized Data ###");
-	}
+        System.out.println("### Initialized Data ###");
+    }
+
 }
