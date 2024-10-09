@@ -74,11 +74,6 @@ public class AuthDto {
 
             private final String email;
 
-            Data(AuthInfo.MeInfo userInfo) {
-                this.key = userInfo.getKey();
-                this.email = userInfo.getEmail();
-            }
-
         }
 
     }

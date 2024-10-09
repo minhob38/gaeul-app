@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-09T17:27:48+0900",
+    date = "2024-10-09T18:12:55+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
 public class AuthDomainMapperImpl implements AuthDomainMapper {
 
     @Override
-    public AuthInfo.SignupInfo toSignupInfo(User user) {
+    public AuthInfo.Signup toSignupInfo(User user) {
         if ( user == null ) {
             return null;
         }
@@ -23,13 +23,13 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
 
         key = user.getKey();
 
-        AuthInfo.SignupInfo signupInfo = new AuthInfo.SignupInfo( key );
+        AuthInfo.Signup signup = new AuthInfo.Signup( key );
 
-        return signupInfo;
+        return signup;
     }
 
     @Override
-    public AuthInfo.SigninInfo toSigninInfo(String key, String accessToken) {
+    public AuthInfo.Signin toSigninInfo(String key, String accessToken) {
         if ( key == null && accessToken == null ) {
             return null;
         }
@@ -39,8 +39,25 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         String accessToken1 = null;
         accessToken1 = accessToken;
 
-        AuthInfo.SigninInfo signinInfo = new AuthInfo.SigninInfo( key1, accessToken1 );
+        AuthInfo.Signin signin = new AuthInfo.Signin( key1, accessToken1 );
 
-        return signinInfo;
+        return signin;
+    }
+
+    @Override
+    public AuthInfo.ReadMe toReadMeInfo(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        String key = null;
+        String email = null;
+
+        key = user.getKey();
+        email = user.getEmail();
+
+        AuthInfo.ReadMe readMe = new AuthInfo.ReadMe( key, email );
+
+        return readMe;
     }
 }

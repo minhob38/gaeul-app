@@ -75,4 +75,19 @@ Formatting
 
 
 ### 인증
+`SecurityFilterChain`과 `SecurityConfigurerAdapter`에서 jwt filter 등록  
+↓  
+jwt filter에서 jwt 유효성 검증  
+↓
+jwt가 valid하면, 해당 user key로 user를 조회하여, `AuthenticatedUserService(UserDetailService)`에서 `AuthenticatedUser(UserDetail)`를 반환
+(jwt invalid: `AuthenticationEntryPoint`로 예외를 던짐)  
+↓  
+`SecurityContextHolder`에 인증정보를 저장  
+↓  
+`SecurityContextHolder`에 저장된 인증정보를 꺼내 사용  
+
 https://javadevjournal.com/spring-security/spring-security-authentication/
+<img src="https://github.com/user-attachments/assets/14bf3dfc-7995-4c5e-ab71-6ae45c567d2d" />
+
+
+

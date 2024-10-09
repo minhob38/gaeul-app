@@ -14,6 +14,12 @@ public class AuthPersistenceAdapter implements AuthPersistencePort {
     private final UserJpaRepository userRepository;
 
     @Override
+    public Optional<User> findUserById(Long id) {
+        Optional<UserJpaEntity> userJpaEntity = this.userRepository.findById(id);
+        return userJpaEntity.map(jpaEntity -> jpaEntity.toEntity());
+    }
+
+    @Override
     public Optional<User> findUserByEmail(String email) {
         UserJpaEntity userJpaEntity = this.userRepository.findUserJpaEntityByEmail(email);
         return Optional.ofNullable(userJpaEntity).map(jpaEntity -> jpaEntity.toEntity());

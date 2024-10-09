@@ -10,8 +10,10 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface AuthDomainMapper {
 
-    AuthInfo.SignupInfo toSignupInfo(User user);
+    AuthInfo.Signup toSignupInfo(User user);
 
-    AuthInfo.SigninInfo toSigninInfo(String key, String accessToken);
+    AuthInfo.Signin toSigninInfo(String key, String accessToken);
+
+    AuthInfo.ReadMe toReadMeInfo(User user);
 
 }

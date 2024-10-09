@@ -5,6 +5,8 @@ import java.util.Optional;
 
 public interface AuthPersistencePort {
 
+    Optional<User> findUserById(Long id);
+
     Optional<User> findUserByEmail(String email);
 
     Optional<User> findUserByKey(String key);

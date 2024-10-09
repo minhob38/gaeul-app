@@ -2,6 +2,7 @@ package com.minho.backend.api.auth.application;
 
 import com.minho.backend.api.auth.domain.dto.AuthCommand;
 import com.minho.backend.api.auth.domain.dto.AuthInfo;
+import com.minho.backend.api.auth.domain.dto.AuthQuery;
 import com.minho.backend.api.auth.domain.port.AuthServicePort;
 import com.minho.backend.exception.AuthException;
 import lombok.RequiredArgsConstructor;
@@ -13,13 +14,18 @@ public class AuthApplication {
 
     private final AuthServicePort authService;
 
-    public AuthInfo.SignupInfo signup(AuthCommand.SignupCommand command) throws AuthException {
-        AuthInfo.SignupInfo info = this.authService.signup(command);
+    public AuthInfo.Signup signup(AuthCommand.Signup command) throws AuthException {
+        AuthInfo.Signup info = this.authService.signup(command);
         return info;
     }
 
-    public AuthInfo.SigninInfo signin(AuthCommand.SigninCommand command) throws AuthException {
-        AuthInfo.SigninInfo info = this.authService.signin(command);
+    public AuthInfo.Signin signin(AuthCommand.Signin command) throws AuthException {
+        AuthInfo.Signin info = this.authService.signin(command);
+        return info;
+    }
+
+    public AuthInfo.ReadMe readMe(AuthQuery.ReadMe query) throws AuthException {
+        AuthInfo.ReadMe info = this.authService.readMe(query);
         return info;
     }
 

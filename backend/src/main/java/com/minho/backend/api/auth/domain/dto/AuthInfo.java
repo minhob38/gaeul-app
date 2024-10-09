@@ -7,7 +7,7 @@ public class AuthInfo {
 
     @RequiredArgsConstructor
     @Getter
-    public static class SignupInfo {
+    public static class Signup {
 
         private final String key;
 
@@ -15,7 +15,7 @@ public class AuthInfo {
 
     @RequiredArgsConstructor
     @Getter
-    public static class SigninInfo {
+    public static class Signin {
 
         private final String key;
 
@@ -25,7 +25,7 @@ public class AuthInfo {
 
     @RequiredArgsConstructor
     @Getter
-    public static class MeInfo {
+    public static class ReadMe {
 
         private final String key;
 

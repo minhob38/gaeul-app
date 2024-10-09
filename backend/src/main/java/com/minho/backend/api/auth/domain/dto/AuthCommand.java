@@ -8,7 +8,7 @@ public class AuthCommand {
 
     @Getter
     @RequiredArgsConstructor
-    public static class SignupCommand {
+    public static class Signup {
 
         private final String email;
 
@@ -22,7 +22,7 @@ public class AuthCommand {
 
     @Getter
     @RequiredArgsConstructor
-    public static class SigninCommand {
+    public static class Signin {
 
         private final String email;
 
@@ -36,7 +36,7 @@ public class AuthCommand {
 
     @Getter
     @RequiredArgsConstructor
-    public static class ModifyPasswordCommand {
+    public static class ModifyPassword {
 
         private final Long userId;
 
@@ -48,7 +48,7 @@ public class AuthCommand {
 
     @Getter
     @RequiredArgsConstructor
-    public static class SignoutCommand {
+    public static class Signout {
 
         private final Long userId;
 
