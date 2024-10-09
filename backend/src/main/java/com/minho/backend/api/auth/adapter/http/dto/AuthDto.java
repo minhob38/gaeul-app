@@ -15,10 +15,10 @@ public class AuthDto {
         @ToString
         public static class RequestBody {
 
-            @NotBlank(message = "email is required - '':(X) / ' ':(X) / null:(X)")
+            @NotBlank(message = "email is required - '':(X) / '':(X) / null:(X)")
             String email;
 
-            @NotBlank(message = "password is required - '':(O) / ' ':(O) / null:(X)")
+            @NotBlank(message = "password is required - '':(X) / '':(X) / null:(X)")
             String password;
 
         }
@@ -44,7 +44,7 @@ public class AuthDto {
             @NotBlank(message = "email is required - '':(X) / ' ':(X) / null:(X)")
             String email;
 
-            @NotBlank(message = "password is required - '':(O) / ' ':(O) / null:(X)")
+            @NotBlank(message = "password is required - '':(X) / '':(X) / null:(X)")
             String password;
 
         }
@@ -78,29 +78,32 @@ public class AuthDto {
 
     }
 
-    // // Patch-api/auth/password
-    // static class ModifyPassword {
-    // @Getter
-    // static class Form {
-    // @NotBlank(message = "current password is required")
-    // @Length(max = 10)
-    // String currentPassword;
-    //
-    // @NotBlank
-    // @Length(max = 10)
-    // String newPassword;
-    //
-    //
-    // // ModelAttribute는 member 할당을 위해, setter 함수가 있어야합니다.
-    // public void setCurrentPassword(String currentPassword) {
-    // this.currentPassword = currentPassword;
-    // }
-    //
-    // public void setNewPassword(String newPassword) {
-    // this.newPassword = newPassword;
-    // }
-    // }
-    //
-    // }
+    // Patch:api/auth/me
+    public static class ModifyMe {
+
+        @Getter
+        @ToString
+        public static class RequestBody {
+
+            String email;
+
+            String currentPassword;
+
+            String newPassword;
+
+        }
+
+        @ToString
+        @Getter
+        @RequiredArgsConstructor
+        public static class Data {
+
+            private final String key;
+
+            private final String email;
+
+        }
+
+    }
 
 }

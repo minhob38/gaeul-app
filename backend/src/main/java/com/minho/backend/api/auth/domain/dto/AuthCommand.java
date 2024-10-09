@@ -36,13 +36,15 @@ public class AuthCommand {
 
     @Getter
     @RequiredArgsConstructor
-    public static class ModifyPassword {
+    public static class ModifyMe {
 
         private final Long userId;
 
-        private final String newPassword;
+        private final String email;
 
         private final String currentPassword;
+
+        private final String newPassword;
 
     }
 

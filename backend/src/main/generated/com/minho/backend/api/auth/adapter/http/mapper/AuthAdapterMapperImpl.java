@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-09T18:43:11+0900",
+    date = "2024-10-09T19:34:17+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
@@ -109,6 +109,45 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         email = info.getEmail();
 
         AuthDto.ReadMe.Data data = new AuthDto.ReadMe.Data( key, email );
+
+        return data;
+    }
+
+    @Override
+    public AuthCommand.ModifyMe toModifyMeCommand(AuthDto.ModifyMe.RequestBody requestBody, Long userId) {
+        if ( requestBody == null && userId == null ) {
+            return null;
+        }
+
+        String email = null;
+        String currentPassword = null;
+        String newPassword = null;
+        if ( requestBody != null ) {
+            email = requestBody.getEmail();
+            currentPassword = requestBody.getCurrentPassword();
+            newPassword = requestBody.getNewPassword();
+        }
+        Long userId1 = null;
+        userId1 = userId;
+
+        AuthCommand.ModifyMe modifyMe = new AuthCommand.ModifyMe( userId1, email, currentPassword, newPassword );
+
+        return modifyMe;
+    }
+
+    @Override
+    public AuthDto.ModifyMe.Data toModifyMeData(AuthInfo.ModifyMe info) {
+        if ( info == null ) {
+            return null;
+        }
+
+        String key = null;
+        String email = null;
+
+        key = info.getKey();
+        email = info.getEmail();
+
+        AuthDto.ModifyMe.Data data = new AuthDto.ModifyMe.Data( key, email );
 
         return data;
     }

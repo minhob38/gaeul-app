@@ -48,7 +48,6 @@ public class AuthenticatedUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        System.out.println("@@@ get user name");
         return "minho";
     }
 

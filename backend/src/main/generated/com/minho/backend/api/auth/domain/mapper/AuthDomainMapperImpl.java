@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-09T18:43:11+0900",
+    date = "2024-10-09T19:34:16+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
@@ -42,6 +42,23 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         AuthInfo.Signin signin = new AuthInfo.Signin( key1, accessToken1 );
 
         return signin;
+    }
+
+    @Override
+    public AuthInfo.ModifyMe toModifyMe(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        String key = null;
+        String email = null;
+
+        key = user.getKey();
+        email = user.getEmail();
+
+        AuthInfo.ModifyMe modifyMe = new AuthInfo.ModifyMe( key, email );
+
+        return modifyMe;
     }
 
     @Override

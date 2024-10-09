@@ -33,4 +33,14 @@ public class AuthInfo {
 
     }
 
+    @RequiredArgsConstructor
+    @Getter
+    public static class ModifyMe {
+
+        private final String key;
+
+        private final String email;
+
+    }
+
 }

@@ -26,4 +26,8 @@ public interface AuthAdapterMapper {
 
     AuthDto.ReadMe.Data toReadMeData(AuthInfo.ReadMe info);
 
+    AuthCommand.ModifyMe toModifyMeCommand(AuthDto.ModifyMe.RequestBody requestBody, Long userId);
+
+    AuthDto.ModifyMe.Data toModifyMeData(AuthInfo.ModifyMe info);
+
 }

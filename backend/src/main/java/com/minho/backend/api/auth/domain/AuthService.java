@@ -9,6 +9,7 @@ import com.minho.backend.api.auth.domain.port.AuthPersistencePort;
 import com.minho.backend.api.auth.domain.port.AuthServicePort;
 import com.minho.backend.constant.ErrorCode;
 import com.minho.backend.exception.AuthException;
+import com.minho.backend.exception.ServerException;
 import com.minho.backend.util.AuthUtil;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -67,14 +68,44 @@ public class AuthService implements AuthServicePort {
     }
 
     @Override
-    public AuthInfo.ReadMe readMe(AuthQuery.ReadMe query) throws AuthException {
-        Optional<User> foundUser = this.userPersistenceAdapter.findUserById(query.getUserId());
+    public AuthInfo.ModifyMe modifyMe(AuthCommand.ModifyMe command) throws AuthException, ServerException {
+        User user = this.userPersistenceAdapter.findUserById(command.getUserId()).get();
 
-        if (foundUser.isEmpty()) {
-            throw new AuthException(ErrorCode.Auth.AUTH_0002);
+        Optional<String> currentPassword = Optional.ofNullable(command.getCurrentPassword());
+        Optional<String> newPassword = Optional.ofNullable(command.getNewPassword());
+
+        if (currentPassword.isPresent() ^ newPassword.isPresent()) {
+            throw new AuthException(ErrorCode.Auth.AUTH_0012);
         }
 
-        return this.authDomainMapper.toReadMeInfo(foundUser.get());
+        if (newPassword.isPresent()) {
+            String encodedPassword = user.getPassword();
+            Boolean isPasswordMatched = this.authUtil.matchPassword(currentPassword.get(), encodedPassword);
+
+            if (!isPasswordMatched) {
+                throw new AuthException(ErrorCode.Auth.AUTH_0011);
+            }
+
+            if (currentPassword.get().equals(newPassword.get())) {
+                throw new AuthException(ErrorCode.Auth.AUTH_0013);
+            }
+
+            String newEncodedPassword = this.authUtil.encodePassword(newPassword.get());
+            user.changePassword(newEncodedPassword);
+        }
+
+        user.updateUser(command.getEmail());
+
+        User updatedUser = this.userPersistenceAdapter.updateUser(user);
+
+        return this.authDomainMapper.toModifyMe(updatedUser);
+    }
+
+    @Override
+    public AuthInfo.ReadMe readMe(AuthQuery.ReadMe query) throws AuthException {
+        User user = this.userPersistenceAdapter.findUserById(query.getUserId()).get();
+
+        return this.authDomainMapper.toReadMeInfo(user);
     }
 
 }

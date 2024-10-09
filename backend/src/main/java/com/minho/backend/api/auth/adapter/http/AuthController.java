@@ -10,12 +10,14 @@ import com.minho.backend.api.auth.domain.dto.AuthQuery;
 import com.minho.backend.config.security.AuthenticatedUser;
 import com.minho.backend.config.security.SigninUser;
 import com.minho.backend.exception.AuthException;
+import com.minho.backend.exception.ServerException;
 import com.minho.backend.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,12 +52,19 @@ public class AuthController {
         return ApiResponse.success(data);
     }
 
+    @PatchMapping(value = "/me")
+    public ApiResponse<AuthDto.ModifyMe.Data> patchMe(@Validated @RequestBody AuthDto.ModifyMe.RequestBody requestBody,
+            @SigninUser AuthenticatedUser user) throws AuthException, ServerException {
+        Long userId = user.getId();
+        AuthCommand.ModifyMe command = this.authAdapterMapper.toModifyMeCommand(requestBody, userId);
+        AuthInfo.ModifyMe info = this.authApplication.modifyMe(command);
+        AuthDto.ModifyMe.Data data = this.authAdapterMapper.toModifyMeData(info);
+
+        return ApiResponse.success(data);
+    }
+
     @GetMapping(value = "/me")
     public ApiResponse<AuthDto.ReadMe.Data> getMe(@SigninUser AuthenticatedUser user) throws AuthException {
-        // Authentication authentication =
-        // SecurityContextHolder.getContext().getAuthentication();
-        // AuthenticatedUser authenticatedUser = (AuthenticatedUser)
-        // authentication.getPrincipal();
         Long userId = user.getId();
 
         AuthQuery.ReadMe query = this.authAdapterMapper.toReadMeQuery(userId);

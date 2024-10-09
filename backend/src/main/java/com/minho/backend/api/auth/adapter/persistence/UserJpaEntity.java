@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 @ToString
 @Getter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "user")
 public class UserJpaEntity {
@@ -46,17 +49,20 @@ public class UserJpaEntity {
 
     @PrePersist
     public void generateKey() {
-        if (this.key == null) {
-            this.key = RandomStringUtils.randomAlphanumeric(16).toLowerCase();
+        if (this.key != null) {
+            return;
         }
+
+        this.key = RandomStringUtils.randomAlphanumeric(16).toLowerCase();
     }
 
-    @Builder
-    public UserJpaEntity(String email, String password, String key) {
-        this.email = email;
-        this.key = key;
-        this.password = password;
-    }
+    // @Builder
+    // public UserJpaEntity(Long id, String email, String password, String key) {
+    // this.id = id;
+    // this.email = email;
+    // this.key = key;
+    // this.password = password;
+    // }
 
     public User toEntity() {
         return User.builder()

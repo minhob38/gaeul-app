@@ -37,7 +37,25 @@ public class User {
     }
 
     public UserJpaEntity toJpaEntity() {
-        return UserJpaEntity.builder().email(this.email).password(this.password).key(this.key).build();
+        UserJpaEntity.UserJpaEntityBuilder builder = UserJpaEntity.builder()
+            .id(this.id)
+            .key(this.key)
+            .createdAt(this.createdAt)
+            .updatedAt(this.updatedAt)
+            .email(this.email)
+            .password(this.password);
+
+        return builder.build();
+    }
+
+    public void updateUser(String email) {
+        if (email != null) {
+            this.email = email;
+        }
+    }
+
+    public void changePassword(String newEncryptedPassword) {
+        this.password = newEncryptedPassword;
     }
 
 }

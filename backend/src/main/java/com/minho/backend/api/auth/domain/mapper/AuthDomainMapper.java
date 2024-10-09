@@ -14,6 +14,8 @@ public interface AuthDomainMapper {
 
     AuthInfo.Signin toSigninInfo(String key, String accessToken);
 
+    AuthInfo.ModifyMe toModifyMe(User user);
+
     AuthInfo.ReadMe toReadMeInfo(User user);
 
 }
