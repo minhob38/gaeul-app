@@ -44,6 +44,7 @@ $ pod install
 
 ### application 실행
 ```
+$ cd MyMobile
 $ npm run ios
 ```
 
