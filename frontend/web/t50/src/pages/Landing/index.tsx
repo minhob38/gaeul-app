@@ -16,6 +16,7 @@ import { actions as telcomActions } from "@store/slices/telcomSlice";
 import { actions as moveActions } from "@store/slices/moveSlice";
 import { actions as authActions } from "@store/slices/authSlice";
 import { actions as carActions } from "@store/slices/carSlice";
+import Button from "@material-ui/core/Button";
 
 const ServiceContainer = styled.div`
   display: flex;
@@ -58,7 +59,10 @@ const Landing: React.FC = () => {
       {isLoginWarning && <LoginWarningModal />}
       <Header title="One Pick" mode="logo"></Header>
       <Content top={size.HEADER_HEIGHT} bottom="0">
-        <Margin />
+        <Button variant="contained" color="primary">
+          {"Click"}
+        </Button>
+        {/* <Margin />
         <ServiceContainer>
           <ServiceBanner type={ESERVICE_TYPE.PICKUP} onClick={handleBannerClick} />
           <ServiceBanner type={ESERVICE_TYPE.TELCOM} onClick={handleBannerClick} />
@@ -66,7 +70,7 @@ const Landing: React.FC = () => {
         <ServiceContainer>
           <ServiceBanner type={ESERVICE_TYPE.MOVE} onClick={handleBannerClick} />
           <ServiceBanner type={ESERVICE_TYPE.CAR} onClick={handleBannerClick} />
-        </ServiceContainer>
+        </ServiceContainer> */}
       </Content>
     </>
   );

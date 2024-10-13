@@ -32,6 +32,14 @@ const MobileWrapper = styled.div`
   overflow: hidden;
 `;
 
+const WebWrapper = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${colors.BACKGROUND};
+  overflow: hidden;
+`;
+
 function App() {
   const Fallback = () => {
     return <LoadingModal />;
@@ -46,7 +54,7 @@ function App() {
   // TODO: 여기에 쿠키 확인해서, 로그인 체크하는 로직 넣기
 
   return (
-    <MobileWrapper>
+    <WebWrapper>
       <ErrorBoundary
         FallbackComponent={ErrorPage}
         onReset={() => {
@@ -103,7 +111,7 @@ function App() {
           </Routes>
         </Suspense>
       </ErrorBoundary>
-    </MobileWrapper>
+    </WebWrapper>
   );
 }
 
