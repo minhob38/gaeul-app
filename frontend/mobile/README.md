@@ -38,6 +38,7 @@ sudo npm upgrade react-native -g
 ```
 $ cd ios
 $ pod install
+$ npx pod-install
 ```
 👷🏻 에러발생하면 지우기
 

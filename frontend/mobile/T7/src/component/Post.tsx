@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {FONT_MEDIUM_600, FONT_SMALL_400} from '../constant/font';
-import {FlatList, View} from 'react-native';
-import Post from '../component/Post';
 
-const PostWrapper = styled.View`
+const PostWrapper = styled.TouchableOpacity`
   width: 100%;
   height: 150px;
   flex-direction: column;
@@ -51,35 +49,27 @@ const StyledLine = styled.View`
   width: 100%;
 `;
 
-// const BoardScreen: React.FC = () => {
-//   return (
-//     <View>
-//       <Post />
-//       <Post />
-//       <Post />
-//       <Post />
-//       <Post />
-//       <Post />
-//       <Post />
-//       <Post />
-//       <Post />
-//     </View>
-//   );
-// };
-
-const DATA = new Array(10);
-
-const BoardScreen: React.FC = () => {
-  const renderItem = ({item}) => <Post />; // Post 컴포넌트가 title prop을 받는다고 가정
-
+const Post: React.FC = () => {
   return (
-    <FlatList
-      data={DATA}
-      renderItem={renderItem}
-      // keyExtractor={item => item.id}
-      // contentContainerStyle={{padding: 16}} // 추가 스타일이 필요할 경우 설정
-    />
+    <PostWrapper onPress={() => console.log('@@@ hello')}>
+      <PostContainer>
+        <NationFlagImage
+          source={{
+            uri: 'https://github.com/user-attachments/assets/23b1340c-1eeb-43eb-a732-5b6a4f4956fe',
+          }}
+        />
+        <TextContainer>
+          <Title>자연사박물관 동행 구합니다.</Title>
+          <Description>뉴욕</Description>
+          <Description>자연사박물관</Description>
+          <Description>2024/11/2</Description>
+          <Description>여자만</Description>
+          <Description>인원</Description>
+        </TextContainer>
+      </PostContainer>
+      <StyledLine />
+    </PostWrapper>
   );
 };
 
-export default BoardScreen;
+export default Post;
