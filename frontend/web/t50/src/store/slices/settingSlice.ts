@@ -1,8 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import * as variables from "@constants/variables";
-import { ECAR_SEARCH_TYPE } from "types/enum";
 import * as size from "@constants/size";
-import { stat } from "fs";
 
 interface IState {
   // side menu 설정

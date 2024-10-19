@@ -42,6 +42,7 @@ const CandidateItemHeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto 0 auto;
+  width: 100%;
   height: 50px;
 `;
 
@@ -52,9 +53,11 @@ const Line = styled.div`
   width: 100%;
 `;
 
+const Wrapper = styled.div``;
+
 const CandidateItemHeader: React.FC<IProps> = ({ sourceWidth, dueDateWidth, selectionWidth }) => {
   return (
-    <>
+    <Wrapper>
       <CandidateItemHeaderContainer>
         <Title>해야할일</Title>
         <Source width={sourceWidth}>출처</Source>
@@ -62,7 +65,7 @@ const CandidateItemHeader: React.FC<IProps> = ({ sourceWidth, dueDateWidth, sele
         <Selection width={selectionWidth}>선택</Selection>
       </CandidateItemHeaderContainer>
       <Line />
-    </>
+    </Wrapper>
   );
 };
 

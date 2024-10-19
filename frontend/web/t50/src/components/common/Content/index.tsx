@@ -6,6 +6,8 @@ interface IProps {
   right?: string;
   bottom: string;
   left?: string;
+  width?: string;
+  height?: string;
   backgroundColor?: string;
 }
 
@@ -25,10 +27,20 @@ const Content: React.FC<IProps> = ({
   right = "0",
   bottom,
   left = "0",
+  width = "auto",
+  height = "auto",
   backgroundColor = "transparent",
 }) => {
   return (
-    <Wrapper top={top} right={right} bottom={bottom} left={left} backgroundColor={backgroundColor}>
+    <Wrapper
+      top={top}
+      right={right}
+      bottom={bottom}
+      left={left}
+      width={width}
+      height={height}
+      backgroundColor={backgroundColor}
+    >
       {children}
     </Wrapper>
   );

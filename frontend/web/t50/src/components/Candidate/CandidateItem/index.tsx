@@ -64,6 +64,7 @@ const CandidateItemContainer = styled.div`
   align-items: center;
   /* width: calc(100% - 2 * ${margins.SIDE_MAIN_MARGIN}); */
   margin: 0 auto 0 auto;
+  width: 100%;
   height: 50px;
 `;
 
@@ -74,9 +75,11 @@ const Line = styled.div`
   width: 100%;
 `;
 
+const Wrapper = styled.div``;
+
 const CandidateItem: React.FC<IProps> = ({ sourceWidth, dueDateWidth, selectionWidth }) => {
   return (
-    <>
+    <Wrapper>
       <CandidateItemContainer>
         <Title>영수증 제출하기</Title>
         <Source width={sourceWidth}>email</Source>
@@ -87,7 +90,7 @@ const CandidateItem: React.FC<IProps> = ({ sourceWidth, dueDateWidth, selectionW
         </Selection>
       </CandidateItemContainer>
       <Line />
-    </>
+    </Wrapper>
   );
 };
 
