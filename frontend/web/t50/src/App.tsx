@@ -20,6 +20,7 @@ import MyCar from "pages/MyCar";
 import MyPage from "pages/MyPage";
 import LoadingModal from "modals/SpinnerLoadingModal";
 import { useInitialAuthentication } from "@hooks/useAuth";
+import CandidateService from "pages/CandidateService";
 
 // useMutation은 suspense fallback 반영 X
 // useQuery는 suspense fallback 반영 O
@@ -64,6 +65,8 @@ function App() {
         <Suspense fallback={<Fallback />}>
           <Routes>
             <Route path="/" element={<Landing />} />
+            {/* candidates */}
+            <Route path="/candidates" element={<CandidateService />} />
             {/* auth */}
             <Route
               path="/login"

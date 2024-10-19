@@ -1,7 +1,8 @@
 export const RED1 = "#f57038";
 
 /* design system */
-export const BACKGROUND = "#fafafa";
+// export const BACKGROUND = "#fafafa";
+export const BACKGROUND = "#ffffff";
 export const ERROR_RED = "#ee5050";
 
 export const BLACK_1 = "#000000";
