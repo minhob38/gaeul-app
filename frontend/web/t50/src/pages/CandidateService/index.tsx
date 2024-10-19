@@ -20,141 +20,36 @@ import { actions as carActions } from "@store/slices/carSlice";
 import CarSales from "@components/CarService/CarSales";
 import CandidateItem from "@components/Candidate/CandidateItem";
 import CandidateItemHeader from "@components/Candidate/CandidateItemHeader";
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 15px 0 15px 0;
-  padding: 0 ${margins.SIDE_MAIN_MARGIN};
-  gap: 0 10px;
-`;
-
-const PriceContainer = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: calc(100% - 2 * ${margins.SIDE_MAIN_MARGIN});
-  margin: 0 auto 0 auto;
-`;
-
-const SearchButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0 0 20px;
-`;
-
-const PriceSelectBoxContainer = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const HypenText = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto 10px;
-  font: ${fonts.FONT_LARGE_400};
-  color: ${colors.BLACK_1};
-  text-align: center;
-`;
-
-const NotificationText = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 30px auto 0 auto;
-  width: calc(100% - 2 * ${margins.SIDE_MAIN_MARGIN});
-  font: ${fonts.FONT_LARGE_400};
-  color: ${colors.BLACK_1};
-  text-align: center;
-`;
-
-const SearchText = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font: ${fonts.FONT_LARGE_400};
-  color: ${colors.BLACK_1};
-  text-align: center;
-  border-radius: 8px;
-  padding: 0 10px;
-  background-color: ${colors.PRIMARY_3};
-`;
-
-const ErrorText = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30px;
-  width: ${`calc(100% - ${margins.SIDE_MAIN_MARGIN} - ${margins.SIDE_MAIN_MARGIN})`};
-  margin: 0 auto;
-  font: ${fonts.FONT_SMALL_400};
-  color: ${colors.ERROR_RED};
-  text-align: center;
-`;
-
-const SCROLL_BOTTOM_MARGIN = 150;
-
-const Title = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font: ${fonts.FONT_MEDIUM_400};
-  color: ${colors.BLACK_1};
-  text-align: center;
-  width: 600px;
-  background-color: ${colors.WHITE_1};
-`;
-
-const DescriptionText = styled(Title)`
-  width: 600px;
-`;
-
-const DueDate = styled(Title)`
-  width: 50px;
-`;
-
-const Status = styled(Title)`
-  width: 50px;
-`;
-
-const CandidateItemContainer = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: calc(100% - 2 * ${margins.SIDE_MAIN_MARGIN});
-  margin: 0 auto 0 auto;
-`;
+import Side from "@components/common/Side";
 
 const CandidateService = () => {
   const dispatch = useTypedDispatch();
   const errorMessage = useTypedSelector(
     (state) => state.rootReducer.errorReducer.carSaleErrorMessage,
   );
-  const carSearchType = useTypedSelector((state) => state.rootReducer.carReducer.carSearchType);
+  const sideWidth = useTypedSelector((state) => state.rootReducer.settingReducer.sideWidth);
 
   const handleFocus = () => dispatch(errorActions.catchCarSaleError());
 
-  // TODO: Sidebanner
+  const SOURCE_WIDTH = "100px";
+  const DUE_DATE_WIDTH = "100px";
+  const SELECTION_WIDTH = "100px";
+
   return (
     <>
       <Header title="Candidates" mode="back"></Header>
-      <Content top={size.HEADER_HEIGHT} bottom="0">
-        <CandidateItemHeader sourceWidth="150px" dueDateWidth="150px" selectionWidth="80px" />
-        <CandidateItem sourceWidth="150px" dueDateWidth="150px" selectionWidth="80px" />
-        <CandidateItem sourceWidth="150px" dueDateWidth="150px" selectionWidth="80px" />
-        <CandidateItem sourceWidth="150px" dueDateWidth="150px" selectionWidth="80px" />
-        <CandidateItem sourceWidth="150px" dueDateWidth="150px" selectionWidth="80px" />
-        <CandidateItem sourceWidth="150px" dueDateWidth="150px" selectionWidth="80px" />
-        <CandidateItem sourceWidth="150px" dueDateWidth="150px" selectionWidth="80px" />
-        <CandidateItem sourceWidth="150px" dueDateWidth="150px" selectionWidth="80px" />
+      <Side width={sideWidth} />
+      <Content left={sideWidth} top={size.HEADER_HEIGHT} bottom="0">
+        <CandidateItemHeader
+          sourceWidth={SOURCE_WIDTH}
+          dueDateWidth={DUE_DATE_WIDTH}
+          selectionWidth={SELECTION_WIDTH}
+        />
+        <CandidateItem
+          sourceWidth={SOURCE_WIDTH}
+          dueDateWidth={DUE_DATE_WIDTH}
+          selectionWidth={SELECTION_WIDTH}
+        />
       </Content>
     </>
   );

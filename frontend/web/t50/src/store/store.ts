@@ -6,6 +6,7 @@ import logger from "redux-logger";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authReducer from "@store/slices/authSlice";
+import settingReducer from "@store/slices/settingSlice";
 import pickupReducer from "@store/slices/pickupSlice";
 import telcomReducer from "@store/slices/telcomSlice";
 import modalReducer from "@store/slices/modalSlice";
@@ -29,6 +30,7 @@ if (process.env.NODE_ENV === "development") {
 const rootReducer = combineReducers({
   authReducer,
   userReducer,
+  settingReducer,
   pickupReducer,
   telcomReducer,
   moveReducer,

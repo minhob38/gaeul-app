@@ -30,7 +30,7 @@ const Text = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font: ${fonts.FONT_MEDIUM_400};
+  font: ${fonts.FONT_SMALL_400};
   color: ${colors.BLACK_1};
   text-align: center;
   /* background-color: ${colors.WHITE_1}; */

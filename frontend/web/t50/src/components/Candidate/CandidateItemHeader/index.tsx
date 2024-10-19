@@ -14,10 +14,9 @@ const Text = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font: ${fonts.FONT_MEDIUM_600};
+  font: ${fonts.FONT_SMALL_600};
   color: ${colors.BLACK_1};
   text-align: center;
-  /* background-color: ${colors.WHITE_1}; */
 `;
 
 const Title = styled(Text)`
@@ -42,7 +41,6 @@ const CandidateItemHeaderContainer = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  /* width: calc(100% - 2 * ${margins.SIDE_MAIN_MARGIN}); */
   margin: 0 auto 0 auto;
   height: 50px;
 `;
@@ -51,7 +49,6 @@ const Line = styled.div`
   height: 1px;
   background-color: ${colors.GRAY_1};
   margin: 0 auto 0 auto;
-  /* width: calc(100% - 2 * ${margins.SIDE_MAIN_MARGIN}); */
   width: 100%;
 `;
 
