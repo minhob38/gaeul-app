@@ -12,7 +12,7 @@ const TrashService = () => {
 
   return (
     <>
-      <Header title="Candidates" mode="back"></Header>
+      <Header title="휴지통" mode="service"></Header>
       <Side width={sideWidth} />
       <Content left={sideWidth} top={size.HEADER_HEIGHT} bottom="0">
         <Scroll direction="y" height={`calc(100% - 0px)`}>

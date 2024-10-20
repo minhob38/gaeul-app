@@ -1,4 +1,6 @@
-export const HEADER_HEIGHT = "62px";
+// header
+export const HEADER_HEIGHT = "80px";
+// side navigation
 export const SIDE_WIDTH = "200px";
 export const HIDDEN_SIDE_WIDTH = "50px";
 export const FOOTER_HEIGHT = "140px";

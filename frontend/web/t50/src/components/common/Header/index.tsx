@@ -12,7 +12,8 @@ import Profile from "./Profile";
 
 interface IProps {
   title: string;
-  mode: "logo" | "back" | "close";
+  // logo 없애기
+  mode: "service" | "logo" | "back" | "close";
   path?: string;
   // login
 }
@@ -22,8 +23,8 @@ const Wrapper = styled.div`
   top: 0;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
+  /* justify-content: space-between;
+  align-items: center; */
   width: 100%;
   height: ${size.HEADER_HEIGHT};
   padding: 0 ${margins.SIDE_MAIN_MARGIN} 0 ${margins.SIDE_MAIN_MARGIN};
@@ -36,8 +37,12 @@ const LogoTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font: ${fonts.FONT_HEADER_600};
-  color: ${colors.PRIMARY_1};
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font: ${fonts.FONT_HEADER_400};
+  color: ${colors.BLACK_1};
 `;
 
 const BackTitle = styled.div`
@@ -52,17 +57,28 @@ const BackTitle = styled.div`
   color: ${colors.PRIMARY_1};
 `;
 
-const SLink = styled(Link)`
-  all: unset;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font: ${fonts.FONT_MEDIUM_600};
-  color: ${colors.PRIMARY_1};
-`;
-
 const LinkButton: React.FC<{ path: string; title: string }> = ({ path, title }) => {
-  return <SLink to={path}>{title}</SLink>;
+  const SLink = styled(Link)`
+    all: unset;
+    display: flex;
+  `;
+
+  const Wrapper = styled.div`
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-${margins.SIDE_MAIN_MARGIN}, -50%);
+    justify-content: center;
+    align-items: center;
+    font: ${fonts.FONT_SMALL_400};
+    color: ${colors.BLACK_1};
+  `;
+
+  return (
+    <Wrapper>
+      <SLink to={path}>{title}</SLink>
+    </Wrapper>
+  );
 };
 
 const Header: React.FC<IProps> = ({ title, mode, path }) => {
@@ -73,12 +89,14 @@ const Header: React.FC<IProps> = ({ title, mode, path }) => {
   const homePath = "/";
   const loginPath = "/login";
 
+  // logo 없애기
   switch (mode) {
+    case "service":
     case "logo":
       return (
         <Wrapper>
           <LogoTitle>{title}</LogoTitle>
-          {!isAuthenticated ? <LinkButton path={loginPath} title="Login" /> : <Profile />}
+          {!isAuthenticated ? <LinkButton path={loginPath} title="로그인" /> : <Profile />}
         </Wrapper>
       );
     case "back":
@@ -94,7 +112,7 @@ const Header: React.FC<IProps> = ({ title, mode, path }) => {
       return (
         <Wrapper>
           <LogoTitle>{title}</LogoTitle>
-          {!isAuthenticated ? <LinkButton path={loginPath} title="Login" /> : <Profile />}
+          {!isAuthenticated ? <LinkButton path={loginPath} title="로그인" /> : <Profile />}
         </Wrapper>
       );
   }

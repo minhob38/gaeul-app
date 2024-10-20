@@ -30,7 +30,7 @@ const CandidateService = () => {
 
   return (
     <>
-      <Header title="Candidates" mode="back"></Header>
+      <Header title="모은 목록" mode="service"></Header>
       <Side width={sideWidth} />
       <Content left={sideWidth} top={size.HEADER_HEIGHT} bottom="0">
         <Scroll direction="y" height={`calc(100% - 0px)`}>
