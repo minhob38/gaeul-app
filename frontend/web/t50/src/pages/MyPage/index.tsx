@@ -12,7 +12,7 @@ import { useUpdateMeMutation } from "@hooks/useApiMutation";
 import Header from "@components/common/Header";
 import Content from "@components/common/Content";
 import TextInput from "@components/Auth/TextInput";
-import SignButton from "@components/Auth/SignButton";
+import SignButton from "@components/Auth/Button";
 import ErrorText from "@components/Auth/ErrorText";
 import { useEffect, useState } from "react";
 import UpdateMeNotificationModal from "modals/UpdateMeNotificationModal";

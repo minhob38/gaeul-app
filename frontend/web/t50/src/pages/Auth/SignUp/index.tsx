@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import Header from "@components/common/Header";
+
 import Content from "@components/common/Content";
 import styled from "@emotion/styled";
 import * as fonts from "@constants/fonts";
@@ -11,39 +11,54 @@ import { actions as authActions } from "@store/slices/authSlice";
 import { actions as errorActions } from "@store/slices/errorSlice";
 import { useSignUpMutation } from "@hooks/useApiMutation";
 import TextInput from "@components/Auth/TextInput";
-import SignButton from "@components/Auth/SignButton";
+import SignUpButton from "@components/Auth/Button";
 import ErrorText from "@components/Auth/ErrorText";
 import SignUpNotificationModal from "modals/SignUpNotificationModal";
 import { checkIsEmailFormat } from "@utils/common";
+import SignUpBackground from "@components/Auth/Background";
+import SignUpBox from "@components/Auth/Box";
+import { css } from "@emotion/react";
+import CloseButton from "@components/Auth/CloseButton";
+import { useNavigate } from "react-router-dom";
 
-const SubTitle = styled.div`
-  font: ${fonts.FONT_MEDIUM_600};
-  color: ${colors.BLACK_1};
-  margin: 0 0 5px 0;
-`;
+const WIDTH = "300px";
+const HEIGHT = "40px";
+const GAP = "10px";
 
 const InputBox = styled.div`
   position: relative;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  align-items: flex-start;
-  width: calc(100% - 2 * ${margins.SIDE_MAIN_MARGIN});
-  margin: 0 auto 20px auto;
+  align-items: center;
+  margin: 0 auto 0 auto;
 `;
 
-const Margin = styled.div`
-  height: ${margins.TOP_MARGIN};
-`;
-
-const SignButtonContainer = styled.div`
+const SignUpButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15px auto 15px auto;
+  margin: 0 auto 0 auto;
+`;
+
+const Welcome = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px auto;
+  font: ${fonts.FONT_LARGE_400};
+  color: ${colors.BLACK_1};
+  text-align: center;
+`;
+
+const CloseContainer = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
 `;
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const dispatch = useTypedDispatch();
   const isSignUpNotification = useTypedSelector(
     (state) => state.rootReducer.modalReducer.isSignUpNotification,
@@ -92,54 +107,81 @@ const SignUp = () => {
     signUpMutation.mutate({ fullName: name, email, password, rePassword });
   };
 
+  const handleCloseButtonClick = () => navigate("/");
+
   const handleFocus = () => dispatch(errorActions.catchSignUpError());
 
   return (
     <>
       {isSignUpNotification && <SignUpNotificationModal />}
-      <Header title="Welcome" mode="back"></Header>
-      <Content top={size.HEADER_HEIGHT} bottom="0">
-        <Margin />
-        <InputBox onFocus={handleFocus}>
-          <SubTitle>First and last name</SubTitle>
-          {/* <TextInput
-            placeholder="John Doe"
-            type="text"
-            name="name"
-            onChange={handleTextInputChange}
-          /> */}
-        </InputBox>
-        <InputBox onFocus={handleFocus}>
-          <SubTitle>Email</SubTitle>
-          {/* <TextInput
-            placeholder="email"
-            type="email"
-            name="email"
-            onChange={handleTextInputChange}
-          /> */}
-        </InputBox>
-        <InputBox onFocus={handleFocus}>
-          <SubTitle>Password</SubTitle>
-          {/* <TextInput
-            placeholder="password"
-            type="password"
-            name="password"
-            onChange={handleTextInputChange}
-          /> */}
-        </InputBox>
-        <InputBox onFocus={handleFocus}>
-          {/* <SubTitle>Confirm Password</SubTitle> */}
-          {/* <TextInput
-            placeholder="confirm password"
-            type="password"
-            name="re-password"
-            onChange={handleTextInputChange}
-          /> */}
-        </InputBox>
-        <ErrorText text={errorMessage} />
-        <SignButtonContainer>
-          <SignButton label="Sign up" onClick={handleSignUpButtonClick} />
-        </SignButtonContainer>
+      <Content top="0" bottom="0">
+        <SignUpBackground>
+          <SignUpBox>
+            <CloseContainer onClick={handleCloseButtonClick}>
+              <CloseButton />
+            </CloseContainer>
+            <Welcome>Todo 서비스</Welcome>
+            <InputBox onFocus={handleFocus}>
+              <TextInput
+                placeholder="이름"
+                type="text"
+                name="name"
+                onChange={handleTextInputChange}
+                width={WIDTH}
+                height={HEIGHT}
+              />
+            </InputBox>
+            <div
+              css={css`
+                height: ${GAP};
+              `}
+            />
+            <InputBox onFocus={handleFocus}>
+              <TextInput
+                placeholder="이메일"
+                type="email"
+                name="email"
+                onChange={handleTextInputChange}
+                width={WIDTH}
+                height={HEIGHT}
+              />
+            </InputBox>
+            <div
+              css={css`
+                height: ${GAP};
+              `}
+            />
+            <InputBox onFocus={handleFocus}>
+              <TextInput
+                placeholder="비밀번호(8자 이상)"
+                type="password"
+                name="password"
+                onChange={handleTextInputChange}
+                width={WIDTH}
+                height={HEIGHT}
+              />
+            </InputBox>
+            <div
+              css={css`
+                height: ${GAP};
+              `}
+            />
+            <InputBox onFocus={handleFocus}>
+              <TextInput
+                placeholder="비밀번호 확인"
+                type="password"
+                name="re-password"
+                onChange={handleTextInputChange}
+                width={WIDTH}
+                height={HEIGHT}
+              />
+            </InputBox>
+            <ErrorText text={errorMessage} />
+            <SignUpButtonContainer>
+              <SignUpButton label="회원가입" onClick={handleSignUpButtonClick} />
+            </SignUpButtonContainer>
+          </SignUpBox>
+        </SignUpBackground>
       </Content>
     </>
   );

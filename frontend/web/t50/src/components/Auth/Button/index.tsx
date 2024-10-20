@@ -10,7 +10,7 @@ interface IProps {
   onClick: React.MouseEventHandler<HTMLInputElement>;
 }
 
-const Button = styled.div`
+const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,8 +23,8 @@ const Button = styled.div`
   cursor: pointer;
 `;
 
-const SignButton: React.FC<IProps> = ({ label, onClick }) => {
-  return <Button onClick={onClick}>{label}</Button>;
+const Button: React.FC<IProps> = ({ label, onClick }) => {
+  return <Wrapper onClick={onClick}>{label}</Wrapper>;
 };
 
-export default SignButton;
+export default Button;

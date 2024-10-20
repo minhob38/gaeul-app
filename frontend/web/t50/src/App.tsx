@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import styled from "@emotion/styled";
 import Landing from "./pages/Landing";
 import * as colors from "@constants/colors";
-import SignIn from "pages/Auth/SignIn";
+import SignIn from "pages/Auth/Signin";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorPage from "pages/Error";
 import { Suspense } from "react";
@@ -67,7 +67,7 @@ function App() {
               path="/signin"
               element={!isAuthenticated ? <SignIn /> : <Navigate replace to="/" />}
             />
-            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/signup" element={<SignUp />} />
             {/* my page */}
             <Route
               path="/my-page"

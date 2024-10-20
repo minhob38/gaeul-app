@@ -9,18 +9,22 @@ import { actions as authActions } from "@store/slices/authSlice";
 import { actions as errorActions } from "@store/slices/errorSlice";
 import { useLoginMutation } from "@hooks/useApiMutation";
 import Content from "@components/common/Content";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextInput from "@components/Auth/TextInput";
-import SignButton from "@components/Auth/SignButton";
+import SignButton from "@components/Auth/Button";
 import ErrorText from "@components/Auth/ErrorText";
 import LoadingModal from "modals/SpinnerLoadingModal";
 import { checkIsEmailFormat } from "@utils/common";
 import { css } from "@emotion/react";
 import GoogleIcon from "@mui/icons-material/Google";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import SignInBackground from "@components/Auth/Background";
+import SignInBox from "@components/Auth/Box";
+import CloseButton from "@components/Auth/CloseButton";
 
 const WIDTH = "300px";
 const HEIGHT = "40px";
+const GAP = "10px";
 
 const InputBox = styled.div`
   position: relative;
@@ -31,7 +35,7 @@ const InputBox = styled.div`
   margin: 0 auto 0 auto;
 `;
 
-const SignButtonContainer = styled.div`
+const SignInButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,29 +52,6 @@ const SLink = styled(Link)`
   color: ${colors.GRAY_1};
   text-decoration: underline;
   cursor: pointer;
-`;
-
-const SignInBackground = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: ${colors.GRAY_1};
-`;
-
-const SignInBox = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 40px;
-  /* width: calc(2 * 40px + ${WIDTH}); */
-  height: 500px;
-  background-color: ${colors.WHITE_1};
-  border: 1px solid ${colors.GRAY_3};
-  border-radius: ${size.BORDER_RADIUS_1};
 `;
 
 const Welcome = styled.div`
@@ -105,6 +86,12 @@ const LinkText: React.FC<{ path: string; title: string }> = ({ path, title }) =>
   return <SLink to={path}>{title}</SLink>;
 };
 
+const CloseContainer = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`;
+
 const SocialButton = styled.div`
   display: flex;
   flex-flow: row nowrap;
@@ -118,8 +105,6 @@ const SocialButton = styled.div`
 `;
 
 const SignIn: React.FC = () => {
-  const signUpPath = "/sign-up";
-
   const errorMessage = useTypedSelector(
     (state) => state.rootReducer.errorReducer.loginErrorMessage,
   );
@@ -127,6 +112,7 @@ const SignIn: React.FC = () => {
   const password = useTypedSelector((state) => state.rootReducer.authReducer.password);
   const isLoading = useTypedSelector((state) => state.rootReducer.modalReducer.isLoading);
 
+  const navigate = useNavigate();
   const dispatch = useTypedDispatch();
   const loginMutation = useLoginMutation();
 
@@ -151,6 +137,8 @@ const SignIn: React.FC = () => {
     await loginMutation.mutateAsync({ email, password });
   };
 
+  const handleCloseButtonClick = () => navigate("/");
+
   const handleFocus = () => dispatch(errorActions.catchLoginError());
 
   return (
@@ -160,10 +148,13 @@ const SignIn: React.FC = () => {
       <Content top="0" bottom="0">
         <SignInBackground>
           <SignInBox>
-            <Welcome>Welcome Todo Service</Welcome>
+            <CloseContainer onClick={handleCloseButtonClick}>
+              <CloseButton />
+            </CloseContainer>
+            <Welcome>Todo 서비스</Welcome>
             <InputBox onFocus={handleFocus}>
               <TextInput
-                placeholder="Email"
+                placeholder="이메일"
                 type="email"
                 name="email"
                 onChange={handleTextInputChange}
@@ -173,12 +164,12 @@ const SignIn: React.FC = () => {
             </InputBox>
             <div
               css={css`
-                height: 10px;
+                height: ${GAP};
               `}
             />
             <InputBox onFocus={handleFocus}>
               <TextInput
-                placeholder="Password"
+                placeholder="비밀번호"
                 type="password"
                 name="password"
                 onChange={handleTextInputChange}
@@ -187,9 +178,9 @@ const SignIn: React.FC = () => {
               />
             </InputBox>
             <ErrorText text={errorMessage} />
-            <SignButtonContainer>
+            <SignInButtonContainer>
               <SignButton onClick={handleLoginButtonClick} label="로그인" />
-            </SignButtonContainer>
+            </SignInButtonContainer>
             <LinkTextContainer>
               <LinkText path={""} title="비밀번호 찾기" />
             </LinkTextContainer>
@@ -198,27 +189,27 @@ const SignIn: React.FC = () => {
               <GoogleIcon />
               <div
                 css={css`
-                  width: 10px;
+                  width: ${GAP};
                 `}
               />
               Google
             </SocialButton>
             <div
               css={css`
-                height: 10px;
+                height: ${GAP};
               `}
             />
             <SocialButton>
               <GitHubIcon />
               <div
                 css={css`
-                  width: 10px;
+                  width: ${GAP};
                 `}
               />
               Github
             </SocialButton>
             <LinkTextContainer>
-              <LinkText path={""} title="회원가입" />
+              <LinkText path={"/signup"} title="회원가입" />
             </LinkTextContainer>
             {/* <LinkText path={signUpPath} title="create an account ?" /> */}
           </SignInBox>
