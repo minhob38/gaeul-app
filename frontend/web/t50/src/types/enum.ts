@@ -1,3 +1,27 @@
+export enum ESERVER_ERROR_CODE {
+  AUTH_0000 = "AUTH_0000",
+  AUTH_0001 = "AUTH_0001",
+  AUTH_0002 = "AUTH_0002",
+  AUTH_0011 = "AUTH_0011",
+  AUTH_0012 = "AUTH_0012",
+  AUTH_0013 = "AUTH_0013",
+  AUTH_0021 = "AUTH_0021",
+  AUTH_0022 = "AUTH_0022",
+  AUTH_0023 = "AUTH_0023",
+
+  // AUTH_0000("auth error"),
+
+  // // user
+  // AUTH_0001("user already exists"), AUTH_0002("user does not exists"),
+
+  // // password
+  // AUTH_0011("password does not match"), AUTH_0012("both current and new password are required"),
+  // AUTH_0013("current password is same as new password"),
+
+  // // jwt
+  // AUTH_0021("jwt does not exist"), AUTH_0022("jwt is invalid"), AUTH_0023("jwt is expired");
+}
+
 export enum ESERVICE_TYPE {
   PICKUP = "pickup",
   MOVE = "move",

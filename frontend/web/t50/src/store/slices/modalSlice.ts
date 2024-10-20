@@ -4,7 +4,6 @@ import { ESERVICE_TYPE } from "types/enum";
 interface IState {
   isLoginWarning: boolean;
   isLoading: boolean;
-  isSignUpNotification: boolean;
   isUpdateMeNotification: boolean;
   isPickupTelcomMoveNotification: boolean;
   isMyBookingCancelNotification: boolean;
@@ -16,7 +15,6 @@ interface IState {
 const initialState: IState = {
   isLoginWarning: false,
   isLoading: false,
-  isSignUpNotification: false,
   isUpdateMeNotification: false,
   isPickupTelcomMoveNotification: false,
   isMyBookingCancelNotification: false,
@@ -48,13 +46,6 @@ const modalSlice = createSlice({
     },
     hideLoading: (state) => {
       state.isLoading = false;
-    },
-    // 회원가입 성공 알림 모달
-    showSignUpNotification: (state) => {
-      state.isSignUpNotification = true;
-    },
-    hideSignUpNotification: (state) => {
-      state.isSignUpNotification = false;
     },
     // 회원정보수정 성공 알림 모달
     showUpdateMeNotification: (state) => {

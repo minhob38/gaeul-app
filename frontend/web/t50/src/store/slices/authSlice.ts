@@ -6,6 +6,7 @@ interface IState {
   phoneNumber: string | null;
   password: string | null;
   rePassword: string | null;
+  isSignUpNotification: boolean;
 }
 
 const initialState: IState = {
@@ -14,6 +15,7 @@ const initialState: IState = {
   phoneNumber: null,
   password: null,
   rePassword: null,
+  isSignUpNotification: false,
 };
 
 const authSlice = createSlice({
@@ -58,6 +60,12 @@ const authSlice = createSlice({
       state.name = name;
       state.email = email;
       state.phoneNumber = phoneNumber;
+    },
+    showSignUpNotification: (state, action: PayloadAction<void>) => {
+      state.isSignUpNotification = true;
+    },
+    hideSignUpNotification: (state, action: PayloadAction<void>) => {
+      state.isSignUpNotification = true;
     },
   },
 });

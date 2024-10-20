@@ -9,7 +9,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { actions as userActions } from "@store/slices/userSlice";
 import { Link } from "react-router-dom";
-import { useLogoutMutation } from "@hooks/useApiMutation";
+// import { useLogoutMutation } from "@hooks/useApiMutation";
 
 const ProfileBox = styled.div`
   display: flex;
@@ -77,10 +77,10 @@ const LinkButton: React.FC<{ path: string; title: string }> = ({ path, title }) 
 const Profile: React.FC = () => {
   const [isProfileClicked, setIsProfileClicked] = useState<boolean>(false);
   const userName = useTypedSelector((state) => state.rootReducer.userReducer.name);
-  const logoutMutation = useLogoutMutation();
+  // const logoutMutation = useLogoutMutation();
   const handleProfileClick = () => setIsProfileClicked(!isProfileClicked);
   const handleLogoutClick = () => {
-    logoutMutation.mutate();
+    // logoutMutation.mutate();
   };
 
   return (

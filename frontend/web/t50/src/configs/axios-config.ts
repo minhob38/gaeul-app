@@ -6,10 +6,10 @@ import axios from "axios";
 //   process.env.NODE_ENV === "production"
 //     ? "https://api.onepick.info"
 //     : "https://dev-api.onepick.info";
-export const API_SERVER_ADDRESS = "https://api.onepick.info";
+export const API_SERVER_ADDRESS = "http://localhost:8080";
 
 const instance = axios.create({
-  baseURL: "https://api.onepick.info",
+  baseURL: API_SERVER_ADDRESS,
   validateStatus: (status) => {
     return status >= 200 || status === 302 || (status >= 400 && status < 500);
   },

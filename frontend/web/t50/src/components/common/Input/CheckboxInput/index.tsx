@@ -4,7 +4,7 @@ import * as colors from "@constants/colors";
 import * as fonts from "@constants/fonts";
 import * as margins from "@constants/margins";
 import { useTypedDispatch, useTypedSelector } from "@hooks/useStore";
-import { actions as telcomActions } from "@store/slices/telcomSlice";
+// import { actions as telcomActions } from "@store/slices/telcomSlice";
 import { shallowEqual } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -59,7 +59,7 @@ const CheckboxInput: React.FC<IProps> = ({ name, title, value }) => {
   // }, [kind, value]);
 
   const handleCheckboxInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(telcomActions.checkboxInput(ev.target));
+    // dispatch(telcomActions.checkboxInput(ev.target));
   };
 
   return (

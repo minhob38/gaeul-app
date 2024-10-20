@@ -2,16 +2,15 @@ import { ECAR_SEARCH_TYPE, ETELCOM_KIND_TYPE } from "./enum";
 
 export interface IApiResponse {
   data: any;
-  errorCode: string;
-  message: string;
-  result: "SUCCESS" | "FAIL";
+  code: string | null;
+  message: string | null;
+  status: "success" | "failure" | "error";
 }
 
 export interface ISignUpRequest {
-  fullName: string;
+  name: string;
   email: string;
   password: string;
-  rePassword: string;
 }
 
 export interface ILoginRequest {

@@ -7,11 +7,11 @@ import * as size from "@constants/size";
 import { useTypedDispatch, useTypedSelector } from "@hooks/useStore";
 import { actions as authActions } from "@store/slices/authSlice";
 import { actions as errorActions } from "@store/slices/errorSlice";
-import { useLoginMutation } from "@hooks/useApiMutation";
+// import { useLoginMutation } from "@hooks/useApiMutation";
 import Content from "@components/common/Content";
 import { Link, useNavigate } from "react-router-dom";
 import TextInput from "@components/Auth/TextInput";
-import SignButton from "@components/Auth/Button";
+import ClickButton from "@components/Auth/ClickButton";
 import ErrorText from "@components/Auth/ErrorText";
 import LoadingModal from "modals/SpinnerLoadingModal";
 import { checkIsEmailFormat } from "@utils/common";
@@ -21,6 +21,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import SignInBackground from "@components/Auth/Background";
 import SignInBox from "@components/Auth/Box";
 import CloseButton from "@components/Auth/CloseButton";
+import { useSignInMutation } from "@hooks/useApiMutation";
 
 const WIDTH = "300px";
 const HEIGHT = "40px";
@@ -114,7 +115,7 @@ const SignIn: React.FC = () => {
 
   const navigate = useNavigate();
   const dispatch = useTypedDispatch();
-  const loginMutation = useLoginMutation();
+  const signInMutation = useSignInMutation();
 
   const handleTextInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(authActions.textInput(ev.target));
@@ -134,7 +135,7 @@ const SignIn: React.FC = () => {
       return;
     }
 
-    await loginMutation.mutateAsync({ email, password });
+    await signInMutation.mutateAsync({ email, password });
   };
 
   const handleCloseButtonClick = () => navigate("/");
@@ -179,7 +180,12 @@ const SignIn: React.FC = () => {
             </InputBox>
             <ErrorText text={errorMessage} />
             <SignInButtonContainer>
-              <SignButton onClick={handleLoginButtonClick} label="로그인" />
+              <ClickButton
+                onClick={handleLoginButtonClick}
+                label="로그인"
+                width={WIDTH}
+                height={HEIGHT}
+              />
             </SignInButtonContainer>
             <LinkTextContainer>
               <LinkText path={""} title="비밀번호 찾기" />
@@ -211,7 +217,6 @@ const SignIn: React.FC = () => {
             <LinkTextContainer>
               <LinkText path={"/signup"} title="회원가입" />
             </LinkTextContainer>
-            {/* <LinkText path={signUpPath} title="create an account ?" /> */}
           </SignInBox>
         </SignInBackground>
       </Content>

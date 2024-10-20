@@ -15,8 +15,8 @@ export const useUnauthorizedNavigate = () => {
 };
 
 export const useInitialAuthentication = () => {
-  const mutate = useCheckInitialAuthMutation();
-  useEffect(() => {
-    mutate.mutate();
-  }, []);
+  // const mutate = useCheckInitialAuthMutation();
+  // useEffect(() => {
+  //   mutate.mutate();
+  // }, []);
 };

@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IState {
-  userId: number | null;
+  key: string | null;
   name: string | null;
   email: string | null;
-  phoneNumber: string | null;
+  // phoneNumber: string | null;
   isAuthenticated: boolean;
 }
 
 const initialState: IState = {
   isAuthenticated: false, // process.env.NODE_ENV === "production" ? false : true,
-  userId: null, //process.env.NODE_ENV === "production" ? null : 1,
+  key: null, //process.env.NODE_ENV === "production" ? null : 1,
   name: null,
   email: null,
-  phoneNumber: null,
+  // phoneNumber: null,
 };
 
 const userSlice = createSlice({
@@ -42,17 +42,17 @@ const userSlice = createSlice({
     findMe: (
       state,
       action: PayloadAction<{
-        userId: number;
+        key: string;
         email: string;
-        fullName: string;
-        phoneNumber: string;
+        name: string;
+        phoneNumber?: string;
       }>,
     ) => {
-      const { userId, email, fullName, phoneNumber } = action.payload;
-      state.userId = userId;
-      state.name = fullName;
+      const { key, email, name } = action.payload;
+      state.key = key;
+      state.name = name;
       state.email = email;
-      state.phoneNumber = phoneNumber;
+      // state.phoneNumber = phoneNumber;
     },
   },
 });

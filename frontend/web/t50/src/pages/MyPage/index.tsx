@@ -8,11 +8,11 @@ import { useTypedDispatch, useTypedSelector } from "@hooks/useStore";
 import { actions as authActions } from "@store/slices/authSlice";
 import { actions as errorActions } from "@store/slices/errorSlice";
 import { actions as userActions } from "@store/slices/userSlice";
-import { useUpdateMeMutation } from "@hooks/useApiMutation";
+// import { useUpdateMeMutation } from "@hooks/useApiMutation";
 import Header from "@components/common/Header";
 import Content from "@components/common/Content";
 import TextInput from "@components/Auth/TextInput";
-import SignButton from "@components/Auth/Button";
+import SignButton from "@components/Auth/ClickButton";
 import ErrorText from "@components/Auth/ErrorText";
 import { useEffect, useState } from "react";
 import UpdateMeNotificationModal from "modals/UpdateMeNotificationModal";
@@ -50,32 +50,32 @@ const MyPage: React.FC = () => {
   const errorMessage = useTypedSelector(
     (state) => state.rootReducer.errorReducer.updateMeErrorMessage,
   );
-  const userId = useTypedSelector((state) => state.rootReducer.userReducer.userId);
+  const userId = useTypedSelector((state) => state.rootReducer.userReducer.key);
   const defaultEmail = useTypedSelector((state) => state.rootReducer.userReducer.email || "");
   const email = useTypedSelector((state) => state.rootReducer.authReducer.email);
   const defaultName = useTypedSelector((state) => state.rootReducer.userReducer.name || "");
   const name = useTypedSelector((state) => state.rootReducer.authReducer.name);
-  const defaultPhoneNumber = useTypedSelector(
-    (state) => state.rootReducer.userReducer.phoneNumber || "",
-  );
-  const phoneNumber = useTypedSelector((state) => state.rootReducer.authReducer.phoneNumber);
+  // const defaultPhoneNumber = useTypedSelector(
+  //   (state) => state.rootReducer.userReducer.phoneNumber || "",
+  // );
+  // const phoneNumber = useTypedSelector((state) => state.rootReducer.authReducer.phoneNumber);
 
   const isUpdateMeNotification = useTypedSelector(
     (state) => state.rootReducer.modalReducer.isUpdateMeNotification,
   );
 
   const dispatch = useTypedDispatch();
-  const mutation = useUpdateMeMutation();
+  // const mutation = useUpdateMeMutation();
 
-  useEffect(() => {
-    dispatch(
-      authActions.clickEdit({
-        name: defaultName,
-        email: defaultEmail,
-        phoneNumber: defaultPhoneNumber,
-      }),
-    );
-  }, [dispatch, defaultEmail, defaultName, defaultPhoneNumber]);
+  // useEffect(() => {
+  //   dispatch(
+  //     authActions.clickEdit({
+  //       name: defaultName,
+  //       email: defaultEmail,
+  //       phoneNumber: defaultPhoneNumber,
+  //     }),
+  //   );
+  // }, [dispatch, defaultEmail, defaultName, defaultPhoneNumber]);
 
   const handleTextInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(authActions.textInput(ev.target));
@@ -83,17 +83,17 @@ const MyPage: React.FC = () => {
 
   const handleButtonClick = async () => {
     if (isEdit) {
-      if (!userId || !name || !phoneNumber) {
+      if (!userId || !name) {
         dispatch(errorActions.throwUpdateMeError("user id, name and phone number are required"));
         return;
       }
 
-      await mutation.mutateAsync({ userId, name, phoneNumber });
+      // await mutation.mutateAsync({ userId, name, phoneNumber });
 
-      const myInfo = await api.findMeApi(userId);
+      // const myInfo = await api.findMeApi(userId);
 
-      if (!myInfo) return;
-      dispatch(userActions.findMe({ userId, ...myInfo }));
+      // if (!myInfo) return;
+      // dispatch(userActions.findMe({ userId, ...myInfo }));
 
       return;
     }
@@ -149,9 +149,9 @@ const MyPage: React.FC = () => {
           />
         </InputBox> */}
         <ErrorText text={errorMessage} />
-        <SignButtonContainer>
+        {/* <SignButtonContainer>
           <SignButton onClick={handleButtonClick} label={isEdit ? "Save" : "Edit"} />
-        </SignButtonContainer>
+        </SignButtonContainer> */}
       </Content>
     </>
   );

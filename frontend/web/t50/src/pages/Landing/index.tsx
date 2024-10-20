@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { actions as errorActions } from "@store/slices/errorSlice";
 import { actions as modalActions } from "@store/slices/modalSlice";
 import { actions as authActions } from "@store/slices/authSlice";
+import { actions as userActions } from "@store/slices/authSlice";
 import { actions as navigationActions } from "@store/slices/navigationSlice";
 import { actions as viewActions } from "@store/slices/viewSlice";
 import Button from "@material-ui/core/Button";
@@ -42,7 +43,7 @@ const Landing: React.FC = () => {
 
   //초기화 코드
   useEffect(() => {
-    // dispatch(userActions.initialize());
+    dispatch(userActions.initialize()); //TODO 임시
     dispatch(authActions.initialize());
     dispatch(viewActions.initialize());
     dispatch(navigationActions.initialize());

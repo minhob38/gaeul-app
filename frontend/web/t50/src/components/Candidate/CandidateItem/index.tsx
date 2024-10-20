@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 import * as size from "@constants/size";
 import * as margins from "@constants/margins";
-import { useCarSalesQueryClient, useCarsSalesQuery } from "@hooks/useApiQuery";
+// import { useCarSalesQueryClient, useCarsSalesQuery } from "@hooks/useApiQuery";
 import * as variables from "@constants/variables";
 import * as fonts from "@constants/fonts";
 import * as colors from "@constants/colors";

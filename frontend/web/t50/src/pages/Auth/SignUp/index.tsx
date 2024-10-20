@@ -11,9 +11,8 @@ import { actions as authActions } from "@store/slices/authSlice";
 import { actions as errorActions } from "@store/slices/errorSlice";
 import { useSignUpMutation } from "@hooks/useApiMutation";
 import TextInput from "@components/Auth/TextInput";
-import SignUpButton from "@components/Auth/Button";
+import ClickButton from "@components/Auth/ClickButton";
 import ErrorText from "@components/Auth/ErrorText";
-import SignUpNotificationModal from "modals/SignUpNotificationModal";
 import { checkIsEmailFormat } from "@utils/common";
 import SignUpBackground from "@components/Auth/Background";
 import SignUpBox from "@components/Auth/Box";
@@ -57,11 +56,28 @@ const CloseContainer = styled.div`
   right: 10px;
 `;
 
+const SignUpSuccess = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: ${fonts.FONT_MEDIUM_400};
+  color: ${colors.BLACK_1};
+  text-align: center;
+  width: ${WIDTH};
+`;
+
+const GoSignInButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 0 auto;
+`;
+
 const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useTypedDispatch();
   const isSignUpNotification = useTypedSelector(
-    (state) => state.rootReducer.modalReducer.isSignUpNotification,
+    (state) => state.rootReducer.authReducer.isSignUpNotification,
   );
   const errorMessage = useTypedSelector(
     (state) => state.rootReducer.errorReducer.signUpErrorMessage,
@@ -104,82 +120,115 @@ const SignUp = () => {
     }
 
     // TODO: 비밀번호 정규식
-    signUpMutation.mutate({ fullName: name, email, password, rePassword });
+    signUpMutation.mutate({ name, email, password });
   };
 
-  const handleCloseButtonClick = () => navigate("/");
+  const handleCloseButtonClick = () => {
+    dispatch(authActions.hideSignUpNotification());
+    navigate("/");
+  };
+  const handleGoSignInButtonClick = () => {
+    dispatch(authActions.hideSignUpNotification());
+    navigate("/signin");
+  };
 
   const handleFocus = () => dispatch(errorActions.catchSignUpError());
 
   return (
     <>
-      {isSignUpNotification && <SignUpNotificationModal />}
       <Content top="0" bottom="0">
         <SignUpBackground>
           <SignUpBox>
+            {/* {!isSignUpNotification && <SignUpNotificationModal />} */}
             <CloseContainer onClick={handleCloseButtonClick}>
               <CloseButton />
             </CloseContainer>
-            <Welcome>Todo 서비스</Welcome>
-            <InputBox onFocus={handleFocus}>
-              <TextInput
-                placeholder="이름"
-                type="text"
-                name="name"
-                onChange={handleTextInputChange}
-                width={WIDTH}
-                height={HEIGHT}
-              />
-            </InputBox>
-            <div
-              css={css`
-                height: ${GAP};
-              `}
-            />
-            <InputBox onFocus={handleFocus}>
-              <TextInput
-                placeholder="이메일"
-                type="email"
-                name="email"
-                onChange={handleTextInputChange}
-                width={WIDTH}
-                height={HEIGHT}
-              />
-            </InputBox>
-            <div
-              css={css`
-                height: ${GAP};
-              `}
-            />
-            <InputBox onFocus={handleFocus}>
-              <TextInput
-                placeholder="비밀번호(8자 이상)"
-                type="password"
-                name="password"
-                onChange={handleTextInputChange}
-                width={WIDTH}
-                height={HEIGHT}
-              />
-            </InputBox>
-            <div
-              css={css`
-                height: ${GAP};
-              `}
-            />
-            <InputBox onFocus={handleFocus}>
-              <TextInput
-                placeholder="비밀번호 확인"
-                type="password"
-                name="re-password"
-                onChange={handleTextInputChange}
-                width={WIDTH}
-                height={HEIGHT}
-              />
-            </InputBox>
-            <ErrorText text={errorMessage} />
-            <SignUpButtonContainer>
-              <SignUpButton label="회원가입" onClick={handleSignUpButtonClick} />
-            </SignUpButtonContainer>
+            {isSignUpNotification ? (
+              <>
+                <Welcome>Todo 서비스</Welcome>
+                <InputBox onFocus={handleFocus}>
+                  <TextInput
+                    placeholder="이름"
+                    type="text"
+                    name="name"
+                    onChange={handleTextInputChange}
+                    width={WIDTH}
+                    height={HEIGHT}
+                  />
+                </InputBox>
+                <div
+                  css={css`
+                    height: ${GAP};
+                  `}
+                />
+                <InputBox onFocus={handleFocus}>
+                  <TextInput
+                    placeholder="이메일"
+                    type="email"
+                    name="email"
+                    onChange={handleTextInputChange}
+                    width={WIDTH}
+                    height={HEIGHT}
+                  />
+                </InputBox>
+                <div
+                  css={css`
+                    height: ${GAP};
+                  `}
+                />
+                <InputBox onFocus={handleFocus}>
+                  <TextInput
+                    placeholder="비밀번호(8자 이상)"
+                    type="password"
+                    name="password"
+                    onChange={handleTextInputChange}
+                    width={WIDTH}
+                    height={HEIGHT}
+                  />
+                </InputBox>
+                <div
+                  css={css`
+                    height: ${GAP};
+                  `}
+                />
+                <InputBox onFocus={handleFocus}>
+                  <TextInput
+                    placeholder="비밀번호 확인"
+                    type="password"
+                    name="re-password"
+                    onChange={handleTextInputChange}
+                    width={WIDTH}
+                    height={HEIGHT}
+                  />
+                </InputBox>
+                <ErrorText text={errorMessage} />
+                <SignUpButtonContainer>
+                  <ClickButton
+                    label="회원가입"
+                    onClick={handleSignUpButtonClick}
+                    width={WIDTH}
+                    height={HEIGHT}
+                  />
+                </SignUpButtonContainer>
+              </>
+            ) : (
+              <>
+                <SignUpSuccess>회원가입이 되었습니다.</SignUpSuccess>
+                <div
+                  css={css`
+                    height: 50px;
+                  `}
+                />
+                <GoSignInButtonContainer>
+                  <ClickButton
+                    label="로그인 하러가기"
+                    onClick={handleGoSignInButtonClick}
+                    width={WIDTH}
+                    height={HEIGHT}
+                  />
+                </GoSignInButtonContainer>
+              </>
+            )}
           </SignUpBox>
         </SignUpBackground>
       </Content>
