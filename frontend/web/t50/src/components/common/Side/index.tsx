@@ -15,8 +15,6 @@ import Toggle from "./Toggle";
 
 type TMenu = "board" | "todo" | "candidate" | "trash" | null;
 
-const SIDE_MARGIN = "20px";
-
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
@@ -54,7 +52,7 @@ const BoardMenuContainer = styled(MenuContainer)`
     props.selectedMenu === "board" ? colors.GRAY_2 : "none"};
 `;
 
-const ToDoMenuContainer = styled(MenuContainer)`
+const TodoMenuContainer = styled(MenuContainer)`
   background-color: ${(props: { selectedMenu: TMenu }) =>
     props.selectedMenu === "todo" ? colors.GRAY_2 : "none"};
 `;
@@ -89,7 +87,7 @@ const Side: React.FC<{ width: string }> = ({ width }) => {
   const handleBoardMenuClick = () => {
     dispatch(navigationActions.selectMenu("board"));
   };
-  const handleToDoMenuClick = () => {
+  const handleTodoMenuClick = () => {
     dispatch(navigationActions.selectMenu("todo"));
   };
   const handleCandidateMenuClick = () => {
@@ -112,10 +110,10 @@ const Side: React.FC<{ width: string }> = ({ width }) => {
             <EventNoteIcon />
             <Menu path="/board" title="보드" />
           </BoardMenuContainer>
-          <ToDoMenuContainer selectedMenu={selectedMenu} onClick={handleToDoMenuClick}>
+          <TodoMenuContainer selectedMenu={selectedMenu} onClick={handleTodoMenuClick}>
             <FormatListBulletedIcon />
-            <Menu path="/to" title="할일 목록" />
-          </ToDoMenuContainer>
+            <Menu path="/todo" title="할일 목록" />
+          </TodoMenuContainer>
           <CandidateMenuContainer selectedMenu={selectedMenu} onClick={handleCandidateMenuClick}>
             <PlaylistAddIcon />
             <Menu path="/candidate" title="모은 목록" />

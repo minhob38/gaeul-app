@@ -21,6 +21,9 @@ import MyPage from "pages/MyPage";
 import LoadingModal from "modals/SpinnerLoadingModal";
 import { useInitialAuthentication } from "@hooks/useAuth";
 import CandidateService from "pages/CandidateService";
+import BoardService from "pages/BoardService";
+import TodoService from "pages/TodoService";
+import TrashService from "pages/TrashService";
 
 // useMutation은 suspense fallback 반영 X
 // useQuery는 suspense fallback 반영 O
@@ -65,8 +68,14 @@ function App() {
         <Suspense fallback={<Fallback />}>
           <Routes>
             <Route path="/" element={<Landing />} />
+            {/* board */}
+            <Route path="/board" element={<BoardService />} />
+            {/* todo */}
+            <Route path="/todo" element={<TodoService />} />
             {/* candidate */}
             <Route path="/candidate" element={<CandidateService />} />
+            {/* trash */}
+            <Route path="/trash" element={<TrashService />} />
             {/* auth */}
             <Route
               path="/login"
