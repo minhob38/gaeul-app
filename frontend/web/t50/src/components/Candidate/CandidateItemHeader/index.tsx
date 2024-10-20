@@ -48,7 +48,7 @@ const CandidateItemHeaderContainer = styled.div`
 
 const Line = styled.div`
   height: 1px;
-  background-color: ${colors.GRAY_1};
+  background-color: ${colors.GRAY_3};
   margin: 0 auto 0 auto;
   width: 100%;
 `;

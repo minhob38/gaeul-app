@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   align-items: center;
   width: 30px;
   height: 30px;
-  border: 2px solid ${colors.BLACK_1};
+  border: 1.5px solid ${colors.BLACK_1};
   border-radius: 50%;
   background-color: ${colors.GRAY_3};
 `;

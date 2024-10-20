@@ -28,8 +28,9 @@ const Wrapper = styled.div`
   width: 100%;
   height: ${size.HEADER_HEIGHT};
   padding: 0 ${margins.SIDE_MAIN_MARGIN} 0 ${margins.SIDE_MAIN_MARGIN};
-  box-shadow: ${colors.SHADOW};
+  /* box-shadow: ${colors.SHADOW}; */
   background-color: ${colors.WHITE_1};
+  border-bottom: 2px solid ${colors.GRAY_3};
   z-index: 1;
 `;
 

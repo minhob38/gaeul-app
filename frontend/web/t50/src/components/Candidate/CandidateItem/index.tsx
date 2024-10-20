@@ -61,9 +61,9 @@ const CandidateItemContainer = styled.div`
 
 const Line = styled.div`
   height: 1px;
-  background-color: ${colors.GRAY_2};
+  background-color: ${colors.GRAY_3};
   margin: 0 auto 0 auto;
-  width: 100%;
+  width: calc(100% - 2 * ${size.SIDE_MARGIN_1});
 `;
 
 const Wrapper = styled.div``;
