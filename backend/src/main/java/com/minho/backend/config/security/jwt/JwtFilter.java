@@ -31,7 +31,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
-    private static final String[] nochecks = { "/api/auth/signup", "/api/auth/signin" };
+    private static final String[] nochecks = { "/api/v1/auth/signup", "/api/v1/auth/signin" };
 
     private final AuthUtil authUtil;
 

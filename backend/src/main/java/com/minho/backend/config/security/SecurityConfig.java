@@ -21,21 +21,22 @@ public class SecurityConfig {
     private final JwtConfig jwtConfig;
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         // https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html
-        http.csrf(csrf -> csrf.disable())
+        httpSecurity.csrf(csrf -> csrf.disable())
+            .cors(Customizer.withDefaults()) // https://docs.spring.io/spring-security/reference/servlet/integrations/cors.html
             .httpBasic(Customizer.withDefaults())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(authorize -> authorize.requestMatchers("/api/auth/signup")
+            .authorizeHttpRequests(authorize -> authorize.requestMatchers("/api/v1/auth/signup")
                 .permitAll()
-                .requestMatchers("api/auth/signin")
+                .requestMatchers("api/v1/auth/signin")
                 .permitAll()
                 .anyRequest()
                 .authenticated())
             .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationCheckEntryPoint))
-            .apply(jwtConfig);
+            .apply(this.jwtConfig);
 
-        return http.build();
+        return httpSecurity.build();
     }
 
 }

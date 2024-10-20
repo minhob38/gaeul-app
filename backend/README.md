@@ -90,4 +90,5 @@ https://javadevjournal.com/spring-security/spring-security-authentication/
 <img src="https://github.com/user-attachments/assets/14bf3dfc-7995-4c5e-ab71-6ae45c567d2d" />
 
 
-
+./gradlew checkFormat
+./gradlew format 
