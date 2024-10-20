@@ -5,9 +5,6 @@ import * as fonts from "@constants/fonts";
 import * as colors from "@constants/colors";
 import * as variables from "@constants/variables";
 import { useTypedDispatch } from "@hooks/useStore";
-import { actions as pickupActions } from "@store/slices/pickupSlice";
-import { actions as telcomActions } from "@store/slices/telcomSlice";
-import { actions as moveActions } from "@store/slices/moveSlice";
 import { EENGLISH_MONTH, ESCHEDULE_TYPE, ESERVICE_TYPE } from "types/enum";
 import { useEffect, useState } from "react";
 import { useDateSelector } from "@hooks/useSelect";
@@ -197,7 +194,7 @@ const ScheduleSelect: React.FC<IProps> = ({ service, type, size }) => {
 
   return (
     <Wrapper selected={isSelected}>
-      <Select
+      {/* <Select
         name={name}
         value={value}
         onChange={(ev) => {
@@ -216,24 +213,24 @@ const ScheduleSelect: React.FC<IProps> = ({ service, type, size }) => {
 
           dispatch(pickupActions.selectInput(ev.target));
         }}
-        // onClick={(ev) => {
-        //   switch (type) {
-        //     case ESCHEDULE_TYPE.DATE:
-        //       if (
-        //         year === variables.SELECT_DEFAULT_TEXT ||
-        //         month === variables.SELECT_DEFAULT_TEXT
-        //       ) {
-        //         // modal로 바꾸기
-        //         alert("select year and month first");
-        //       }
+        onClick={(ev) => {
+          switch (type) {
+            case ESCHEDULE_TYPE.DATE:
+              if (
+                year === variables.SELECT_DEFAULT_TEXT ||
+                month === variables.SELECT_DEFAULT_TEXT
+              ) {
+                // modal로 바꾸기
+                alert("select year and month first");
+              }
 
-        //       break;
-        //     default:
-        //   }
-        // }}
+              break;
+            default:
+          }
+        }}
       >
         {Options}
-      </Select>
+      </Select> */}
     </Wrapper>
   );
 };

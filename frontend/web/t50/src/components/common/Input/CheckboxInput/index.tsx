@@ -47,16 +47,16 @@ const Text = styled.div`
 
 const CheckboxInput: React.FC<IProps> = ({ name, title, value }) => {
   const dispatch = useTypedDispatch();
-  const kind = useTypedSelector((state) => state.rootReducer.telcomReducer.kind, shallowEqual);
+  // const kind = useTypedSelector((state) => state.rootReducer.telcomReducer.kind, shallowEqual);
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (kind.includes(value as any)) {
-      setIsChecked(true);
-      return;
-    }
-    setIsChecked(false);
-  }, [kind, value]);
+  // useEffect(() => {
+  //   if (kind.includes(value as any)) {
+  //     setIsChecked(true);
+  //     return;
+  //   }
+  //   setIsChecked(false);
+  // }, [kind, value]);
 
   const handleCheckboxInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(telcomActions.checkboxInput(ev.target));

@@ -3,8 +3,6 @@ import styled from "@emotion/styled";
 import * as colors from "@constants/colors";
 import * as fonts from "@constants/fonts";
 import { useTypedDispatch } from "@hooks/useStore";
-import { actions as pickupActions } from "@store/slices/pickupSlice";
-import { actions as moveActions } from "@store/slices/moveSlice";
 import { ESERVICE_TYPE } from "types/enum";
 
 const Input = styled.input`
@@ -35,10 +33,10 @@ const TextInput: React.FC<IProps> = ({ service, name, placeholder }) => {
   const handleTextInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     switch (service) {
       case ESERVICE_TYPE.PICKUP:
-        dispatch(pickupActions.textInput(ev.target));
+        // dispatch(pickupActions.textInput(ev.target));
         return;
       case ESERVICE_TYPE.MOVE:
-        dispatch(moveActions.textInput(ev.target));
+        // dispatch(moveActions.textInput(ev.target));
         return;
       default:
     }

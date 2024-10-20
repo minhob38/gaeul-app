@@ -5,8 +5,6 @@ import * as fonts from "@constants/fonts";
 import * as colors from "@constants/colors";
 import * as variables from "@constants/variables";
 import { useTypedDispatch, useTypedSelector } from "@hooks/useStore";
-import { actions as pickUpActions } from "@store/slices/pickupSlice";
-import { actions as moveActions } from "@store/slices/moveSlice";
 import { EPLACE_TYPE, ESERVICE_TYPE } from "types/enum";
 import { useEffect, useState } from "react";
 
@@ -26,57 +24,57 @@ interface IStyleProps {
  */
 const PlaceSelect: React.FC<IProps> = ({ service, type, size, places }) => {
   const dispatch = useTypedDispatch();
-  const pickupArrival = useTypedSelector((state) => state.rootReducer.pickupReducer.arrival);
-  const pickupDeparture = useTypedSelector((state) => state.rootReducer.pickupReducer.departure);
-  const moveArrival = useTypedSelector((state) => state.rootReducer.moveReducer.arrivalNation);
-  const moveDeparture = useTypedSelector((state) => state.rootReducer.moveReducer.departureNation);
+  // const pickupArrival = useTypedSelector((state) => state.rootReducer.pickupReducer.arrival);
+  // const pickupDeparture = useTypedSelector((state) => state.rootReducer.pickupReducer.departure);
+  // const moveArrival = useTypedSelector((state) => state.rootReducer.moveReducer.arrivalNation);
+  // const moveDeparture = useTypedSelector((state) => state.rootReducer.moveReducer.departureNation);
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
-  useEffect(() => {
-    switch (service) {
-      case ESERVICE_TYPE.PICKUP:
-        switch (type) {
-          case EPLACE_TYPE.ARRIVAL:
-            if (pickupArrival === variables.SELECT_DEFAULT_TEXT) {
-              setIsSelected(false);
-              return;
-            }
-            setIsSelected(true);
-            break;
-          case EPLACE_TYPE.DEPARTURE:
-            if (pickupDeparture === variables.SELECT_DEFAULT_TEXT) {
-              setIsSelected(false);
-              return;
-            }
-            setIsSelected(true);
-            break;
-          default:
-            setIsSelected(false);
-        }
-        break;
-      case ESERVICE_TYPE.MOVE:
-        switch (type) {
-          case EPLACE_TYPE.ARRIVAL:
-            if (moveArrival === variables.SELECT_DEFAULT_TEXT) {
-              setIsSelected(false);
-              return;
-            }
-            setIsSelected(true);
-            break;
-          case EPLACE_TYPE.DEPARTURE:
-            if (moveDeparture === variables.SELECT_DEFAULT_TEXT) {
-              setIsSelected(false);
-              return;
-            }
-            setIsSelected(true);
-            break;
-          default:
-            setIsSelected(false);
-        }
-        break;
-      default:
-    }
-  }, [service, type, pickupArrival, pickupDeparture, moveDeparture, moveArrival]);
+  // useEffect(() => {
+  //   switch (service) {
+  //     case ESERVICE_TYPE.PICKUP:
+  //       switch (type) {
+  //         case EPLACE_TYPE.ARRIVAL:
+  //           if (pickupArrival === variables.SELECT_DEFAULT_TEXT) {
+  //             setIsSelected(false);
+  //             return;
+  //           }
+  //           setIsSelected(true);
+  //           break;
+  //         case EPLACE_TYPE.DEPARTURE:
+  //           if (pickupDeparture === variables.SELECT_DEFAULT_TEXT) {
+  //             setIsSelected(false);
+  //             return;
+  //           }
+  //           setIsSelected(true);
+  //           break;
+  //         default:
+  //           setIsSelected(false);
+  //       }
+  //       break;
+  //     case ESERVICE_TYPE.MOVE:
+  //       switch (type) {
+  //         case EPLACE_TYPE.ARRIVAL:
+  //           if (moveArrival === variables.SELECT_DEFAULT_TEXT) {
+  //             setIsSelected(false);
+  //             return;
+  //           }
+  //           setIsSelected(true);
+  //           break;
+  //         case EPLACE_TYPE.DEPARTURE:
+  //           if (moveDeparture === variables.SELECT_DEFAULT_TEXT) {
+  //             setIsSelected(false);
+  //             return;
+  //           }
+  //           setIsSelected(true);
+  //           break;
+  //         default:
+  //           setIsSelected(false);
+  //       }
+  //       break;
+  //     default:
+  //   }
+  // }, [service, type, pickupArrival, pickupDeparture, moveDeparture, moveArrival]);
 
   // const departures = [variables.SELECT_DEFAULT_TEXT, "Incheon Airport"];
   // const arrivals = [variables.SELECT_DEFAULT_TEXT, "GCF"];
@@ -89,11 +87,11 @@ const PlaceSelect: React.FC<IProps> = ({ service, type, size, places }) => {
     case ESERVICE_TYPE.PICKUP:
       switch (type) {
         case EPLACE_TYPE.ARRIVAL:
-          value = pickupArrival;
+          // value = pickupArrival;
           name = "arrival";
           break;
         case EPLACE_TYPE.DEPARTURE:
-          value = pickupDeparture;
+          // value = pickupDeparture;
           name = "departure";
           break;
         default:
@@ -104,11 +102,11 @@ const PlaceSelect: React.FC<IProps> = ({ service, type, size, places }) => {
     case ESERVICE_TYPE.MOVE:
       switch (type) {
         case EPLACE_TYPE.ARRIVAL:
-          value = moveArrival;
+          // value = moveArrival;
           name = "arrivalNation";
           break;
         case EPLACE_TYPE.DEPARTURE:
-          value = moveDeparture;
+          // value = moveDeparture;
           name = "departureNation";
           break;
         default:
@@ -152,10 +150,10 @@ const PlaceSelect: React.FC<IProps> = ({ service, type, size, places }) => {
   const handleClick = (ev) => {
     switch (service) {
       case ESERVICE_TYPE.PICKUP:
-        dispatch(pickUpActions.selectInput(ev.target));
+        // dispatch(pickUpActions.selectInput(ev.target));
         return;
       case ESERVICE_TYPE.MOVE:
-        dispatch(moveActions.selectInput(ev.target));
+        // dispatch(moveActions.selectInput(ev.target));
         return;
       default:
     }
@@ -163,9 +161,9 @@ const PlaceSelect: React.FC<IProps> = ({ service, type, size, places }) => {
 
   return (
     <Wrapper selected={isSelected}>
-      <Select name={name} value={value} onChange={handleClick}>
+      {/* <Select name={name} value={value} onChange={handleClick}>
         {Options}
-      </Select>
+      </Select> */}
     </Wrapper>
   );
 };

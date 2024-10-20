@@ -8,11 +8,7 @@ import storage from "redux-persist/lib/storage";
 import authReducer from "@store/slices/authSlice";
 import viewReducer from "@store/slices/viewSlice";
 import navigationReducer from "@store/slices/navigationSlice";
-import pickupReducer from "@store/slices/pickupSlice";
-import telcomReducer from "@store/slices/telcomSlice";
 import modalReducer from "@store/slices/modalSlice";
-import moveReducer from "@store/slices/moveSlice";
-import carReducer from "@store/slices/carSlice";
 import userReducer from "@store/slices/userSlice";
 import errorReducer from "@store/slices/errorSlice";
 
@@ -33,10 +29,6 @@ const rootReducer = combineReducers({
   userReducer,
   viewReducer,
   navigationReducer,
-  pickupReducer,
-  telcomReducer,
-  moveReducer,
-  carReducer,
   modalReducer,
   errorReducer,
 });

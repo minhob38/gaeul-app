@@ -64,3 +64,8 @@ const authSlice = createSlice({
 
 export const actions = authSlice.actions;
 export default authSlice.reducer;
+
+// selectInput: (state, action: PayloadAction<React.ChangeEvent<HTMLSelectElement>["target"]>) => {
+//   const { name, value } = action.payload;
+//   state[name] = value;
+// },

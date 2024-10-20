@@ -5,7 +5,6 @@ import * as fonts from "@constants/fonts";
 import * as colors from "@constants/colors";
 import * as variables from "@constants/variables";
 import { useTypedDispatch, useTypedSelector } from "@hooks/useStore";
-import { actions as carActions } from "@store/slices/carSlice";
 import { ECAR_SEARCH_TYPE, EPRICE_TYPE } from "types/enum";
 
 interface IProps {
@@ -25,26 +24,26 @@ interface IStyleProps {
 const PriceSelect: React.FC<IProps> = ({ carSearchType, type, size, prices }) => {
   const dispatch = useTypedDispatch();
 
-  const minimumPrice = useTypedSelector((state) => {
-    switch (carSearchType) {
-      case ECAR_SEARCH_TYPE.NEW:
-        return state.rootReducer.carReducer.newMinimumPrice;
-      case ECAR_SEARCH_TYPE.USED:
-        return state.rootReducer.carReducer.usedMinimumPrice;
-      default:
-        return state.rootReducer.carReducer.newMinimumPrice;
-    }
-  });
-  const maximumPrice = useTypedSelector((state) => {
-    switch (carSearchType) {
-      case ECAR_SEARCH_TYPE.NEW:
-        return state.rootReducer.carReducer.newMaximumPrice;
-      case ECAR_SEARCH_TYPE.USED:
-        return state.rootReducer.carReducer.usedMaximumPrice;
-      default:
-        return state.rootReducer.carReducer.newMinimumPrice;
-    }
-  });
+  // const minimumPrice = useTypedSelector((state) => {
+  //   switch (carSearchType) {
+  //     case ECAR_SEARCH_TYPE.NEW:
+  //       return state.rootReducer.carReducer.newMinimumPrice;
+  //     case ECAR_SEARCH_TYPE.USED:
+  //       return state.rootReducer.carReducer.usedMinimumPrice;
+  //     default:
+  //       return state.rootReducer.carReducer.newMinimumPrice;
+  //   }
+  // });
+  // const maximumPrice = useTypedSelector((state) => {
+  //   switch (carSearchType) {
+  //     case ECAR_SEARCH_TYPE.NEW:
+  //       return state.rootReducer.carReducer.newMaximumPrice;
+  //     case ECAR_SEARCH_TYPE.USED:
+  //       return state.rootReducer.carReducer.usedMaximumPrice;
+  //     default:
+  //       return state.rootReducer.carReducer.newMinimumPrice;
+  //   }
+  // });
 
   // const [isSelected, setIsSelected] = useState<boolean>(false);
 
@@ -52,31 +51,31 @@ const PriceSelect: React.FC<IProps> = ({ carSearchType, type, size, prices }) =>
   let name: string;
   const options = prices;
 
-  switch (type) {
-    case EPRICE_TYPE.MIN:
-      value = minimumPrice;
-      if (carSearchType === ECAR_SEARCH_TYPE.NEW) {
-        name = "newMinimumPrice";
-      } else if (carSearchType === ECAR_SEARCH_TYPE.USED) {
-        name = "usedMinimumPrice";
-      } else {
-        name = "";
-      }
-      break;
-    case EPRICE_TYPE.MAX:
-      value = maximumPrice;
-      if (carSearchType === ECAR_SEARCH_TYPE.NEW) {
-        name = "newMaximumPrice";
-      } else if (carSearchType === ECAR_SEARCH_TYPE.USED) {
-        name = "usedMaximumPrice";
-      } else {
-        name = "";
-      }
-      break;
-    default:
-      value = "";
-      name = "";
-  }
+  // switch (type) {
+  //   case EPRICE_TYPE.MIN:
+  //     value = minimumPrice;
+  //     if (carSearchType === ECAR_SEARCH_TYPE.NEW) {
+  //       name = "newMinimumPrice";
+  //     } else if (carSearchType === ECAR_SEARCH_TYPE.USED) {
+  //       name = "usedMinimumPrice";
+  //     } else {
+  //       name = "";
+  //     }
+  //     break;
+  //   case EPRICE_TYPE.MAX:
+  //     value = maximumPrice;
+  //     if (carSearchType === ECAR_SEARCH_TYPE.NEW) {
+  //       name = "newMaximumPrice";
+  //     } else if (carSearchType === ECAR_SEARCH_TYPE.USED) {
+  //       name = "usedMaximumPrice";
+  //     } else {
+  //       name = "";
+  //     }
+  //     break;
+  //   default:
+  //     value = "";
+  //     name = "";
+  // }
 
   const Options = options.map((option) => {
     return (
@@ -107,14 +106,14 @@ const PriceSelect: React.FC<IProps> = ({ carSearchType, type, size, prices }) =>
   `;
 
   const handleClick = (ev) => {
-    dispatch(carActions.selectInput(ev.target));
+    // dispatch(carActions.selectInput(ev.target));
   };
 
   return (
     <Wrapper selected={false}>
-      <Select name={name} value={value} onChange={handleClick}>
+      {/* <Select name={name} value={value} onChange={handleClick}>
         {Options}
-      </Select>
+      </Select> */}
     </Wrapper>
   );
 };

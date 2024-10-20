@@ -11,11 +11,9 @@ import LoginWarningModal from "modals/LoginWarningModal";
 import { useEffect } from "react";
 import { actions as errorActions } from "@store/slices/errorSlice";
 import { actions as modalActions } from "@store/slices/modalSlice";
-import { actions as pickupActions } from "@store/slices/pickupSlice";
-import { actions as telcomActions } from "@store/slices/telcomSlice";
-import { actions as moveActions } from "@store/slices/moveSlice";
 import { actions as authActions } from "@store/slices/authSlice";
-import { actions as carActions } from "@store/slices/carSlice";
+import { actions as navigationActions } from "@store/slices/navigationSlice";
+import { actions as viewActions } from "@store/slices/viewSlice";
 import Button from "@material-ui/core/Button";
 
 const ServiceContainer = styled.div`
@@ -46,10 +44,8 @@ const Landing: React.FC = () => {
   useEffect(() => {
     // dispatch(userActions.initialize());
     dispatch(authActions.initialize());
-    dispatch(carActions.initialize());
-    dispatch(pickupActions.initialize());
-    dispatch(telcomActions.initialize());
-    dispatch(moveActions.initialize());
+    dispatch(viewActions.initialize());
+    dispatch(navigationActions.initialize());
     dispatch(modalActions.initialize());
     dispatch(errorActions.initialize());
   }, []);

@@ -143,19 +143,19 @@ export const useCarsSalesQuery = (searchType: ECAR_SEARCH_TYPE) => {
   const unauthorizedNavigate = useUnauthorizedNavigate();
   const minimumPrice = useTypedSelector((state) => {
     switch (searchType) {
-      case ECAR_SEARCH_TYPE.NEW:
-        return state.rootReducer.carReducer.newMinimumPrice;
-      case ECAR_SEARCH_TYPE.USED:
-        return state.rootReducer.carReducer.usedMinimumPrice;
+      // case ECAR_SEARCH_TYPE.NEW:
+      //   return state.rootReducer.carReducer.newMinimumPrice;
+      // case ECAR_SEARCH_TYPE.USED:
+      //   return state.rootReducer.carReducer.usedMinimumPrice;
       default:
     }
   });
   const maximumPrice = useTypedSelector((state) => {
     switch (searchType) {
-      case ECAR_SEARCH_TYPE.NEW:
-        return state.rootReducer.carReducer.newMaximumPrice;
-      case ECAR_SEARCH_TYPE.USED:
-        return state.rootReducer.carReducer.usedMaximumPrice;
+      // case ECAR_SEARCH_TYPE.NEW:
+      //   return state.rootReducer.carReducer.newMaximumPrice;
+      // case ECAR_SEARCH_TYPE.USED:
+      //   return state.rootReducer.carReducer.usedMaximumPrice;
       default:
     }
   });
@@ -189,31 +189,31 @@ export const useCarsSalesQuery = (searchType: ECAR_SEARCH_TYPE) => {
 export const useCarSalesQueryClient = (carSearchType: ECAR_SEARCH_TYPE) => {
   const unauthorizedNavigate = useUnauthorizedNavigate();
   const queryClient = useQueryClient();
-  const minimumPrice = useTypedSelector((state) => {
-    switch (carSearchType) {
-      case ECAR_SEARCH_TYPE.NEW:
-        return state.rootReducer.carReducer.newMinimumPrice;
-      case ECAR_SEARCH_TYPE.USED:
-        return state.rootReducer.carReducer.usedMinimumPrice;
-      default:
-        return state.rootReducer.carReducer.newMinimumPrice;
-    }
-  });
-  const maximumPrice = useTypedSelector((state) => {
-    switch (carSearchType) {
-      case ECAR_SEARCH_TYPE.NEW:
-        return state.rootReducer.carReducer.newMaximumPrice;
-      case ECAR_SEARCH_TYPE.USED:
-        return state.rootReducer.carReducer.usedMaximumPrice;
-      default:
-        return state.rootReducer.carReducer.newMinimumPrice;
-    }
-  });
+  // const minimumPrice = useTypedSelector((state) => {
+  //   switch (carSearchType) {
+  //     case ECAR_SEARCH_TYPE.NEW:
+  //       return state.rootReducer.carReducer.newMinimumPrice;
+  //     case ECAR_SEARCH_TYPE.USED:
+  //       return state.rootReducer.carReducer.usedMinimumPrice;
+  //     default:
+  //       return state.rootReducer.carReducer.newMinimumPrice;
+  //   }
+  // });
+  // const maximumPrice = useTypedSelector((state) => {
+  //   switch (carSearchType) {
+  //     case ECAR_SEARCH_TYPE.NEW:
+  //       return state.rootReducer.carReducer.newMaximumPrice;
+  //     case ECAR_SEARCH_TYPE.USED:
+  //       return state.rootReducer.carReducer.usedMaximumPrice;
+  //     default:
+  //       return state.rootReducer.carReducer.newMinimumPrice;
+  //   }
+  // });
 
   const apiData = queryClient.getQueryData<Awaited<ReturnType<typeof api.findCarSalesApi>>>([
     EQUERY_KEY.CAR_SALE,
     carSearchType,
-    { minimumPrice, maximumPrice },
+    // { minimumPrice, maximumPrice },
   ]);
   return apiData;
 };
