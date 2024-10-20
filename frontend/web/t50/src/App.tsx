@@ -67,15 +67,8 @@ function App() {
       >
         <Suspense fallback={<Fallback />}>
           <Routes>
+            {/* landing */}
             <Route path="/" element={<Landing />} />
-            {/* board */}
-            <Route path="/board" element={<BoardService />} />
-            {/* todo */}
-            <Route path="/todo" element={<TodoService />} />
-            {/* candidate */}
-            <Route path="/candidate" element={<CandidateService />} />
-            {/* trash */}
-            <Route path="/trash" element={<TrashService />} />
             {/* auth */}
             <Route
               path="/login"
@@ -87,39 +80,14 @@ function App() {
               path="/my-page"
               element={isAuthenticated ? <MyPage /> : <Navigate replace to="/" />}
             />
-            {/* my car and booking */}
-            <Route
-              path="/my-booking"
-              element={isAuthenticated ? <MyBooking /> : <Navigate replace to="/" />}
-            />
-            <Route
-              path="/my-car"
-              element={isAuthenticated ? <MyCar /> : <Navigate replace to="/" />}
-            />
-            {/* pickup service */}
-            <Route
-              path="/pickup"
-              element={isAuthenticated ? <PickupService /> : <Navigate replace to="/" />}
-            />
-            {/* telcom service */}
-            <Route
-              path="/telcom"
-              element={isAuthenticated ? <TelcomService /> : <Navigate replace to="/" />}
-            />
-            {/* move service */}
-            <Route
-              path="/move"
-              element={isAuthenticated ? <MoveService /> : <Navigate replace to="/" />}
-            />
-            {/* car service */}
-            <Route
-              path="/car"
-              element={isAuthenticated ? <CarService /> : <Navigate replace to="/" />}
-            />
-            <Route
-              path="/car/buy/:carBasicId"
-              element={isAuthenticated ? <CarBuy /> : <Navigate replace to="/" />}
-            />
+            {/* board */}
+            <Route path="/board" element={<BoardService />} />
+            {/* todo */}
+            <Route path="/todo" element={<TodoService />} />
+            {/* candidate */}
+            <Route path="/candidate" element={<CandidateService />} />
+            {/* trash */}
+            <Route path="/trash" element={<TrashService />} />
           </Routes>
         </Suspense>
       </ErrorBoundary>
