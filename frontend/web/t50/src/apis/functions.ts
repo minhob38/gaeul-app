@@ -96,7 +96,7 @@ export const signUpApi = async (input: ISignUpRequest) => {
     throw new Error("이미 가입된 회원이 존재합니다.");
   }
 
-  throw new Error("로그인에 실패하였습니다.");
+  throw new Error("회원가입에 실패하였습니다.");
 };
 
 export const signInApi = async (input: ILoginRequest) => {
@@ -110,9 +110,6 @@ export const signInApi = async (input: ILoginRequest) => {
   );
 
   const data = response.data;
-
-  console.log("@@@ api data");
-  console.log(data);
 
   if (data.status === "success") return data.data;
 

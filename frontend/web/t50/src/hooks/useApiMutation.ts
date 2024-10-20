@@ -1,12 +1,14 @@
 import { useMutation } from "react-query";
 import * as api from "@apis/functions";
 import { useTypedDispatch, useTypedSelector } from "./useStore";
+import { useNavigate } from "react-router-dom";
 import { actions as authActions } from "@store/slices/authSlice";
 import { actions as modalActions } from "@store/slices/modalSlice";
 import { actions as errorActions } from "@store/slices/errorSlice";
 import { actions as userActions } from "@store/slices/userSlice";
-import { UNAUTHORIZED } from "@constants/variables";
+import { HOME_PATH } from "@constants/route-path";
 import { useUnauthorizedNavigate } from "./useAuth";
+import { UNAUTHORIZED } from "@constants/variables";
 
 export const useApiMutation = <T>(api: any) => {
   const { mutate, isLoading, isError, error, isSuccess } = useMutation<unknown, unknown, T, void>(
@@ -89,6 +91,8 @@ export const useSignUpMutation = () => {
  */
 export const useSignInMutation = () => {
   const dispatch = useTypedDispatch();
+  const navigate = useNavigate();
+
   const mutation = useMutation(api.signInApi, {
     onMutate: (variables) => {
       dispatch(modalActions.showLoading());
@@ -100,6 +104,7 @@ export const useSignInMutation = () => {
     onSuccess: async (data, variables, context) => {
       dispatch(userActions.authenticate());
       dispatch(userActions.findMe({ key: data.key, name: data.name, email: data.email }));
+      navigate(HOME_PATH); // TODO: 로그인 창만 내리기
 
       return;
     },

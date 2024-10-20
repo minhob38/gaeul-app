@@ -65,7 +65,7 @@ const authSlice = createSlice({
       state.isSignUpNotification = true;
     },
     hideSignUpNotification: (state, action: PayloadAction<void>) => {
-      state.isSignUpNotification = true;
+      state.isSignUpNotification = false;
     },
   },
 });

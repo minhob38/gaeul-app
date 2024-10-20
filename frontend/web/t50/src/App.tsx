@@ -17,6 +17,15 @@ import CandidateService from "pages/CandidateService";
 import BoardService from "pages/BoardService";
 import TodoService from "pages/TodoService";
 import TrashService from "pages/TrashService";
+import {
+  SIGNIN_PATH,
+  SIGNUP_PATH,
+  BOARD_PATH,
+  CANDIDATE_PATH,
+  MY_PAGE_PATH,
+  TODO_PATH,
+  TRASH_PATH,
+} from "@constants/route-path";
 
 // useMutation은 suspense fallback 반영 X
 // useQuery는 suspense fallback 반영 O
@@ -64,24 +73,24 @@ function App() {
             <Route path="/" element={<Landing />} />
             {/* auth */}
             <Route
-              path="/signin"
+              path={SIGNIN_PATH}
               element={<SignIn />}
               // element={!isAuthenticated ? <SignIn /> : <Navigate replace to="/" />}
             />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path={SIGNUP_PATH} element={<SignUp />} />
             {/* my page */}
             <Route
-              path="/my-page"
+              path={MY_PAGE_PATH}
               element={isAuthenticated ? <MyPage /> : <Navigate replace to="/" />}
             />
             {/* board */}
-            <Route path="/board" element={<BoardService />} />
+            <Route path={BOARD_PATH} element={<BoardService />} />
             {/* todo */}
-            <Route path="/todo" element={<TodoService />} />
+            <Route path={TODO_PATH} element={<TodoService />} />
             {/* candidate */}
-            <Route path="/candidate" element={<CandidateService />} />
+            <Route path={CANDIDATE_PATH} element={<CandidateService />} />
             {/* trash */}
-            <Route path="/trash" element={<TrashService />} />
+            <Route path={TRASH_PATH} element={<TrashService />} />
           </Routes>
         </Suspense>
       </ErrorBoundary>

@@ -16,6 +16,8 @@ import { actions as userActions } from "@store/slices/authSlice";
 import { actions as navigationActions } from "@store/slices/navigationSlice";
 import { actions as viewActions } from "@store/slices/viewSlice";
 import Button from "@material-ui/core/Button";
+import Side from "@components/common/Side";
+import Scroll from "@components/common/Scroll";
 
 const ServiceContainer = styled.div`
   display: flex;
@@ -35,6 +37,8 @@ const Landing: React.FC = () => {
     (state) => state.rootReducer.userReducer.isAuthenticated,
   );
   const isLoginWarning = useTypedSelector((state) => state.rootReducer.modalReducer.isLoginWarning);
+  const sideWidth = useTypedSelector((state) => state.rootReducer.viewReducer.sideWidth);
+
   const dispatch = useTypedDispatch();
   const handleBannerClick = () => {
     if (isAuthenticated) return;
@@ -53,21 +57,12 @@ const Landing: React.FC = () => {
 
   return (
     <>
-      {isLoginWarning && <LoginWarningModal />}
-      <Header title="One Pick" mode="logo"></Header>
-      <Content top={size.HEADER_HEIGHT} bottom="0">
-        <Button variant="contained" color="primary">
-          {"Click"}
-        </Button>
-        {/* <Margin />
-        <ServiceContainer>
-          <ServiceBanner type={ESERVICE_TYPE.PICKUP} onClick={handleBannerClick} />
-          <ServiceBanner type={ESERVICE_TYPE.TELCOM} onClick={handleBannerClick} />
-        </ServiceContainer>
-        <ServiceContainer>
-          <ServiceBanner type={ESERVICE_TYPE.MOVE} onClick={handleBannerClick} />
-          <ServiceBanner type={ESERVICE_TYPE.CAR} onClick={handleBannerClick} />
-        </ServiceContainer> */}
+      <Header title="랜딩페이지" mode="service"></Header>
+      <Side width={sideWidth} />
+      <Content left={sideWidth} top={size.HEADER_HEIGHT} bottom="0">
+        <Scroll direction="y" height={`calc(100% - 0px)`}>
+          Landing Page
+        </Scroll>
       </Content>
     </>
   );

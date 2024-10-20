@@ -19,6 +19,7 @@ import SignUpBox from "@components/Auth/Box";
 import { css } from "@emotion/react";
 import CloseButton from "@components/Auth/CloseButton";
 import { useNavigate } from "react-router-dom";
+import { SIGNIN_PATH } from "@constants/route-path";
 
 const WIDTH = "300px";
 const HEIGHT = "40px";
@@ -129,11 +130,12 @@ const SignUp = () => {
   };
   const handleGoSignInButtonClick = () => {
     dispatch(authActions.hideSignUpNotification());
-    navigate("/signin");
+    navigate(SIGNIN_PATH);
   };
 
   const handleFocus = () => dispatch(errorActions.catchSignUpError());
-
+  console.log("@@@ is sign");
+  console.log(isSignUpNotification);
   return (
     <>
       <Content top="0" bottom="0">
@@ -143,7 +145,7 @@ const SignUp = () => {
             <CloseContainer onClick={handleCloseButtonClick}>
               <CloseButton />
             </CloseContainer>
-            {isSignUpNotification ? (
+            {!isSignUpNotification ? (
               <>
                 <Welcome>Todo 서비스</Welcome>
                 <InputBox onFocus={handleFocus}>
