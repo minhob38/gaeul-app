@@ -24,4 +24,6 @@ export const VERTICAL_MARGIN_5 = "50px";
 
 // borer
 export const BORDER_WIDTH_1 = "1px";
-export const BORDER_RADIUS_1 = "15px";
+export const BORDER_RADIUS_1 = "5px";
+export const BORDER_RADIUS_2 = "10px";
+export const BORDER_RADIUS_3 = "15px";

@@ -102,39 +102,39 @@ const SignUp = () => {
         <Margin />
         <InputBox onFocus={handleFocus}>
           <SubTitle>First and last name</SubTitle>
-          <TextInput
+          {/* <TextInput
             placeholder="John Doe"
             type="text"
             name="name"
             onChange={handleTextInputChange}
-          />
+          /> */}
         </InputBox>
         <InputBox onFocus={handleFocus}>
           <SubTitle>Email</SubTitle>
-          <TextInput
+          {/* <TextInput
             placeholder="email"
             type="email"
             name="email"
             onChange={handleTextInputChange}
-          />
+          /> */}
         </InputBox>
         <InputBox onFocus={handleFocus}>
           <SubTitle>Password</SubTitle>
-          <TextInput
+          {/* <TextInput
             placeholder="password"
             type="password"
             name="password"
             onChange={handleTextInputChange}
-          />
+          /> */}
         </InputBox>
         <InputBox onFocus={handleFocus}>
           {/* <SubTitle>Confirm Password</SubTitle> */}
-          <TextInput
+          {/* <TextInput
             placeholder="confirm password"
             type="password"
             name="re-password"
             onChange={handleTextInputChange}
-          />
+          /> */}
         </InputBox>
         <ErrorText text={errorMessage} />
         <SignButtonContainer>

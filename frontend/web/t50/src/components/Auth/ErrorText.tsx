@@ -12,10 +12,10 @@ const Text = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px;
-  width: ${`calc(100% - ${margins.SIDE_MAIN_MARGIN} - ${margins.SIDE_MAIN_MARGIN})`};
+  height: 20px;
+  width: 300px;
   margin: 0 auto;
-  font: ${fonts.FONT_SMALL_400};
+  font: ${fonts.FONT_TINY_400};
   color: ${colors.ERROR_RED};
   text-align: center;
 `;

@@ -16,7 +16,7 @@ const ListWrapper = styled.div`
   width: calc(100% - 2 * ${size.SIDE_MARGIN_5});
   margin: ${size.VERTICAL_MARGIN_5} auto 0 auto;
   border: ${size.BORDER_WIDTH_1} solid ${colors.GRAY_3};
-  border-radius: ${size.BORDER_RADIUS_1};
+  border-radius: ${size.BORDER_RADIUS_3};
 `;
 
 const CandidateService = () => {

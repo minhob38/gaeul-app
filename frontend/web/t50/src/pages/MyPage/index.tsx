@@ -115,7 +115,7 @@ const MyPage: React.FC = () => {
       <Header title="My page" mode="back"></Header>
       <Content top={size.HEADER_HEIGHT} bottom="0">
         <Margin />
-        <InputBox onFocus={handleFocus}>
+        {/* <InputBox onFocus={handleFocus}>
           <SubTitle>Email</SubTitle>
           <TextInput
             value={email || ""}
@@ -147,7 +147,7 @@ const MyPage: React.FC = () => {
             onChange={handleTextInputChange}
             disabled={isEdit ? false : true}
           />
-        </InputBox>
+        </InputBox> */}
         <ErrorText text={errorMessage} />
         <SignButtonContainer>
           <SignButton onClick={handleButtonClick} label={isEdit ? "Save" : "Edit"} />

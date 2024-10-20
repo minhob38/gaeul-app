@@ -12,7 +12,7 @@ export const WHITE = "#ffffff";
 export const WHITE_1 = "#ffffff";
 
 export const GRAY_1 = "#999999";
-export const GRAY_2 = "#ededed";
+// export const GRAY_2 = "#ededed";
 export const GRAY_3 = "#f1f1f1";
 
 // TODO Primary 없애기
