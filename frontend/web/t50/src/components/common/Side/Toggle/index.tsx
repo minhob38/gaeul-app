@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 import * as colors from "@constants/colors";
 import { useTypedDispatch } from "@hooks/useStore";
-import { actions as settingActions } from "@store/slices/settingSlice";
+import { actions as settingActions } from "@store/slices/viewSlice";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 

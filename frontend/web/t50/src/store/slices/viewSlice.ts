@@ -12,8 +12,8 @@ const initialState: IState = {
   sideWidth: size.SIDE_WIDTH,
 };
 
-const settingSlice = createSlice({
-  name: "setting",
+const viewSlice = createSlice({
+  name: "view",
   initialState,
   reducers: {
     initialize: (state) => {
@@ -34,5 +34,5 @@ const settingSlice = createSlice({
   },
 });
 
-export const actions = settingSlice.actions;
-export default settingSlice.reducer;
+export const actions = viewSlice.actions;
+export default viewSlice.reducer;

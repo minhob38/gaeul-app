@@ -65,8 +65,8 @@ function App() {
         <Suspense fallback={<Fallback />}>
           <Routes>
             <Route path="/" element={<Landing />} />
-            {/* candidates */}
-            <Route path="/candidates" element={<CandidateService />} />
+            {/* candidate */}
+            <Route path="/candidate" element={<CandidateService />} />
             {/* auth */}
             <Route
               path="/login"

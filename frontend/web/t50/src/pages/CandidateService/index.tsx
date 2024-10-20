@@ -11,7 +11,7 @@ import Side from "@components/common/Side";
 import { v4 as uuid4 } from "uuid";
 
 const CandidateService = () => {
-  const sideWidth = useTypedSelector((state) => state.rootReducer.settingReducer.sideWidth);
+  const sideWidth = useTypedSelector((state) => state.rootReducer.viewReducer.sideWidth);
 
   const SOURCE_WIDTH = "100px";
   const DUE_DATE_WIDTH = "100px";

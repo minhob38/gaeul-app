@@ -6,11 +6,14 @@ import * as fonts from "@constants/fonts";
 import * as margins from "@constants/margins";
 import { Link } from "react-router-dom";
 import { useTypedDispatch, useTypedSelector } from "@hooks/useStore";
+import { actions as navigationActions } from "@store/slices/navigationSlice";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import Toggle from "./Toggle";
+
+type TMenu = "board" | "todo" | "candidate" | "trash" | null;
 
 const SIDE_MARGIN = "20px";
 
@@ -33,7 +36,7 @@ const MenuListContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 150px 0 0 0;
-  width: calc(100% - 2 * ${SIDE_MARGIN});
+  width: 100%;
 `;
 
 const MenuContainer = styled.div`
@@ -43,6 +46,27 @@ const MenuContainer = styled.div`
   align-items: center;
   height: 50px;
   width: 100%;
+  padding: 0 0 0 20px;
+`;
+
+const BoardMenuContainer = styled(MenuContainer)`
+  background-color: ${(props: { selectedMenu: TMenu }) =>
+    props.selectedMenu === "board" ? colors.GRAY_2 : "none"};
+`;
+
+const ToDoMenuContainer = styled(MenuContainer)`
+  background-color: ${(props: { selectedMenu: TMenu }) =>
+    props.selectedMenu === "todo" ? colors.GRAY_2 : "none"};
+`;
+
+const CandidateMenuContainer = styled(MenuContainer)`
+  background-color: ${(props: { selectedMenu: TMenu }) =>
+    props.selectedMenu === "candidate" ? colors.GRAY_2 : "none"};
+`;
+
+const TrashMenuContainer = styled(MenuContainer)`
+  background-color: ${(props: { selectedMenu: TMenu }) =>
+    props.selectedMenu === "trash" ? colors.GRAY_2 : "none"};
 `;
 
 const SLink = styled(Link)`
@@ -61,29 +85,45 @@ const Menu: React.FC<{ path: string; title: string }> = ({ path, title }) => {
 };
 
 const Side: React.FC<{ width: string }> = ({ width }) => {
-  const isSide = useTypedSelector((state) => state.rootReducer.settingReducer.isSide);
+  const dispatch = useTypedDispatch();
+  const handleBoardMenuClick = () => {
+    dispatch(navigationActions.selectMenu("board"));
+  };
+  const handleToDoMenuClick = () => {
+    dispatch(navigationActions.selectMenu("todo"));
+  };
+  const handleCandidateMenuClick = () => {
+    dispatch(navigationActions.selectMenu("candidate"));
+  };
+  const handleTrashMenuClick = () => {
+    dispatch(navigationActions.selectMenu("trash"));
+  };
+  const isSide = useTypedSelector((state) => state.rootReducer.viewReducer.isSide);
+  const selectedMenu = useTypedSelector(
+    (state) => state.rootReducer.navigationReducer.selectedMenu,
+  );
 
   return (
     <Wrapper width={width}>
       {isSide ? <Toggle mode="hide" /> : <Toggle mode="show" />}
       {isSide && (
         <MenuListContainer>
-          <MenuContainer>
+          <BoardMenuContainer selectedMenu={selectedMenu} onClick={handleBoardMenuClick}>
             <EventNoteIcon />
             <Menu path="/board" title="보드" />
-          </MenuContainer>
-          <MenuContainer>
+          </BoardMenuContainer>
+          <ToDoMenuContainer selectedMenu={selectedMenu} onClick={handleToDoMenuClick}>
             <FormatListBulletedIcon />
             <Menu path="/to" title="할일 목록" />
-          </MenuContainer>
-          <MenuContainer>
+          </ToDoMenuContainer>
+          <CandidateMenuContainer selectedMenu={selectedMenu} onClick={handleCandidateMenuClick}>
             <PlaylistAddIcon />
             <Menu path="/candidate" title="모은 목록" />
-          </MenuContainer>
-          <MenuContainer>
+          </CandidateMenuContainer>
+          <TrashMenuContainer selectedMenu={selectedMenu} onClick={handleTrashMenuClick}>
             <DeleteSweepIcon />
             <Menu path="/trash" title="휴지통" />
-          </MenuContainer>
+          </TrashMenuContainer>
         </MenuListContainer>
       )}
     </Wrapper>
