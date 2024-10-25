@@ -9,49 +9,74 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { actions as userActions } from "@store/slices/userSlice";
 import { Link } from "react-router-dom";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // import { useLogoutMutation } from "@hooks/useApiMutation";
+
+const PADDING = "10px";
 
 const ProfileBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
+  height: ${size.HEADER_HEIGHT};
+  font: ${fonts.FONT_SMALL_400};
+  &:hover {
+    font: ${fonts.FONT_SMALL_600};
+  }
 `;
 
-const ProfileName = styled.div`
+const ProfileEmail = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column nowrap;
-  font: ${fonts.FONT_SMALL_400};
+  margin: 0 0 0 5px;
+  /* font: ${fonts.FONT_SMALL_400}; */
   color: ${colors.BLACK_1};
 `;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: start;
+  padding: 0 0 0 ${PADDING};
+  width: 200px;
+`;
 
 const ProfileDropBox = styled.div`
   position: absolute;
-  top: ${size.HEADER_HEIGHT};
   right: 0;
+  top: calc(10px + ${size.HEADER_HEIGHT});
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column nowrap;
-  width: 150px;
+  width: 100%;
+  /* padding: 0 0 0 ${PADDING}; */
   background-color: ${colors.WHITE_1};
+  border: 2px solid ${colors.GRAY_3};
 `;
 
 const ProfileDropBoxItemContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 0 0 ${PADDING};
   width: 100%;
-  height: 50px;
+  height: 40px;
+  &:hover {
+    text-decoration: underline;
+  }
+  cursor: pointer;
 `;
 
+// TODO: logout도 link로 바꾸기
 const Logout = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -62,7 +87,7 @@ const Logout = styled.div`
 const SLink = styled(Link)`
   all: unset;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -76,7 +101,7 @@ const LinkButton: React.FC<{ path: string; title: string }> = ({ path, title }) 
 
 const Profile: React.FC = () => {
   const [isProfileClicked, setIsProfileClicked] = useState<boolean>(false);
-  const userName = useTypedSelector((state) => state.rootReducer.userReducer.name);
+  const userName = useTypedSelector((state) => state.rootReducer.userReducer.email);
   // const logoutMutation = useLogoutMutation();
   const handleProfileClick = () => setIsProfileClicked(!isProfileClicked);
   const handleLogoutClick = () => {
@@ -86,22 +111,16 @@ const Profile: React.FC = () => {
   return (
     <Wrapper>
       <ProfileBox onClick={handleProfileClick}>
-        <FontAwesomeIcon icon={faUser} fontSize={"24px"} />
-        <ProfileName>{userName}</ProfileName>
+        <AccountCircleIcon fontSize="large" />
+        <ProfileEmail>{userName}</ProfileEmail>
       </ProfileBox>
       {isProfileClicked && (
         <ProfileDropBox>
-          <ProfileDropBoxItemContainer>
-            <LinkButton path="my-page" title="My Page" />
+          <ProfileDropBoxItemContainer onClick={() => console.log("Clicked!")}>
+            <LinkButton path="my-page" title="개인정보 설정" />
           </ProfileDropBoxItemContainer>
           <ProfileDropBoxItemContainer>
-            <LinkButton path="my-booking" title="My Booking" />
-          </ProfileDropBoxItemContainer>
-          <ProfileDropBoxItemContainer>
-            <LinkButton path="my-car" title="My Car" />
-          </ProfileDropBoxItemContainer>
-          <ProfileDropBoxItemContainer>
-            <Logout onClick={handleLogoutClick}>Logout</Logout>
+            <Logout onClick={handleLogoutClick}>로그아웃</Logout>
           </ProfileDropBoxItemContainer>
         </ProfileDropBox>
       )}
