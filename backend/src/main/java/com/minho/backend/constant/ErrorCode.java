@@ -22,6 +22,23 @@ public class ErrorCode {
     }
 
     @Getter
+    public enum Client {
+
+        // normal
+        CLIENT_0000("client error"),
+
+        // database error
+        CLIENT_0001("api does not exist");
+
+        private final String description;
+
+        Client(String description) {
+            this.description = description;
+        }
+
+    }
+
+    @Getter
     public enum Auth {
 
         // normal
