@@ -124,25 +124,26 @@ export const signInApi = async (input: ILoginRequest) => {
   throw new Error("로그인에 실패하였습니다.");
 };
 
-// export const logoutApi = async () => {
-//   const response = await axios.post<IApiResponse>(`${API_SERVER_ADDRESS}/api/v1/users/logout`);
+export const signOutApi = async () => {
+  // const { email, password } = input;
+  const body = {};
 
-//   const data = response.data;
-//   const apiData = data.data;
-//   const status = response.status;
+  const response = await axios.post<IApiResponse>(
+    `${API_SERVER_ADDRESS}/api/v1/auth/signout`,
+    body,
+    // { withCredentials: true },
+  );
 
-//   // 로그아웃은 별도 응답처리할 필요 없음
+  const data = response.data;
 
-//   // if (status === 401) throw new Error(UNAUTHORIZED);
+  if (data.status === "success") return data.data;
 
-//   // if (data.result === "SUCCESS") {
-//   //   return;
-//   // }
+  if (data.code === ESERVER_ERROR_CODE.AUTH_0002) {
+    throw new Error("존재하지 않는 회원입니다.");
+  }
 
-//   // if (data.result === "FAIL") {
-//   //   throw new Error("logout error");
-//   // }
-// };
+  throw new Error("로그아웃에 실패하였습니다.");
+};
 
 // export const updateMeApi = async (input: IUpdateMeRequest) => {
 //   await checkInitialAuth();

@@ -113,8 +113,7 @@ const Header: React.FC<IProps> = ({ title, mode, path }) => {
       return (
         <Wrapper>
           <LogoTitle>{title}</LogoTitle>
-          <Profile />
-          {/* {!isAuthenticated ? <LinkButton path={SIGNIN_PATH} title="로그인" /> : <Profile />} */}
+          {!isAuthenticated ? <LinkButton path={SIGNIN_PATH} title="로그인" /> : <Profile />}
         </Wrapper>
       );
     case "back":

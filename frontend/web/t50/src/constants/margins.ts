@@ -1,5 +1,5 @@
 /* desgin system */
-// margin file deprecated 시키기
+// margin file deprecated 시키기 (size.ts로 바꿈)
 export const SIDE_MAIN_MARGIN = "20px";
 export const SIDE_SUB_MARGIN = "30px";
 

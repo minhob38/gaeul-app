@@ -58,8 +58,6 @@ function App() {
 
   useInitialAuthentication();
 
-  // TODO: 여기에 쿠키 확인해서, 로그인 체크하는 로직 넣기
-
   return (
     <WebWrapper>
       <ErrorBoundary
@@ -75,8 +73,7 @@ function App() {
             {/* auth */}
             <Route
               path={SIGNIN_PATH}
-              element={<SignIn />}
-              // element={!isAuthenticated ? <SignIn /> : <Navigate replace to="/" />}
+              element={!isAuthenticated ? <SignIn /> : <Navigate replace to="/" />}
             />
             <Route path={SIGNUP_PATH} element={<SignUp />} />
             {/* my page */}
@@ -85,13 +82,25 @@ function App() {
               element={isAuthenticated ? <MyPage /> : <Navigate replace to="/" />}
             /> */}
             {/* board */}
-            <Route path={BOARD_PATH} element={<BoardService />} />
+            <Route
+              path={BOARD_PATH}
+              element={isAuthenticated ? <BoardService /> : <Navigate replace to="/" />}
+            />
             {/* todo */}
-            <Route path={TODO_PATH} element={<TodoService />} />
+            <Route
+              path={TODO_PATH}
+              element={isAuthenticated ? <TodoService /> : <Navigate replace to="/" />}
+            />
             {/* candidate */}
-            <Route path={CANDIDATE_PATH} element={<CandidateService />} />
+            <Route
+              path={CANDIDATE_PATH}
+              element={isAuthenticated ? <CandidateService /> : <Navigate replace to="/" />}
+            />
             {/* trash */}
-            <Route path={TRASH_PATH} element={<TrashService />} />
+            <Route
+              path={TRASH_PATH}
+              element={isAuthenticated ? <TrashService /> : <Navigate replace to="/" />}
+            />
           </Routes>
         </Suspense>
       </ErrorBoundary>

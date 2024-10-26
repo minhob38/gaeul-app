@@ -7,7 +7,6 @@ import * as size from "@constants/size";
 import { useTypedDispatch, useTypedSelector } from "@hooks/useStore";
 import { actions as authActions } from "@store/slices/authSlice";
 import { actions as errorActions } from "@store/slices/errorSlice";
-// import { useLoginMutation } from "@hooks/useApiMutation";
 import Content from "@components/common/Content";
 import { Link, useNavigate } from "react-router-dom";
 import TextInput from "@components/Auth/TextInput";
@@ -107,7 +106,7 @@ const SocialButton = styled.div`
 
 const SignIn: React.FC = () => {
   const errorMessage = useTypedSelector(
-    (state) => state.rootReducer.errorReducer.loginErrorMessage,
+    (state) => state.rootReducer.errorReducer.signInErrorMessage,
   );
   const email = useTypedSelector((state) => state.rootReducer.authReducer.email);
   const password = useTypedSelector((state) => state.rootReducer.authReducer.password);
@@ -124,14 +123,14 @@ const SignIn: React.FC = () => {
   const handleLoginButtonClick = async () => {
     // 입력정보가 없으면 에러
     if (!email || !password) {
-      dispatch(errorActions.throwLoginError("Enter email and password"));
+      dispatch(errorActions.throwSignInError("Enter email and password"));
       return;
     }
 
     // email 형식 체크
     const isEmailFormat = checkIsEmailFormat(email);
     if (!isEmailFormat) {
-      dispatch(errorActions.throwLoginError("Invalid email format"));
+      dispatch(errorActions.throwSignInError("Invalid email format"));
       return;
     }
 

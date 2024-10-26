@@ -9,6 +9,7 @@ import { actions as userActions } from "@store/slices/userSlice";
 import { HOME_PATH } from "@constants/route-path";
 import { useUnauthorizedNavigate } from "./useAuth";
 import { UNAUTHORIZED } from "@constants/variables";
+import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from "@configs/auth";
 
 export const useApiMutation = <T>(api: any) => {
   const { mutate, isLoading, isError, error, isSuccess } = useMutation<unknown, unknown, T, void>(
@@ -99,9 +100,11 @@ export const useSignInMutation = () => {
     },
     onError: (error, variables, context) => {
       const errorMessage = (error as Error).message;
-      dispatch(errorActions.throwLoginError(errorMessage));
+      dispatch(errorActions.throwSignInError(errorMessage));
     },
     onSuccess: async (data, variables, context) => {
+      const accessToken = data.accessToken;
+      localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
       dispatch(userActions.authenticate());
       dispatch(userActions.findMe({ key: data.key, name: data.name, email: data.email }));
       navigate(HOME_PATH); // TODO: 로그인 창만 내리기
@@ -116,32 +119,30 @@ export const useSignInMutation = () => {
   return mutation;
 };
 
-// /**
-//  * @description 로그아웃 mutation 함수
-//  */
-// export const useLogoutMutation = () => {
-//   const dispatch = useTypedDispatch();
-//   const mutation = useMutation(api.logoutApi, {
-//     onMutate: (variables) => {
-//       dispatch(modalActions.showLoading());
-//     },
-//     onError: (error, variables, context) => {
-//       const errorMessage = (error as Error).message;
-//       if (errorMessage === UNAUTHORIZED) {
-//         dispatch(userActions.unAuthenticate());
-//         return;
-//       }
-//     },
-//     onSuccess: (data, variables, context) => {
-//       dispatch(userActions.unAuthenticate());
-//     },
-//     onSettled: () => {
-//       dispatch(modalActions.hideLoading());
-//     },
-//   });
+/**
+ * @description 로그아웃 mutation 함수
+ */
+export const useSignOutMutation = () => {
+  const dispatch = useTypedDispatch();
+  const mutation = useMutation(api.signOutApi, {
+    onMutate: (variables) => {
+      dispatch(modalActions.showLoading());
+    },
+    onError: (error, variables, context) => {
+      localStorage.removeItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
+      dispatch(userActions.unAuthenticate());
+    },
+    onSuccess: (data, variables, context) => {
+      localStorage.removeItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
+      dispatch(userActions.unAuthenticate());
+    },
+    onSettled: () => {
+      dispatch(modalActions.hideLoading());
+    },
+  });
 
-//   return mutation;
-// };
+  return mutation;
+};
 
 // /**
 //  * @description 회원정보수정 mutation 함수

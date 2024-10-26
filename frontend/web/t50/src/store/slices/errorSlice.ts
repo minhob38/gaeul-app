@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IState {
   signUpErrorMessage: string | null;
-  loginErrorMessage: string | null;
+  signInErrorMessage: string | null;
   updateMeErrorMessage: string | null;
   pickUpTelcomMoveErrorMessage: string | null;
   carSaleErrorMessage: string | null;
@@ -10,7 +10,7 @@ interface IState {
 
 const initialState: IState = {
   signUpErrorMessage: null,
-  loginErrorMessage: null,
+  signInErrorMessage: null,
   updateMeErrorMessage: null,
   pickUpTelcomMoveErrorMessage: null,
   carSaleErrorMessage: null,
@@ -33,11 +33,11 @@ const errorSlice = createSlice({
       state.signUpErrorMessage = null;
     },
     // 로그인 에러
-    throwLoginError: (state, action: PayloadAction<string>) => {
-      state.loginErrorMessage = action.payload;
+    throwSignInError: (state, action: PayloadAction<string>) => {
+      state.signInErrorMessage = action.payload;
     },
     catchLoginError: (state) => {
-      state.loginErrorMessage = null;
+      state.signInErrorMessage = null;
     },
     // 회원정보수정 에러
     throwUpdateMeError: (state, action: PayloadAction<string>) => {

@@ -10,6 +10,7 @@ import { useState } from "react";
 import { actions as userActions } from "@store/slices/userSlice";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useSignOutMutation } from "@hooks/useApiMutation";
 // import { useLogoutMutation } from "@hooks/useApiMutation";
 
 const PADDING = "10px";
@@ -102,10 +103,10 @@ const LinkButton: React.FC<{ path: string; title: string }> = ({ path, title }) 
 const Profile: React.FC = () => {
   const [isProfileClicked, setIsProfileClicked] = useState<boolean>(false);
   const userName = useTypedSelector((state) => state.rootReducer.userReducer.email);
-  // const logoutMutation = useLogoutMutation();
+  const signOutMutation = useSignOutMutation();
   const handleProfileClick = () => setIsProfileClicked(!isProfileClicked);
   const handleLogoutClick = () => {
-    // logoutMutation.mutate();
+    signOutMutation.mutate();
   };
 
   return (
