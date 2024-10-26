@@ -69,7 +69,10 @@ const App = () => {
         <Suspense fallback={<Fallback />}>
           <Routes>
             {/* landing */}
-            <Route path={LANDING_PATH} element={<Landing />} />
+            <Route
+              path={LANDING_PATH}
+              element={!isAuthenticated ? <Landing /> : <Navigate replace to="/candidate" />}
+            />
             {/* auth */}
             <Route
               path={SIGNIN_PATH}

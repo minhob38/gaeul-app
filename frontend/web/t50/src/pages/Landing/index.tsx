@@ -51,8 +51,7 @@ const Landing: React.FC = () => {
   return (
     <>
       <Header title="랜딩페이지" mode="service"></Header>
-      {isAuthenticated && <Side width={sideWidth} />}
-      <Content left={isAuthenticated ? sideWidth : "0px"} top={size.HEADER_HEIGHT} bottom="0">
+      <Content top={size.HEADER_HEIGHT} bottom="0">
         <Scroll direction="y" height={`calc(100% - 0px)`}>
           Landing Page
         </Scroll>
