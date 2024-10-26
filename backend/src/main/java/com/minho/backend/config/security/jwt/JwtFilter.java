@@ -58,8 +58,8 @@ public class JwtFilter extends OncePerRequestFilter {
                 return;
             }
 
-            String jwt = httpRequest.getHeader("access_token");
-            Jws<Claims> claims = this.authUtil.validJwt(jwt);
+            String jwt = this.authUtil.parseBearerToken(httpRequest.getHeader("access_token"));
+            Jws<Claims> claims = this.authUtil.validateJwt(jwt);
             JwtPayload payload = this.authUtil.parseJwt(claims);
 
             AuthenticatedUser authenticatedUser = this.authenticatedUserService.findUserByKey(payload.getUserKey());
@@ -76,7 +76,7 @@ public class JwtFilter extends OncePerRequestFilter {
         }
         catch (Exception e) {
             authenticationCheckEntryPoint.commence(request, response,
-                    new ServerAuthenticationException(new ServerException(ErrorCode.Server.SERVER_0000)));
+                    new ServerAuthenticationException(new ServerException(ErrorCode.Server.SERVER_0000, e)));
         }
     }
 

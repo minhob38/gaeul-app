@@ -35,7 +35,8 @@ public class ErrorCode {
         AUTH_0013("current password is same as new password"),
 
         // jwt
-        AUTH_0021("jwt does not exist"), AUTH_0022("jwt is invalid"), AUTH_0023("jwt is expired");
+        AUTH_0021("jwt does not exist"), AUTH_0022("jwt is invalid"), AUTH_0023("jwt is expired"),
+        AUTH_0024("bearer token is invalid");
 
         private final String description;
 

@@ -10,9 +10,12 @@ public class ServerAuthenticationException extends AuthenticationException {
 
     private final String code;
 
-    public ServerAuthenticationException(ServerException exception) {
-        super(exception.getMessage(), exception);
-        this.code = exception.getCode();
+    private final Exception exception;
+
+    public ServerAuthenticationException(ServerException serverException) {
+        super(serverException.getMessage(), serverException);
+        this.code = serverException.getCode();
+        this.exception = serverException.getException();
     }
 
 }

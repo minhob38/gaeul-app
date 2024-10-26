@@ -48,7 +48,7 @@ public class AuthPersistenceAdapter implements AuthPersistencePort {
         UserJpaEntity userJpaEntity = user.toJpaEntity();
 
         if (userJpaEntity.getId() == null) {
-            throw new ServerException(ErrorCode.Server.SERVER_0001);
+            throw new ServerException(ErrorCode.Server.SERVER_0001, null);
         }
 
         UserJpaEntity updatedUserJpaEntity = this.userRepository.save(userJpaEntity);
