@@ -2,6 +2,7 @@
   "name": "react-template",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
@@ -63,9 +64,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "serve": "craco build && serve -s build",
-    "homepage": "https://minhob38.github.io/gaeul-app",
-    "predeploy": "npm run build ",
-    "deploy": "gh-pages -d build",
+    "gh-deploy": "npm run build && gh-pages -d build && rm -rf frontend/web/t50/build",
     "aws-prod-deploy": "rm -rf ./build && npm run build && aws s3 sync ./build s3://gcf-frontend --profile=onepick",
     "aws-dev-deploy": "rm -rf ./build && npm run build && aws s3 sync ./build s3://gcf-dev-frontend --profile=onepick",
     "aws-cache-invalidation": "aws cloudfront create-invalidation --profile=onepick --distribution-id ER7WZL69IN53R --paths /"

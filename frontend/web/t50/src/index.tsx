@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { PersistGate } from "redux-persist/integration/react";
@@ -20,9 +20,10 @@ ReactDOM.render(
       <PersistGate loading={null} persistor={persistor}>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={true} />
-          <BrowserRouter>
+          {/* TODO: github page 일때만 hash router, s3에 배포할땐 browser router로 바꾸기 */}
+          <HashRouter basename="/">
             <App />
-          </BrowserRouter>
+          </HashRouter>
         </QueryClientProvider>
       </PersistGate>
     </Provider>
