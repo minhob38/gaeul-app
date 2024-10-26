@@ -10,4 +10,5 @@ export const BOARD_PATH = "/board";
 export const TODO_PATH = "/todo";
 export const CANDIDATE_PATH = "/candidate";
 export const TRASH_PATH = "/trash";
+export const TEST_PATH = "/test";
 export const MY_PAGE_PATH = "/me";

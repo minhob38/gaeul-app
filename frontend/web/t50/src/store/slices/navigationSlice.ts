@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as size from "@constants/size";
+import { TMenu } from "types/type";
 
 interface IState {
   // side menu 설정
-  selectedMenu: "board" | "todo" | "candidate" | "trash" | null;
+  selectedMenu: TMenu;
 }
 
 const initialState: IState = {

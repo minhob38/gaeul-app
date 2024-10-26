@@ -10,11 +10,17 @@ import EventNoteSharp from "@mui/icons-material/EventNoteSharp";
 import FormatListBulletedSharp from "@mui/icons-material/FormatListBulletedSharp";
 import PlaylistAddSharp from "@mui/icons-material/PlaylistAddSharp";
 import DeleteSweepSharp from "@mui/icons-material/DeleteSweepSharp";
+import TerminalIcon from "@mui/icons-material/Terminal";
 import Toggle from "./Toggle";
 import { useNavigate } from "react-router-dom";
-import { BOARD_PATH, CANDIDATE_PATH, TODO_PATH, TRASH_PATH } from "@constants/route-path";
-
-type TMenu = "board" | "todo" | "candidate" | "trash" | null;
+import {
+  BOARD_PATH,
+  CANDIDATE_PATH,
+  TEST_PATH,
+  TODO_PATH,
+  TRASH_PATH,
+} from "@constants/route-path";
+import { TMenu } from "types/type";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -73,6 +79,11 @@ const TrashMenuContainer = styled(MenuContainer)`
     props.selectedMenu === "trash" ? colors.BLACK : "none"};
 `;
 
+const TestMenuContainer = styled(MenuContainer)`
+  background-color: ${(props: { selectedMenu: TMenu }) =>
+    props.selectedMenu === "test" ? colors.BLACK : "none"};
+`;
+
 const MenuText = styled.div`
   display: flex;
   justify-content: start;
@@ -90,18 +101,27 @@ const Side: React.FC<{ width: string }> = ({ width }) => {
     dispatch(navigationActions.selectMenu("board"));
     navigate(BOARD_PATH);
   };
+
   const handleTodoMenuClick = () => {
     dispatch(navigationActions.selectMenu("todo"));
     navigate(TODO_PATH);
   };
+
   const handleCandidateMenuClick = () => {
     dispatch(navigationActions.selectMenu("candidate"));
     navigate(CANDIDATE_PATH);
   };
+
   const handleTrashMenuClick = () => {
     dispatch(navigationActions.selectMenu("trash"));
     navigate(TRASH_PATH);
   };
+
+  const handleTestMenuClick = () => {
+    dispatch(navigationActions.selectMenu("test"));
+    navigate(TEST_PATH);
+  };
+
   const isSide = useTypedSelector((state) => state.rootReducer.viewReducer.isSide);
   const selectedMenu = useTypedSelector(
     (state) => state.rootReducer.navigationReducer.selectedMenu,
@@ -128,6 +148,10 @@ const Side: React.FC<{ width: string }> = ({ width }) => {
             <DeleteSweepSharp style={{ color: colors.WHITE_1 }} />
             <MenuText>휴지통</MenuText>
           </TrashMenuContainer>
+          <TestMenuContainer selectedMenu={selectedMenu} onClick={handleTestMenuClick}>
+            <TerminalIcon style={{ color: colors.WHITE_1 }} />
+            <MenuText>테스트</MenuText>
+          </TestMenuContainer>
         </MenuListContainer>
       )}
     </Wrapper>
