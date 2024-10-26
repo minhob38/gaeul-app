@@ -27,6 +27,7 @@ import {
   TRASH_PATH,
   LANDING_PATH,
 } from "@constants/route-path";
+import NotFound from "pages/Error/NotFound";
 
 // useMutation은 suspense fallback 반영 X
 // useQuery는 suspense fallback 반영 O
@@ -71,8 +72,9 @@ const App = () => {
             {/* landing */}
             <Route
               path={LANDING_PATH}
-              element={!isAuthenticated ? <Landing /> : <Navigate replace to="/candidate" />}
+              element={!isAuthenticated ? <Landing /> : <Navigate replace to={CANDIDATE_PATH} />}
             />
+
             {/* auth */}
             <Route
               path={SIGNIN_PATH}
@@ -104,6 +106,8 @@ const App = () => {
               path={TRASH_PATH}
               element={isAuthenticated ? <TrashService /> : <Navigate replace to="/" />}
             />
+            {/* not found page */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </ErrorBoundary>
