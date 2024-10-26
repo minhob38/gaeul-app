@@ -106,7 +106,7 @@ export const useSignInMutation = () => {
       const accessToken = data.accessToken;
       localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
       dispatch(userActions.authenticate());
-      dispatch(userActions.findMe({ key: data.key, name: data.name, email: data.email }));
+      dispatch(userActions.fetchMe({ key: data.key, name: data.name, email: data.email }));
       navigate(HOME_PATH); // TODO: 로그인 창만 내리기
 
       return;

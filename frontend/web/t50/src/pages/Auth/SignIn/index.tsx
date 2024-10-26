@@ -6,6 +6,7 @@ import * as margins from "@constants/margins";
 import * as size from "@constants/size";
 import { useTypedDispatch, useTypedSelector } from "@hooks/useStore";
 import { actions as authActions } from "@store/slices/authSlice";
+import { actions as userActions } from "@store/slices/userSlice";
 import { actions as errorActions } from "@store/slices/errorSlice";
 import Content from "@components/common/Content";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,6 +22,7 @@ import SignInBackground from "@components/Auth/Background";
 import SignInBox from "@components/Auth/Box";
 import CloseButton from "@components/Auth/CloseButton";
 import { useSignInMutation } from "@hooks/useApiMutation";
+import { MEMORY_USER } from "@configs/auth";
 
 const WIDTH = "300px";
 const HEIGHT = "40px";
@@ -120,7 +122,7 @@ const SignIn: React.FC = () => {
     dispatch(authActions.textInput(ev.target));
   };
 
-  const handleLoginButtonClick = async () => {
+  const handleSignInButtonClick = async () => {
     // 입력정보가 없으면 에러
     if (!email || !password) {
       dispatch(errorActions.throwSignInError("Enter email and password"));
@@ -134,12 +136,27 @@ const SignIn: React.FC = () => {
       return;
     }
 
+    if (email === MEMORY_USER.email) {
+      if (password !== MEMORY_USER.password) {
+        dispatch(errorActions.throwSignInError("비밀번호가 틀렸습니다."));
+        return;
+      }
+      dispatch(userActions.authenticate());
+      dispatch(
+        userActions.fetchMe({
+          key: MEMORY_USER.key,
+          email: MEMORY_USER.email,
+          name: MEMORY_USER.name,
+        }),
+      );
+    }
+
     await signInMutation.mutateAsync({ email, password });
   };
 
   const handleCloseButtonClick = () => navigate("/");
 
-  const handleFocus = () => dispatch(errorActions.catchLoginError());
+  const handleFocus = () => dispatch(errorActions.catchSignInError());
 
   return (
     <>
@@ -180,7 +197,7 @@ const SignIn: React.FC = () => {
             <ErrorText text={errorMessage} />
             <SignInButtonContainer>
               <ClickButton
-                onClick={handleLoginButtonClick}
+                onClick={handleSignInButtonClick}
                 label="로그인"
                 width={WIDTH}
                 height={HEIGHT}

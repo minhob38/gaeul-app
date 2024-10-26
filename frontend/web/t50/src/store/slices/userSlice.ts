@@ -39,7 +39,7 @@ const userSlice = createSlice({
       // 나중에 401 error 받으면, 로그인 정보 지우기
     },
 
-    findMe: (
+    fetchMe: (
       state,
       action: PayloadAction<{
         key: string;

@@ -36,7 +36,7 @@ const errorSlice = createSlice({
     throwSignInError: (state, action: PayloadAction<string>) => {
       state.signInErrorMessage = action.payload;
     },
-    catchLoginError: (state) => {
+    catchSignInError: (state) => {
       state.signInErrorMessage = null;
     },
     // 회원정보수정 에러
