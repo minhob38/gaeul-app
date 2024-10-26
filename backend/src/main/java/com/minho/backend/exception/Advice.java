@@ -5,6 +5,7 @@ import com.minho.backend.constant.ErrorCode;
 import com.minho.backend.response.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -23,7 +24,7 @@ public class Advice {
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(NoHandlerFoundException.class)
+    @ExceptionHandler({ NoHandlerFoundException.class, HttpRequestMethodNotSupportedException.class })
     public ApiResponse notFoundExceptionHandler(Exception e) {
         log.warn("[Not Found Exception Advice] " + e.getMessage() + " -> " + e.getMessage());
         return ApiResponse.error(ErrorCode.Client.CLIENT_0001.name(), ErrorCode.Client.CLIENT_0001.getDescription());
