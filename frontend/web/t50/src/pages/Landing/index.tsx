@@ -4,8 +4,6 @@ import Header from "@components/common/Header";
 import Content from "@components/common/Content";
 import * as size from "@constants/size";
 import * as margins from "@constants/margins";
-import ServiceBanner from "@components/Landing/ServiceBanner";
-import { ESERVICE_TYPE } from "types/enum";
 import { useTypedDispatch, useTypedSelector } from "@hooks/useStore";
 import LoginWarningModal from "modals/LoginWarningModal";
 import { useEffect } from "react";
@@ -36,14 +34,9 @@ const Landing: React.FC = () => {
   const isAuthenticated = useTypedSelector(
     (state) => state.rootReducer.userReducer.isAuthenticated,
   );
-  const isLoginWarning = useTypedSelector((state) => state.rootReducer.modalReducer.isLoginWarning);
-  const sideWidth = useTypedSelector((state) => state.rootReducer.viewReducer.sideWidth);
 
+  const sideWidth = useTypedSelector((state) => state.rootReducer.viewReducer.sideWidth);
   const dispatch = useTypedDispatch();
-  const handleBannerClick = () => {
-    if (isAuthenticated) return;
-    dispatch(modalActions.showLoginWarning());
-  };
 
   //초기화 코드
   useEffect(() => {
@@ -58,8 +51,8 @@ const Landing: React.FC = () => {
   return (
     <>
       <Header title="랜딩페이지" mode="service"></Header>
-      <Side width={sideWidth} />
-      <Content left={sideWidth} top={size.HEADER_HEIGHT} bottom="0">
+      {isAuthenticated && <Side width={sideWidth} />}
+      <Content left={isAuthenticated ? sideWidth : "0px"} top={size.HEADER_HEIGHT} bottom="0">
         <Scroll direction="y" height={`calc(100% - 0px)`}>
           Landing Page
         </Scroll>

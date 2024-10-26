@@ -47,7 +47,7 @@ const WebWrapper = styled.div`
   overflow: hidden;
 `;
 
-function App() {
+const App = () => {
   const Fallback = () => {
     return <LoadingModal />;
   };
@@ -106,6 +106,6 @@ function App() {
       </ErrorBoundary>
     </WebWrapper>
   );
-}
+};
 
 export default App;
