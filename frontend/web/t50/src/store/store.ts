@@ -10,6 +10,7 @@ import viewReducer from "@store/slices/viewSlice";
 import navigationReducer from "@store/slices/navigationSlice";
 import modalReducer from "@store/slices/modalSlice";
 import userReducer from "@store/slices/userSlice";
+import testReducer from "@store/slices/testSlice";
 import errorReducer from "@store/slices/errorSlice";
 
 export function* rootSaga() {
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   viewReducer,
   navigationReducer,
   modalReducer,
+  testReducer,
   errorReducer,
 });
 

@@ -2,6 +2,12 @@
 import { Route, Routes } from "react-router-dom";
 import styled from "@emotion/styled";
 import Landing from "./pages/Landing";
+import NotFound from "pages/Error/NotFound";
+import BoardService from "pages/BoardService";
+import CandidateService from "pages/CandidateService";
+import TodoService from "pages/TodoService";
+import TrashService from "pages/TrashService";
+import TestService from "pages/TestService";
 import * as colors from "@constants/colors";
 import SignIn from "pages/Auth/Signin";
 import { ErrorBoundary } from "react-error-boundary";
@@ -13,10 +19,6 @@ import { useTypedSelector } from "@hooks/useStore";
 import MyPage from "pages/MyPage";
 import LoadingModal from "modals/SpinnerLoadingModal";
 import { useInitialAuthentication } from "@hooks/useAuth";
-import CandidateService from "pages/CandidateService";
-import BoardService from "pages/BoardService";
-import TodoService from "pages/TodoService";
-import TrashService from "pages/TrashService";
 import {
   SIGNIN_PATH,
   SIGNUP_PATH,
@@ -26,8 +28,8 @@ import {
   TODO_PATH,
   TRASH_PATH,
   LANDING_PATH,
+  TEST_PATH,
 } from "@constants/route-path";
-import NotFound from "pages/Error/NotFound";
 
 // useMutation은 suspense fallback 반영 X
 // useQuery는 suspense fallback 반영 O
@@ -78,33 +80,40 @@ const App = () => {
             {/* auth */}
             <Route
               path={SIGNIN_PATH}
-              element={!isAuthenticated ? <SignIn /> : <Navigate replace to="/" />}
+              element={!isAuthenticated ? <SignIn /> : <Navigate replace to={LANDING_PATH} />}
             />
             <Route path={SIGNUP_PATH} element={<SignUp />} />
             {/* my page */}
             {/* <Route
               path={MY_PAGE_PATH}
-              element={isAuthenticated ? <MyPage /> : <Navigate replace to="/" />}
+              element={isAuthenticated ? <MyPage /> : <Navigate replace to={LANDING_PATH} />}
             /> */}
             {/* board */}
             <Route
               path={BOARD_PATH}
-              element={isAuthenticated ? <BoardService /> : <Navigate replace to="/" />}
+              element={isAuthenticated ? <BoardService /> : <Navigate replace to={LANDING_PATH} />}
             />
             {/* todo */}
             <Route
               path={TODO_PATH}
-              element={isAuthenticated ? <TodoService /> : <Navigate replace to="/" />}
+              element={isAuthenticated ? <TodoService /> : <Navigate replace to={LANDING_PATH} />}
             />
             {/* candidate */}
             <Route
               path={CANDIDATE_PATH}
-              element={isAuthenticated ? <CandidateService /> : <Navigate replace to="/" />}
+              element={
+                isAuthenticated ? <CandidateService /> : <Navigate replace to={LANDING_PATH} />
+              }
             />
             {/* trash */}
             <Route
               path={TRASH_PATH}
-              element={isAuthenticated ? <TrashService /> : <Navigate replace to="/" />}
+              element={isAuthenticated ? <TrashService /> : <Navigate replace to={LANDING_PATH} />}
+            />
+            {/* test */}
+            <Route
+              path={TEST_PATH}
+              element={isAuthenticated ? <TestService /> : <Navigate replace to={LANDING_PATH} />}
             />
             {/* not found page */}
             <Route path="*" element={<NotFound />} />
