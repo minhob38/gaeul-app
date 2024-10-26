@@ -31,19 +31,19 @@ const authSlice = createSlice({
       const { name, value } = action.payload;
       switch (name) {
         case "name":
-          state.name = value;
+          state.name = value.trim();
           break;
         case "email":
-          state.email = value;
+          state.email = value.trim();
           break;
         case "phoneNumber":
-          state.phoneNumber = value;
+          state.phoneNumber = value.trim();
           break;
         case "password":
-          state.password = value;
+          state.password = value.trim();
           break;
         case "re-password":
-          state.rePassword = value;
+          state.rePassword = value.trim();
           break;
         default:
       }
@@ -57,9 +57,9 @@ const authSlice = createSlice({
       }>,
     ) => {
       const { name, email, phoneNumber } = action.payload;
-      state.name = name;
-      state.email = email;
-      state.phoneNumber = phoneNumber;
+      state.name = name.trim();
+      state.email = email.trim();
+      state.phoneNumber = phoneNumber.trim();
     },
     showSignUpNotification: (state, action: PayloadAction<void>) => {
       state.isSignUpNotification = true;
