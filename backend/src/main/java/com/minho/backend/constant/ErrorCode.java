@@ -27,8 +27,11 @@ public class ErrorCode {
         // normal
         CLIENT_0000("client error"),
 
-        // database error
-        CLIENT_0001("api does not exist");
+        // not found error
+        CLIENT_0001("api does not exist"),
+
+        // argument error
+        CLIENT_0002("argument is invalid");
 
         private final String description;
 

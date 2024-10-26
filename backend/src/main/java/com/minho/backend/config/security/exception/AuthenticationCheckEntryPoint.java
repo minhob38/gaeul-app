@@ -29,24 +29,26 @@ public class AuthenticationCheckEntryPoint implements AuthenticationEntryPoint {
         ApiResponse apiResponse;
 
         if (authenticationException instanceof JwtAuthenticationException) {
-            log.info("[Jwt Exception Check Entry Point] "
-                    + ((JwtAuthenticationException) authenticationException).getCode() + ": "
-                    + authenticationException.getMessage());
+            String errorCode = ((JwtAuthenticationException) authenticationException).getCode();
+            String errorMessage = authenticationException.getMessage();
+            String logMessage = errorMessage;
+
+            log.info("[Jwt Exception Check Entry Point] " + errorCode + ": " + logMessage);
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
 
             apiResponse = ApiResponse.error(((JwtAuthenticationException) authenticationException).getCode(),
                     authenticationException.getMessage());
-
         }
         else {
-            log.error("[Server Exception Check Entry Point] "
-                    + ((ServerAuthenticationException) authenticationException).getCode() + ": "
-                    + authenticationException.getMessage() + " -> "
-                    + ((ServerAuthenticationException) authenticationException).getException().getMessage());
+            String errorCode = ((ServerAuthenticationException) authenticationException).getCode();
+            String errorMessage = ((ServerAuthenticationException) authenticationException).getException().getMessage();
+            String logMessage = authenticationException.getMessage() + " -> " + errorMessage;
+
+            log.error("[Server Exception Check Entry Point] " + errorCode + ": " + logMessage);
+
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
 
-            apiResponse = ApiResponse.error(((ServerAuthenticationException) authenticationException).getCode(),
-                    authenticationException.getMessage());
+            apiResponse = ApiResponse.error(errorCode, errorMessage);
         }
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
