@@ -6,7 +6,7 @@ import { actions as authActions } from "@store/slices/authSlice";
 import { actions as modalActions } from "@store/slices/modalSlice";
 import { actions as errorActions } from "@store/slices/errorSlice";
 import { actions as userActions } from "@store/slices/userSlice";
-import { HOME_PATH } from "@constants/route-path";
+import { LANDING_PATH } from "@constants/route-path";
 import { useUnauthorizedNavigate } from "./useAuth";
 import { UNAUTHORIZED } from "@constants/variables";
 import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from "@configs/auth";
@@ -107,7 +107,7 @@ export const useSignInMutation = () => {
       localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
       dispatch(userActions.authenticate());
       dispatch(userActions.fetchMe({ key: data.key, name: data.name, email: data.email }));
-      navigate(HOME_PATH); // TODO: 로그인 창만 내리기
+      navigate(LANDING_PATH); // TODO: 로그인 창만 내리기
 
       return;
     },

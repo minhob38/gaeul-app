@@ -64,7 +64,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "serve": "craco build && serve -s build",
-    "gh-deploy": "npm run build && gh-pages -d build && rm -rf frontend/web/t50/build",
+    "gh-deploy": "npm run build && gh-pages -d build && rm -rf ./build",
     "aws-prod-deploy": "rm -rf ./build && npm run build && aws s3 sync ./build s3://gcf-frontend --profile=onepick",
     "aws-dev-deploy": "rm -rf ./build && npm run build && aws s3 sync ./build s3://gcf-dev-frontend --profile=onepick",
     "aws-cache-invalidation": "aws cloudfront create-invalidation --profile=onepick --distribution-id ER7WZL69IN53R --paths /"

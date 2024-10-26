@@ -1,12 +1,12 @@
 const BASE_PATH = "/gaeul-app";
 // landing path
-export const LANDING_PATH = `${BASE_PATH}`;
+export const LANDING_PATH = `${BASE_PATH}/`;
 
 // navigation path
 export const SIGNIN_PATH = `${BASE_PATH}/signin`;
 // export const SIGNOUT_PATH = `/signout`;
 export const SIGNUP_PATH = `${BASE_PATH}/signup`;
-export const HOME_PATH = `${BASE_PATH}/`;
+// export const HOME_PATH = `${BASE_PATH}/`;
 export const BOARD_PATH = `${BASE_PATH}/board`;
 export const TODO_PATH = `${BASE_PATH}/todo`;
 export const CANDIDATE_PATH = `${BASE_PATH}/candidate`;

@@ -149,6 +149,8 @@ const SignIn: React.FC = () => {
           name: MEMORY_USER.name,
         }),
       );
+
+      return;
     }
 
     await signInMutation.mutateAsync({ email, password });

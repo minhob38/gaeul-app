@@ -10,7 +10,7 @@ import leftArrowImage from "@assets/images/left-arrow-24x24.svg";
 import { useTypedDispatch, useTypedSelector } from "@hooks/useStore";
 import { actions as userActions } from "@store/slices/userSlice";
 import Profile from "./Profile";
-import { HOME_PATH, SIGNIN_PATH } from "@constants/route-path";
+import { LANDING_PATH, SIGNIN_PATH } from "@constants/route-path";
 
 interface IProps {
   title: string;
@@ -119,7 +119,7 @@ const Header: React.FC<IProps> = ({ title, mode, path }) => {
     case "back":
       return (
         <Wrapper>
-          <Link to={path || HOME_PATH}>
+          <Link to={path || LANDING_PATH}>
             <Image src={leftArrowImage} alt="back" height="24px" />
           </Link>
           <BackTitle>{title}</BackTitle>
