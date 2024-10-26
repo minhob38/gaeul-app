@@ -1,3 +1,6 @@
+// landing path
+export const LANDING_PATH = "/";
+
 // navigation path
 export const SIGNIN_PATH = "/signin";
 // export const SIGNOUT_PATH = "/signout";

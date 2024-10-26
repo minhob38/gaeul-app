@@ -11,6 +11,8 @@ import FormatListBulletedSharp from "@mui/icons-material/FormatListBulletedSharp
 import PlaylistAddSharp from "@mui/icons-material/PlaylistAddSharp";
 import DeleteSweepSharp from "@mui/icons-material/DeleteSweepSharp";
 import Toggle from "./Toggle";
+import { useNavigate } from "react-router-dom";
+import { BOARD_PATH, CANDIDATE_PATH, TODO_PATH, TRASH_PATH } from "@constants/route-path";
 
 type TMenu = "board" | "todo" | "candidate" | "trash" | null;
 
@@ -71,8 +73,7 @@ const TrashMenuContainer = styled(MenuContainer)`
     props.selectedMenu === "trash" ? colors.BLACK : "none"};
 `;
 
-const SLink = styled(Link)`
-  all: unset;
+const MenuText = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
@@ -82,25 +83,24 @@ const SLink = styled(Link)`
   margin: 0 0 0 10px;
 `;
 
-const Menu: React.FC<{ path: string; title: string }> = ({ path, title }) => {
-  console.log("@@@ path");
-  console.log(path);
-  return <SLink to={path}>{title}</SLink>;
-};
-
 const Side: React.FC<{ width: string }> = ({ width }) => {
+  const navigate = useNavigate();
   const dispatch = useTypedDispatch();
   const handleBoardMenuClick = () => {
     dispatch(navigationActions.selectMenu("board"));
+    navigate(BOARD_PATH);
   };
   const handleTodoMenuClick = () => {
     dispatch(navigationActions.selectMenu("todo"));
+    navigate(TODO_PATH);
   };
   const handleCandidateMenuClick = () => {
     dispatch(navigationActions.selectMenu("candidate"));
+    navigate(CANDIDATE_PATH);
   };
   const handleTrashMenuClick = () => {
     dispatch(navigationActions.selectMenu("trash"));
+    navigate(TRASH_PATH);
   };
   const isSide = useTypedSelector((state) => state.rootReducer.viewReducer.isSide);
   const selectedMenu = useTypedSelector(
@@ -114,19 +114,19 @@ const Side: React.FC<{ width: string }> = ({ width }) => {
         <MenuListContainer>
           <BoardMenuContainer selectedMenu={selectedMenu} onClick={handleBoardMenuClick}>
             <EventNoteSharp style={{ color: colors.WHITE_1 }} />
-            <Menu path="/board" title="보드" />
+            <MenuText>보드</MenuText>
           </BoardMenuContainer>
           <TodoMenuContainer selectedMenu={selectedMenu} onClick={handleTodoMenuClick}>
             <FormatListBulletedSharp style={{ color: colors.WHITE_1 }} />
-            <Menu path="/todo" title="할일 목록" />
+            <MenuText>할일 목록</MenuText>
           </TodoMenuContainer>
           <CandidateMenuContainer selectedMenu={selectedMenu} onClick={handleCandidateMenuClick}>
             <PlaylistAddSharp style={{ color: colors.WHITE_1 }} />
-            <Menu path="/candidate" title="모은 목록" />
+            <MenuText>모인 목록</MenuText>
           </CandidateMenuContainer>
           <TrashMenuContainer selectedMenu={selectedMenu} onClick={handleTrashMenuClick}>
             <DeleteSweepSharp style={{ color: colors.WHITE_1 }} />
-            <Menu path="/trash" title="휴지통" />
+            <MenuText>휴지통</MenuText>
           </TrashMenuContainer>
         </MenuListContainer>
       )}

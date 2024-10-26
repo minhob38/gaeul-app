@@ -25,6 +25,7 @@ import {
   MY_PAGE_PATH,
   TODO_PATH,
   TRASH_PATH,
+  LANDING_PATH,
 } from "@constants/route-path";
 
 // useMutation은 suspense fallback 반영 X
@@ -70,7 +71,7 @@ function App() {
         <Suspense fallback={<Fallback />}>
           <Routes>
             {/* landing */}
-            <Route path="/" element={<Landing />} />
+            <Route path={LANDING_PATH} element={<Landing />} />
             {/* auth */}
             <Route
               path={SIGNIN_PATH}
@@ -79,10 +80,10 @@ function App() {
             />
             <Route path={SIGNUP_PATH} element={<SignUp />} />
             {/* my page */}
-            <Route
+            {/* <Route
               path={MY_PAGE_PATH}
               element={isAuthenticated ? <MyPage /> : <Navigate replace to="/" />}
-            />
+            /> */}
             {/* board */}
             <Route path={BOARD_PATH} element={<BoardService />} />
             {/* todo */}
