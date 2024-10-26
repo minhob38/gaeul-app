@@ -50,7 +50,15 @@ public class AuthUtil {
             .compact();
     }
 
-    public Jws<Claims> validJwt(String jwt) throws AuthException {
+    public String parseBearerToken(String bearerToken) throws AuthException {
+        if (bearerToken == null || !bearerToken.startsWith("Bearer ")) {
+            throw new AuthException(ErrorCode.Auth.AUTH_0024);
+        }
+
+        return bearerToken.substring(7);
+    }
+
+    public Jws<Claims> validateJwt(String jwt) throws AuthException {
         SecretKey secretKey = Keys.hmacShaKeyFor(EnvironmentConfig.getJwtSecretKey().getBytes());
 
         try {
@@ -58,15 +66,12 @@ public class AuthUtil {
             return claims;
         }
         catch (SecurityException | MalformedJwtException e) {
-            log.info("### invalid jwt");
             throw new AuthException(ErrorCode.Auth.AUTH_0022);
         }
         catch (ExpiredJwtException e) {
-            log.info("### expired jwt");
             throw new AuthException(ErrorCode.Auth.AUTH_0023);
         }
         catch (Exception e) {
-            log.info("### jwt error");
             throw new AuthException(ErrorCode.Auth.AUTH_0022);
         }
     }
