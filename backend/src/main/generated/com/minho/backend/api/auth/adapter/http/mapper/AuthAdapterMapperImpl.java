@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-27T20:03:31+0900",
+    date = "2024-10-27T20:19:15+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
@@ -46,6 +46,10 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
 
@@ -56,12 +60,16 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         signedupAt = info.getSignedupAt();
         signedinAt = info.getSignedinAt();
         signedoutAt = info.getSignedoutAt();
+        trashedAt = info.getTrashedAt();
+        untrashedAt = info.getUntrashedAt();
+        purgedAt = info.getPurgedAt();
+        unpurgedAt = info.getUnpurgedAt();
         createdAt = info.getCreatedAt();
         updatedAt = info.getUpdatedAt();
 
         String accessToken = null;
 
-        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken );
 
         return data;
     }
@@ -94,6 +102,10 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
         String accessToken = null;
@@ -105,11 +117,15 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         signedupAt = info.getSignedupAt();
         signedinAt = info.getSignedinAt();
         signedoutAt = info.getSignedoutAt();
+        trashedAt = info.getTrashedAt();
+        untrashedAt = info.getUntrashedAt();
+        purgedAt = info.getPurgedAt();
+        unpurgedAt = info.getUnpurgedAt();
         createdAt = info.getCreatedAt();
         updatedAt = info.getUpdatedAt();
         accessToken = info.getAccessToken();
 
-        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken );
 
         return data;
     }
@@ -144,6 +160,10 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
         String accessToken = null;
@@ -155,11 +175,15 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         signedupAt = info.getSignedupAt();
         signedinAt = info.getSignedinAt();
         signedoutAt = info.getSignedoutAt();
+        trashedAt = info.getTrashedAt();
+        untrashedAt = info.getUntrashedAt();
+        purgedAt = info.getPurgedAt();
+        unpurgedAt = info.getUnpurgedAt();
         createdAt = info.getCreatedAt();
         updatedAt = info.getUpdatedAt();
         accessToken = info.getAccessToken();
 
-        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken );
 
         return data;
     }
@@ -192,6 +216,10 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         ZonedDateTime passwordChangedAt = null;
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
         String accessToken = null;
@@ -203,11 +231,15 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         passwordChangedAt = info.getPasswordChangedAt();
         signedupAt = info.getSignedupAt();
         signedinAt = info.getSignedinAt();
+        trashedAt = info.getTrashedAt();
+        untrashedAt = info.getUntrashedAt();
+        purgedAt = info.getPurgedAt();
+        unpurgedAt = info.getUnpurgedAt();
         createdAt = info.getCreatedAt();
         updatedAt = info.getUpdatedAt();
         accessToken = info.getAccessToken();
 
-        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken );
 
         return data;
     }
@@ -240,6 +272,10 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
 
@@ -250,12 +286,16 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         signedupAt = info.getSignedupAt();
         signedinAt = info.getSignedinAt();
         signedoutAt = info.getSignedoutAt();
+        trashedAt = info.getTrashedAt();
+        untrashedAt = info.getUntrashedAt();
+        purgedAt = info.getPurgedAt();
+        unpurgedAt = info.getUnpurgedAt();
         createdAt = info.getCreatedAt();
         updatedAt = info.getUpdatedAt();
 
         String accessToken = null;
 
-        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken );
 
         return data;
     }
@@ -295,6 +335,10 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
 
@@ -305,12 +349,16 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         signedupAt = info.getSignedupAt();
         signedinAt = info.getSignedinAt();
         signedoutAt = info.getSignedoutAt();
+        trashedAt = info.getTrashedAt();
+        untrashedAt = info.getUntrashedAt();
+        purgedAt = info.getPurgedAt();
+        unpurgedAt = info.getUnpurgedAt();
         createdAt = info.getCreatedAt();
         updatedAt = info.getUpdatedAt();
 
         String accessToken = null;
 
-        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+        AuthDto.Data data = new AuthDto.Data( key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken );
 
         return data;
     }

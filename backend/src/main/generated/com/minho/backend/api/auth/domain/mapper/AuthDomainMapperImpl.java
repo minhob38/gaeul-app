@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-27T20:03:31+0900",
+    date = "2024-10-27T20:19:14+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
@@ -28,6 +28,10 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
 
@@ -39,12 +43,16 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         signedupAt = user.getSignedupAt();
         signedinAt = user.getSignedinAt();
         signedoutAt = user.getSignedoutAt();
+        trashedAt = user.getTrashedAt();
+        untrashedAt = user.getUntrashedAt();
+        purgedAt = user.getPurgedAt();
+        unpurgedAt = user.getUnpurgedAt();
         createdAt = user.getCreatedAt();
         updatedAt = user.getUpdatedAt();
 
         String accessToken = null;
 
-        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken );
 
         return authInfo;
     }
@@ -63,6 +71,10 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
 
@@ -74,12 +86,16 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         signedupAt = user.getSignedupAt();
         signedinAt = user.getSignedinAt();
         signedoutAt = user.getSignedoutAt();
+        trashedAt = user.getTrashedAt();
+        untrashedAt = user.getUntrashedAt();
+        purgedAt = user.getPurgedAt();
+        unpurgedAt = user.getUnpurgedAt();
         createdAt = user.getCreatedAt();
         updatedAt = user.getUpdatedAt();
 
         String accessToken = null;
 
-        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken );
 
         return authInfo;
     }
@@ -98,6 +114,10 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
         if ( user != null ) {
@@ -109,13 +129,17 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
             signedupAt = user.getSignedupAt();
             signedinAt = user.getSignedinAt();
             signedoutAt = user.getSignedoutAt();
+            trashedAt = user.getTrashedAt();
+            untrashedAt = user.getUntrashedAt();
+            purgedAt = user.getPurgedAt();
+            unpurgedAt = user.getUnpurgedAt();
             createdAt = user.getCreatedAt();
             updatedAt = user.getUpdatedAt();
         }
         String accessToken1 = null;
         accessToken1 = accessToken;
 
-        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken1 );
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken1 );
 
         return authInfo;
     }
@@ -134,6 +158,10 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
 
@@ -145,12 +173,16 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         signedupAt = user.getSignedupAt();
         signedinAt = user.getSignedinAt();
         signedoutAt = user.getSignedoutAt();
+        trashedAt = user.getTrashedAt();
+        untrashedAt = user.getUntrashedAt();
+        purgedAt = user.getPurgedAt();
+        unpurgedAt = user.getUnpurgedAt();
         createdAt = user.getCreatedAt();
         updatedAt = user.getUpdatedAt();
 
         String accessToken = null;
 
-        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken );
 
         return authInfo;
     }
@@ -169,6 +201,10 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
 
@@ -180,12 +216,16 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         signedupAt = user.getSignedupAt();
         signedinAt = user.getSignedinAt();
         signedoutAt = user.getSignedoutAt();
+        trashedAt = user.getTrashedAt();
+        untrashedAt = user.getUntrashedAt();
+        purgedAt = user.getPurgedAt();
+        unpurgedAt = user.getUnpurgedAt();
         createdAt = user.getCreatedAt();
         updatedAt = user.getUpdatedAt();
 
         String accessToken = null;
 
-        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken );
 
         return authInfo;
     }
@@ -204,6 +244,10 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         ZonedDateTime signedupAt = null;
         ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
+        ZonedDateTime trashedAt = null;
+        ZonedDateTime untrashedAt = null;
+        ZonedDateTime purgedAt = null;
+        ZonedDateTime unpurgedAt = null;
         ZonedDateTime createdAt = null;
         ZonedDateTime updatedAt = null;
 
@@ -215,12 +259,16 @@ public class AuthDomainMapperImpl implements AuthDomainMapper {
         signedupAt = user.getSignedupAt();
         signedinAt = user.getSignedinAt();
         signedoutAt = user.getSignedoutAt();
+        trashedAt = user.getTrashedAt();
+        untrashedAt = user.getUntrashedAt();
+        purgedAt = user.getPurgedAt();
+        unpurgedAt = user.getUnpurgedAt();
         createdAt = user.getCreatedAt();
         updatedAt = user.getUpdatedAt();
 
         String accessToken = null;
 
-        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, createdAt, updatedAt, accessToken );
+        AuthInfo authInfo = new AuthInfo( id, key, email, name, passwordChangedAt, signedupAt, signedinAt, signedoutAt, trashedAt, untrashedAt, purgedAt, unpurgedAt, createdAt, updatedAt, accessToken );
 
         return authInfo;
     }

@@ -56,6 +56,10 @@ public class UserJpaEntity extends BaseEntity {
             .signedupAt(this.signedupAt)
             .signedinAt(this.signedinAt)
             .signedoutAt(this.signedoutAt)
+            .trashedAt(this.getTrashedAt())
+            .untrashedAt(this.getUntrashedAt())
+            .purgedAt(this.getPurgedAt())
+            .unpurgedAt(this.getUnpurgedAt())
             .createdAt(this.getCreatedAt())
             .updatedAt(this.getUpdatedAt())
             .build();

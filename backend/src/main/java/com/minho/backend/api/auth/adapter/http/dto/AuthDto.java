@@ -31,6 +31,14 @@ public class AuthDto {
 
         private final ZonedDateTime signedoutAt;
 
+        private final ZonedDateTime trashedAt;
+
+        private final ZonedDateTime untrashedAt;
+
+        private final ZonedDateTime purgedAt;
+
+        private final ZonedDateTime unpurgedAt;
+
         private final ZonedDateTime createdAt;
 
         private final ZonedDateTime updatedAt;

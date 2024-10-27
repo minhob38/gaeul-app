@@ -1,7 +1,6 @@
 package com.minho.backend.api.common;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,12 +13,10 @@ import lombok.experimental.SuperBuilder;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
 @SuperBuilder
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 public abstract class BaseEntity {
 
@@ -37,6 +34,18 @@ public abstract class BaseEntity {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private ZonedDateTime updatedAt;
+
+    @Column(name = "trashed_at")
+    private ZonedDateTime trashedAt;
+
+    @Column(name = "untrashed_at")
+    private ZonedDateTime untrashedAt;
+
+    @Column(name = "purged_at")
+    private ZonedDateTime purgedAt;
+
+    @Column(name = "unpurged_at")
+    private ZonedDateTime unpurgedAt;
 
     @PrePersist
     public void generateKey() {

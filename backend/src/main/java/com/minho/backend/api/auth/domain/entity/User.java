@@ -37,6 +37,14 @@ public class User {
 
     private ZonedDateTime updatedAt;
 
+    private ZonedDateTime trashedAt;
+
+    private ZonedDateTime untrashedAt;
+
+    private ZonedDateTime purgedAt;
+
+    private ZonedDateTime unpurgedAt;
+
     public UserJpaEntity toJpaEntity() {
         UserJpaEntity.UserJpaEntityBuilder builder = UserJpaEntity.builder()
             .id(this.id)
@@ -48,9 +56,12 @@ public class User {
             .signedupAt(this.signedupAt)
             .signedinAt(this.signedinAt)
             .signedoutAt(this.signedoutAt)
+            .trashedAt(this.trashedAt)
+            .untrashedAt(this.untrashedAt)
+            .purgedAt(this.purgedAt)
+            .unpurgedAt(this.unpurgedAt)
             .createdAt(this.createdAt)
-            .updatedAt(this.updatedAt)
-            .password(this.password);
+            .updatedAt(this.updatedAt);
 
         return builder.build();
     }
