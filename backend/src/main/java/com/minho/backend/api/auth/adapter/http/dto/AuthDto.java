@@ -27,13 +27,13 @@ public class AuthDto {
 
         private final ZonedDateTime signedupAt;
 
-        private final Date signedinAt;
+        private final ZonedDateTime signedinAt;
 
         private final ZonedDateTime signedoutAt;
 
-        private final Date createdAt;
+        private final ZonedDateTime createdAt;
 
-        private final Date updatedAt;
+        private final ZonedDateTime updatedAt;
 
         private final String accessToken;
 

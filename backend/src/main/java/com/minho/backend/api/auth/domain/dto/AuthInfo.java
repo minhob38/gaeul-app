@@ -1,7 +1,6 @@
 package com.minho.backend.api.auth.domain.dto;
 
 import java.time.ZonedDateTime;
-import java.util.Date;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -23,13 +22,13 @@ public class AuthInfo {
 
     private final ZonedDateTime signedupAt;
 
-    private final Date signedinAt;
+    private final ZonedDateTime signedinAt;
 
     private final ZonedDateTime signedoutAt;
 
-    private final Date createdAt;
+    private final ZonedDateTime createdAt;
 
-    private final Date updatedAt;
+    private final ZonedDateTime updatedAt;
 
     private final String accessToken;
 

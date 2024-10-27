@@ -1,5 +1,6 @@
 package com.minho.backend.config.security.authentication;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -24,12 +25,13 @@ public class AuthenticatedUser implements UserDetails {
 
     private String password;
 
-    private Date createdAt;
+    private ZonedDateTime createdAt;
 
-    private Date updatedAt;
+    private ZonedDateTime updatedAt;
 
     @Builder
-    public AuthenticatedUser(Long id, String key, String email, String password, Date createdAt, Date updatedAt) {
+    public AuthenticatedUser(Long id, String key, String email, String password, ZonedDateTime createdAt,
+            ZonedDateTime updatedAt) {
         this.id = id;
         this.key = key;
         this.email = email;

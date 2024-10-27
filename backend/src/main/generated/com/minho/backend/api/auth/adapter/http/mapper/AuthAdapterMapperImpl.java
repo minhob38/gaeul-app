@@ -5,13 +5,12 @@ import com.minho.backend.api.auth.domain.dto.AuthCommand;
 import com.minho.backend.api.auth.domain.dto.AuthInfo;
 import com.minho.backend.api.auth.domain.dto.AuthQuery;
 import java.time.ZonedDateTime;
-import java.util.Date;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-27T00:06:54+0900",
+    date = "2024-10-27T20:03:31+0900",
     comments = "version: 1.6.1, compiler: javac, environment: Java 17.0.8.1 (Amazon.com Inc.)"
 )
 @Component
@@ -45,10 +44,10 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         String name = null;
         ZonedDateTime passwordChangedAt = null;
         ZonedDateTime signedupAt = null;
-        Date signedinAt = null;
+        ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
-        Date createdAt = null;
-        Date updatedAt = null;
+        ZonedDateTime createdAt = null;
+        ZonedDateTime updatedAt = null;
 
         key = info.getKey();
         email = info.getEmail();
@@ -93,10 +92,10 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         String name = null;
         ZonedDateTime passwordChangedAt = null;
         ZonedDateTime signedupAt = null;
-        Date signedinAt = null;
+        ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
-        Date createdAt = null;
-        Date updatedAt = null;
+        ZonedDateTime createdAt = null;
+        ZonedDateTime updatedAt = null;
         String accessToken = null;
 
         key = info.getKey();
@@ -143,10 +142,10 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         String name = null;
         ZonedDateTime passwordChangedAt = null;
         ZonedDateTime signedupAt = null;
-        Date signedinAt = null;
+        ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
-        Date createdAt = null;
-        Date updatedAt = null;
+        ZonedDateTime createdAt = null;
+        ZonedDateTime updatedAt = null;
         String accessToken = null;
 
         key = info.getKey();
@@ -192,9 +191,9 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         String name = null;
         ZonedDateTime passwordChangedAt = null;
         ZonedDateTime signedupAt = null;
-        Date signedinAt = null;
-        Date createdAt = null;
-        Date updatedAt = null;
+        ZonedDateTime signedinAt = null;
+        ZonedDateTime createdAt = null;
+        ZonedDateTime updatedAt = null;
         String accessToken = null;
 
         key = info.getKey();
@@ -239,10 +238,10 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         String name = null;
         ZonedDateTime passwordChangedAt = null;
         ZonedDateTime signedupAt = null;
-        Date signedinAt = null;
+        ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
-        Date createdAt = null;
-        Date updatedAt = null;
+        ZonedDateTime createdAt = null;
+        ZonedDateTime updatedAt = null;
 
         key = info.getKey();
         email = info.getEmail();
@@ -294,10 +293,10 @@ public class AuthAdapterMapperImpl implements AuthAdapterMapper {
         String name = null;
         ZonedDateTime passwordChangedAt = null;
         ZonedDateTime signedupAt = null;
-        Date signedinAt = null;
+        ZonedDateTime signedinAt = null;
         ZonedDateTime signedoutAt = null;
-        Date createdAt = null;
-        Date updatedAt = null;
+        ZonedDateTime createdAt = null;
+        ZonedDateTime updatedAt = null;
 
         key = info.getKey();
         email = info.getEmail();

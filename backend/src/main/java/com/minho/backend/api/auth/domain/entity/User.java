@@ -2,7 +2,6 @@ package com.minho.backend.api.auth.domain.entity;
 
 import com.minho.backend.api.auth.adapter.persistence.UserJpaEntity;
 import java.time.ZonedDateTime;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
