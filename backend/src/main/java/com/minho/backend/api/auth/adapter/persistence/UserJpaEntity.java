@@ -11,7 +11,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.time.ZonedDateTime;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -48,17 +47,17 @@ public class UserJpaEntity {
     private ZonedDateTime signedupAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date signedinAt;
+    private ZonedDateTime signedinAt;
 
     private ZonedDateTime signedoutAt;
 
     @Column(name = "created_at")
     @CreationTimestamp
-    private Date createdAt;
+    private ZonedDateTime createdAt;
 
     @Column(name = "updated_at")
     @UpdateTimestamp
-    private Date updatedAt;
+    private ZonedDateTime updatedAt;
 
     @PrePersist
     public void generateKey() {

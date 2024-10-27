@@ -6,7 +6,6 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -31,13 +30,13 @@ public class User {
 
     private ZonedDateTime signedupAt;
 
-    private Date signedinAt;
+    private ZonedDateTime signedinAt;
 
     private ZonedDateTime signedoutAt;
 
-    private Date createdAt;
+    private ZonedDateTime createdAt;
 
-    private Date updatedAt;
+    private ZonedDateTime updatedAt;
 
     public UserJpaEntity toJpaEntity() {
         UserJpaEntity.UserJpaEntityBuilder builder = UserJpaEntity.builder()
@@ -66,7 +65,7 @@ public class User {
     }
 
     public void signin() {
-        this.signedinAt = new Date();
+        this.signedinAt = ZonedDateTime.now();
     }
 
     public void signout() {
