@@ -1,9 +1,14 @@
 package com.minho.backend.api.auth.domain.dto;
 
 import java.time.ZonedDateTime;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
+@ToString
+@Builder
 @Getter
 @RequiredArgsConstructor
 public class AuthInfo {
