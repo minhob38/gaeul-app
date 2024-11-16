@@ -7,13 +7,13 @@ import com.minho.backend.api.auth.domain.entity.User;
 import com.minho.backend.api.auth.domain.mapper.AuthDomainMapper;
 import com.minho.backend.api.auth.domain.port.AuthPersistencePort;
 import com.minho.backend.api.auth.domain.port.AuthServicePort;
+import com.minho.backend.api.auth.domain.port.OAuthPort;
 import com.minho.backend.constant.ErrorCode;
 import com.minho.backend.exception.AuthException;
 import com.minho.backend.exception.ServerException;
 import com.minho.backend.util.AuthUtil;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.mapstruct.control.MappingControl.Use;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +21,8 @@ import org.springframework.stereotype.Service;
 public class AuthService implements AuthServicePort {
 
     private final AuthPersistencePort userPersistenceAdapter;
+
+    private final OAuthPort oauthAdapter;
 
     private final AuthDomainMapper authDomainMapper;
 
@@ -81,6 +83,11 @@ public class AuthService implements AuthServicePort {
 
         // TODO: String 대신, JWT Class로 만들기
         return this.authDomainMapper.toSigninInfo(foundUser, accessToken);
+    }
+
+    @Override
+    public String oauthPage(AuthQuery.OAuthPage query) {
+        return this.oauthAdapter.getOAuthPageUrl();
     }
 
     @Override

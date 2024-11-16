@@ -31,6 +31,11 @@ public class AuthApplication {
         return info;
     }
 
+    public String oauthPage(AuthQuery.OAuthPage query) {
+        String oauthPageUrl = this.authService.oauthPage(query);
+        return oauthPageUrl;
+    }
+
     public AuthInfo signout(AuthCommand.Signout command) throws AuthException, ServerException {
         AuthInfo info = this.authService.signout(command);
         return info;

@@ -14,6 +14,8 @@ public interface AuthServicePort {
 
     AuthInfo signin(AuthCommand.Signin command) throws AuthException, ServerException;
 
+    String oauthPage(AuthQuery.OAuthPage query);
+
     AuthInfo signout(AuthCommand.Signout command) throws AuthException, ServerException;
 
     AuthInfo modifyMe(AuthCommand.ModifyMe command) throws AuthException, ServerException;

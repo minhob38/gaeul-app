@@ -13,4 +13,12 @@ public class AuthQuery {
 
     }
 
+    @Getter
+    @RequiredArgsConstructor
+    public static class OAuthPage {
+
+        private final String provider;
+
+    }
+
 }

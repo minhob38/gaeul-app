@@ -44,6 +44,20 @@ public class AuthCommand {
 
     @Getter
     @RequiredArgsConstructor
+    public static class OAuthSignin {
+
+        private final String email;
+
+        private final String password;
+
+        public User toEntity() {
+            return User.builder().email(this.email).password(this.password).build();
+        }
+
+    }
+
+    @Getter
+    @RequiredArgsConstructor
     public static class Signout {
 
         private final Long userId;

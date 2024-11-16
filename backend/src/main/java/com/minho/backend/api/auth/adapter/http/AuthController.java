@@ -11,15 +11,13 @@ import com.minho.backend.config.security.annotation.SigninUser;
 import com.minho.backend.exception.AuthException;
 import com.minho.backend.exception.ServerException;
 import com.minho.backend.response.ApiResponse;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/auth")
@@ -59,6 +57,17 @@ public class AuthController {
         AuthDto.Data data = this.authAdapterMapper.toSigninData(info);
 
         return ApiResponse.success(data);
+    }
+
+    @GetMapping(value = "/oauth-page")
+    public void getOAuthSignin(
+            @RequestParam("provider") @Pattern(regexp = "^(google)$",
+                    message = "invalid oauth provider") String provider,
+            HttpServletResponse response) throws IOException {
+        AuthQuery.OAuthPage query = this.authAdapterMapper.toOAuthPageQuery(provider);
+        String oauthPageUrl = this.authApplication.oauthPage(query);
+
+        response.sendRedirect(oauthPageUrl);
     }
 
     @PostMapping(value = "/signout")
