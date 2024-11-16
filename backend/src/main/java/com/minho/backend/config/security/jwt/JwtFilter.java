@@ -51,6 +51,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
         HttpServletRequest httpRequest = request;
         String requestURI = httpRequest.getRequestURI();
+        log.info(httpRequest.getRequestURI());
 
         System.out.println(this.checkIsAuthCheckPath(requestURI));
         try {

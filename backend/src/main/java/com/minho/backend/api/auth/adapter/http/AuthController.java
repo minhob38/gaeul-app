@@ -14,11 +14,13 @@ import com.minho.backend.response.ApiResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/auth")
 @RestController
@@ -60,19 +62,29 @@ public class AuthController {
     }
 
     @GetMapping(value = "/oauth-page")
-    public void getOAuthSignin(
+    public void getOAuthPage(
             @RequestParam("provider") @Pattern(regexp = "^(google)$",
                     message = "invalid oauth provider") String provider,
             HttpServletResponse response) throws IOException {
         AuthQuery.OAuthPage query = this.authAdapterMapper.toOAuthPageQuery(provider);
         String oauthPageUrl = this.authApplication.oauthPage(query);
 
+        log.info("### OAuth Page URL: {} ###", oauthPageUrl);
         response.sendRedirect(oauthPageUrl);
     }
 
+    @GetMapping(value = "/oauth-signin")
+    public ApiResponse<AuthDto.Data> getOAuthSignin(@RequestParam("code") String code)
+            throws ServerException, AuthException {
+        AuthQuery.OAuthSignin query = this.authAdapterMapper.toOAuthSigninQuery(code);
+        AuthInfo info = this.authApplication.oauthSignin(query);
+        AuthDto.Data data = this.authAdapterMapper.toOAuthSigninData(info);
+
+        return ApiResponse.success(data);
+    }
+
     @PostMapping(value = "/signout")
-    public ApiResponse<AuthDto.Data> postSignout(@SigninUser AuthenticatedUser user)
-            throws AuthException, ServerException {
+    public ApiResponse<AuthDto.Data> postSignout(@SigninUser AuthenticatedUser user) throws ServerException {
         Long userId = user.getId();
         AuthCommand.Signout command = this.authAdapterMapper.toSignoutCommand(userId);
         AuthInfo info = this.authApplication.signout(command);

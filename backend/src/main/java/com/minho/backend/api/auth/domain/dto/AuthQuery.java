@@ -21,4 +21,12 @@ public class AuthQuery {
 
     }
 
+    @Getter
+    @RequiredArgsConstructor
+    public static class OAuthSignin {
+
+        private final String authorizationCode;
+
+    }
+
 }

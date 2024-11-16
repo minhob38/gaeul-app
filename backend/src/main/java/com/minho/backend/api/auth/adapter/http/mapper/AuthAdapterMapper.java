@@ -36,6 +36,11 @@ public interface AuthAdapterMapper {
     // oauth page
     AuthQuery.OAuthPage toOAuthPageQuery(String provider);
 
+    // oauth signin
+    AuthQuery.OAuthSignin toOAuthSigninQuery(String authorizationCode);
+
+    AuthDto.Data toOAuthSigninData(AuthInfo info);
+
     // signout
     AuthCommand.Signout toSignoutCommand(Long userId);
 

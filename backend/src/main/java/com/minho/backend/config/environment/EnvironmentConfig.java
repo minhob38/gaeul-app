@@ -15,7 +15,7 @@ public class EnvironmentConfig {
 
     private static String oauthGoogleClientId;
 
-    private static String oauthGoogleClientPassword;
+    private static String oauthGoogleClientSercret;
 
     @Value("${environment}")
     private String _environment;
@@ -30,7 +30,7 @@ public class EnvironmentConfig {
     private String _oauthGoogleClientId;
 
     @Value("${oauth.google.client-password}")
-    private String _oauthGoogleClientPassword;
+    private String _oauthGoogleClientSecret;
 
     @PostConstruct
     public void init() {
@@ -42,7 +42,7 @@ public class EnvironmentConfig {
 
         EnvironmentConfig.oauthGoogleClientId = this._oauthGoogleClientId;
 
-        EnvironmentConfig.oauthGoogleClientPassword = this._oauthGoogleClientPassword;
+        EnvironmentConfig.oauthGoogleClientSercret = this._oauthGoogleClientSecret;
     }
 
     public static String getEnvironment() {
@@ -57,8 +57,8 @@ public class EnvironmentConfig {
         return EnvironmentConfig.oauthGoogleClientId;
     }
 
-    public static String getOauthGoogleClientPassword() {
-        return EnvironmentConfig.oauthGoogleClientPassword;
+    public static String getOauthGoogleClientSecret() {
+        return EnvironmentConfig.oauthGoogleClientSercret;
     }
 
     public static String getOauthRedirectUrl() {

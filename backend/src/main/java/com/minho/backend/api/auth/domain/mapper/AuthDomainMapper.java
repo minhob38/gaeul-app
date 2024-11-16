@@ -19,6 +19,8 @@ public interface AuthDomainMapper {
 
     AuthInfo toSigninInfo(User user, String accessToken);
 
+    AuthInfo toOAuthSigninInfo(User user, String accessToken);
+
     @Mapping(target = "accessToken", ignore = true)
     AuthInfo toSignoutInfo(User user);
 

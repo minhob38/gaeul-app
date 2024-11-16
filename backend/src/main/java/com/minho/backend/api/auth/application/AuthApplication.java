@@ -36,7 +36,12 @@ public class AuthApplication {
         return oauthPageUrl;
     }
 
-    public AuthInfo signout(AuthCommand.Signout command) throws AuthException, ServerException {
+    public AuthInfo oauthSignin(AuthQuery.OAuthSignin query) throws ServerException, AuthException {
+        AuthInfo info = this.authService.oauthSignin(query);
+        return info;
+    }
+
+    public AuthInfo signout(AuthCommand.Signout command) throws ServerException {
         AuthInfo info = this.authService.signout(command);
         return info;
     }

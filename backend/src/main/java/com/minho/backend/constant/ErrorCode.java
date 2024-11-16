@@ -11,7 +11,12 @@ public class ErrorCode {
         SERVER_0000("server error"),
 
         // database error
-        SERVER_0001("id does not exist");
+        SERVER_0001("id does not exist"),
+
+        // external api service error
+        SERVER_0011("api request fail by invalid argument"),
+
+        SERVER_0012("api request fail by external server");
 
         private final String description;
 

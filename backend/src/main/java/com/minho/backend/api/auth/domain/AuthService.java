@@ -5,9 +5,7 @@ import com.minho.backend.api.auth.domain.dto.AuthInfo;
 import com.minho.backend.api.auth.domain.dto.AuthQuery;
 import com.minho.backend.api.auth.domain.entity.User;
 import com.minho.backend.api.auth.domain.mapper.AuthDomainMapper;
-import com.minho.backend.api.auth.domain.port.AuthPersistencePort;
-import com.minho.backend.api.auth.domain.port.AuthServicePort;
-import com.minho.backend.api.auth.domain.port.OAuthPort;
+import com.minho.backend.api.auth.domain.port.*;
 import com.minho.backend.constant.ErrorCode;
 import com.minho.backend.exception.AuthException;
 import com.minho.backend.exception.ServerException;
@@ -91,7 +89,40 @@ public class AuthService implements AuthServicePort {
     }
 
     @Override
-    public AuthInfo signout(AuthCommand.Signout command) throws AuthException, ServerException {
+    public AuthInfo oauthSignin(AuthQuery.OAuthSignin query) throws ServerException, AuthException {
+        OAuthAccessTokenResponse oauthAccessTokenResponse = this.oauthAdapter
+            .getOAuthAccessToken(query.getAuthorizationCode());
+
+        OAuthUserResponse oauthUser = this.oauthAdapter.getOAuthUser(oauthAccessTokenResponse.getAccessToken());
+
+        Optional<User> foundUserOpt = this.userPersistenceAdapter.findUserByEmail(oauthUser.getEmail());
+
+        String accessToken;
+        User signinedUser;
+
+        if (foundUserOpt.isEmpty()) {
+            User newUser = oauthUser.toEntity();
+            newUser.signup();
+            newUser.signin();
+            signinedUser = this.userPersistenceAdapter.createUser(newUser);
+            accessToken = this.authUtil.createJwt(signinedUser.getKey(), 1500000L);
+        }
+        else {
+            signinedUser = foundUserOpt.get();
+            accessToken = this.authUtil.createJwt(foundUserOpt.get().getKey(), 1500000L);
+            signinedUser.signin();
+            this.userPersistenceAdapter.updateUser(signinedUser);
+        }
+
+        // // TODO: String 대신, JWT Class로 만들기
+        // User user = this.userPersistenceAdapter.findUserById(1L).get();
+        // TODO: String 대신, JWT Class로 만들기
+        return this.authDomainMapper.toOAuthSigninInfo(signinedUser, accessToken);
+
+    }
+
+    @Override
+    public AuthInfo signout(AuthCommand.Signout command) throws ServerException {
         User user = this.userPersistenceAdapter.findUserById(command.getUserId()).get();
         user.signout();
         User updatedUser = this.userPersistenceAdapter.updateUser(user);
