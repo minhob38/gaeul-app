@@ -6,9 +6,11 @@ import com.minho.backend.api.common.AuthType;
 import com.minho.backend.util.AuthUtil;
 import java.time.ZonedDateTime;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
@@ -19,7 +21,7 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("### Initializing Data ###");
+        log.debug("### Initializing Data ###");
 
         String password = this.authUtil.encodePassword("qwerasdf");
         User user = User.builder()
@@ -34,7 +36,7 @@ public class DataInitializer implements CommandLineRunner {
 
         this.authPersistenceAdapter.createUser(user);
 
-        System.out.println("### Initialized Data ###");
+        log.debug("### Initialized Data ###");
     }
 
 }

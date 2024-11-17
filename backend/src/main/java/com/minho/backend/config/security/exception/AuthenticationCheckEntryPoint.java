@@ -33,7 +33,7 @@ public class AuthenticationCheckEntryPoint implements AuthenticationEntryPoint {
             String errorMessage = authenticationException.getMessage();
             String logMessage = errorMessage;
 
-            log.info("[Jwt Exception Check Entry Point] " + errorCode + ": " + logMessage);
+            log.debug("[Jwt Exception Check Entry Point] {} ", errorCode + ": " + logMessage);
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
 
             apiResponse = ApiResponse.error(((JwtAuthenticationException) authenticationException).getCode(),

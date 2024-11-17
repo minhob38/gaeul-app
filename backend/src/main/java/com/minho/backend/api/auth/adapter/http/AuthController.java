@@ -69,7 +69,7 @@ public class AuthController {
         AuthQuery.OAuthPage query = this.authAdapterMapper.toOAuthPageQuery(provider);
         String oauthPageUrl = this.authApplication.oauthPage(query);
 
-        log.info("### OAuth Page URL: {} ###", oauthPageUrl);
+        log.debug("### OAuth Page URL: {} ###", oauthPageUrl);
         response.sendRedirect(oauthPageUrl);
     }
 

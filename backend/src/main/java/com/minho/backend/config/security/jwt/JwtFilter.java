@@ -47,13 +47,11 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        log.info("### jwt filter ###");
-
         HttpServletRequest httpRequest = request;
         String requestURI = httpRequest.getRequestURI();
-        log.info(httpRequest.getRequestURI());
 
-        System.out.println(this.checkIsAuthCheckPath(requestURI));
+        log.debug("### jwt filter - {} ###", httpRequest.getRequestURI());
+
         try {
             if (!this.checkIsAuthCheckPath(requestURI)) {
                 chain.doFilter(request, response);
