@@ -15,7 +15,7 @@ public class GoogleAccessTokenResponse {
     private String refreshToken;
 
     @JsonProperty("expires_in")
-    private String expiresIn;
+    private Long expiresIn;
 
     private String scope;
 

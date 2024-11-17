@@ -6,8 +6,8 @@ public interface OAuthPort {
 
     String getOAuthPageUrl();
 
-    OAuthAccessTokenResponse getOAuthAccessToken(String authorizationCode) throws ServerException;
+    OAuthToken getOAuthToken(String authorizationCode) throws ServerException;
 
-    OAuthUserResponse getOAuthUser(String accessToken) throws ServerException;
+    OAuthUser getOAuthUser(OAuthToken oAuthToken) throws ServerException;
 
 }

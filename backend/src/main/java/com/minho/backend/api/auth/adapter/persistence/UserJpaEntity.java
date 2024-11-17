@@ -1,11 +1,10 @@
 package com.minho.backend.api.auth.adapter.persistence;
 
 import com.minho.backend.api.auth.domain.entity.User;
+import com.minho.backend.api.common.AuthType;
 import com.minho.backend.api.common.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
+
 import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +21,9 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "user")
 public class UserJpaEntity extends BaseEntity {
 
+    @Enumerated(EnumType.STRING)
+    private AuthType authType;
+
     private String name;
 
     private String email;
@@ -37,18 +39,27 @@ public class UserJpaEntity extends BaseEntity {
 
     private ZonedDateTime signedoutAt;
 
-    // @Builder
-    // public UserJpaEntity(Long id, String email, String password, String key) {
-    // this.id = id;
-    // this.email = email;
-    // this.key = key;
-    // this.password = password;
-    // }
+    private String refreshToken;
+
+    private ZonedDateTime refreshTokenExpiresAt;
+
+    private String oauthId;
+
+    private String oauthName;
+
+    private String oauthAccessToken;
+
+    private ZonedDateTime oauthAccessTokenExpiresAt;
+
+    private String oauthRefreshToken;
+
+    private ZonedDateTime oauthRefreshTokenExpiresAt;
 
     public User toEntity() {
         return User.builder()
             .id(this.getId())
             .key(this.getKey())
+            .authType(this.authType)
             .email(this.email)
             .name(this.name)
             .password(this.password)
@@ -56,6 +67,14 @@ public class UserJpaEntity extends BaseEntity {
             .signedupAt(this.signedupAt)
             .signedinAt(this.signedinAt)
             .signedoutAt(this.signedoutAt)
+            .refreshToken(this.refreshToken)
+            .refreshTokenExpiresAt(this.refreshTokenExpiresAt)
+            .oauthId(this.oauthId)
+            .oauthName(this.oauthName)
+            .oauthAccessToken(this.oauthAccessToken)
+            .oauthAccessTokenExpiresAt(this.oauthAccessTokenExpiresAt)
+            .oauthRefreshToken(this.oauthRefreshToken)
+            .oauthRefreshTokenExpiresAt(this.oauthRefreshTokenExpiresAt)
             .trashedAt(this.getTrashedAt())
             .untrashedAt(this.getUntrashedAt())
             .purgedAt(this.getPurgedAt())

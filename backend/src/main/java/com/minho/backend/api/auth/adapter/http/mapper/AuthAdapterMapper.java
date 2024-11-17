@@ -18,6 +18,7 @@ public interface AuthAdapterMapper {
     AuthCommand.Signup toSignupCommand(AuthDto.Signup.RequestBody requestBody);
 
     @Mapping(target = "accessToken", ignore = true)
+    @Mapping(target = "refreshToken", ignore = true)
     AuthDto.Data toSignupData(AuthInfo info);
 
     // removeme
@@ -51,12 +52,14 @@ public interface AuthAdapterMapper {
     AuthQuery.ReadMe toReadMeQuery(Long userId);
 
     @Mapping(target = "accessToken", ignore = true)
+    @Mapping(target = "refreshToken", ignore = true)
     AuthDto.Data toReadMeData(AuthInfo info);
 
     // modifyme
     AuthCommand.ModifyMe toModifyMeCommand(AuthDto.ModifyMe.RequestBody requestBody, Long userId);
 
     @Mapping(target = "accessToken", ignore = true)
+    @Mapping(target = "refreshToken", ignore = true)
     AuthDto.Data toModifyMeData(AuthInfo info);
 
 }

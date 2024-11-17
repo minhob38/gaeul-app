@@ -2,6 +2,8 @@ package com.minho.backend.api.auth.domain.entity;
 
 import com.minho.backend.api.auth.adapter.persistence.UserJpaEntity;
 import java.time.ZonedDateTime;
+
+import com.minho.backend.api.common.AuthType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,6 +20,8 @@ public class User {
 
     private String key;
 
+    private AuthType authType;
+
     private String email;
 
     private String name;
@@ -32,6 +36,22 @@ public class User {
     private ZonedDateTime signedinAt;
 
     private ZonedDateTime signedoutAt;
+
+    private String refreshToken;
+
+    private ZonedDateTime refreshTokenExpiresAt;
+
+    private String oauthId;
+
+    private String oauthName;
+
+    private String oauthAccessToken;
+
+    private ZonedDateTime oauthAccessTokenExpiresAt;
+
+    private String oauthRefreshToken;
+
+    private ZonedDateTime oauthRefreshTokenExpiresAt;
 
     private ZonedDateTime createdAt;
 
@@ -49,6 +69,7 @@ public class User {
         UserJpaEntity.UserJpaEntityBuilder builder = UserJpaEntity.builder()
             .id(this.id)
             .key(this.key)
+            .authType(this.authType)
             .email(this.email)
             .name(this.name)
             .password(this.password)
@@ -56,6 +77,14 @@ public class User {
             .signedupAt(this.signedupAt)
             .signedinAt(this.signedinAt)
             .signedoutAt(this.signedoutAt)
+            .refreshToken(this.refreshToken)
+            .refreshTokenExpiresAt(this.refreshTokenExpiresAt)
+            .oauthId(this.oauthId)
+            .oauthName(this.oauthName)
+            .oauthAccessToken(this.oauthAccessToken)
+            .oauthAccessTokenExpiresAt(this.oauthAccessTokenExpiresAt)
+            .oauthRefreshToken(this.oauthRefreshToken)
+            .oauthRefreshTokenExpiresAt(this.oauthRefreshTokenExpiresAt)
             .trashedAt(this.trashedAt)
             .untrashedAt(this.untrashedAt)
             .purgedAt(this.purgedAt)

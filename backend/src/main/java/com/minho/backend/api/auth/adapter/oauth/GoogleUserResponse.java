@@ -12,7 +12,7 @@ public class GoogleUserResponse {
     private String familyName;
 
     @JsonProperty("given_name")
-    private String expiresIn;
+    private String givenName;
 
     @JsonProperty("verified_email")
     private String verifiedEmail;

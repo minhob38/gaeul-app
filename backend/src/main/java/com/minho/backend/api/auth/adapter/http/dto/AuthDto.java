@@ -1,9 +1,8 @@
 package com.minho.backend.api.auth.adapter.http.dto;
 
-import com.minho.backend.api.auth.domain.dto.AuthInfo;
+import com.minho.backend.api.common.AuthType;
 import jakarta.validation.constraints.NotBlank;
 import java.time.ZonedDateTime;
-import java.util.Date;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -16,6 +15,8 @@ public class AuthDto {
     public static class Data {
 
         private final String key;
+
+        private final AuthType authType;
 
         private final String email;
 
@@ -31,6 +32,26 @@ public class AuthDto {
 
         private final ZonedDateTime signedoutAt;
 
+        private final String accessToken;
+
+        private final String refreshToken;
+
+        private final ZonedDateTime refreshTokenExpiresAt;
+
+        private final String oauthId;
+
+        private final String oauthName;
+
+        // private final String oauthAccessToken; <- oauth access token은 숨기기
+
+        // private final ZonedDateTime oauthAccessTokenExpiresAt <- oauth access token
+        // expires in은 숨기기;
+
+        // private final String oauthRefreshToken; <- oauth refresh token은 숨기기;
+
+        // private final ZonedDateTime oauthRefreshTokenExpiresAt; <- oauth refresh token
+        // expires in은 숨기기
+
         private final ZonedDateTime trashedAt;
 
         private final ZonedDateTime untrashedAt;
@@ -42,8 +63,6 @@ public class AuthDto {
         private final ZonedDateTime createdAt;
 
         private final ZonedDateTime updatedAt;
-
-        private final String accessToken;
 
     }
 

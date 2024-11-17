@@ -4,16 +4,20 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.time.ZonedDateTime;
+
 @ToString
 @Getter
 @Builder
-public class OAuthAccessTokenResponse {
+public class OAuthToken {
 
     private final String accessToken;
 
     private final String refreshToken;
 
-    private final String expiresIn;
+    private final ZonedDateTime accessTokenExpiresAt;
+
+    private final ZonedDateTime refreshTokenExpiresAt;
 
     private final String tokenType;
 

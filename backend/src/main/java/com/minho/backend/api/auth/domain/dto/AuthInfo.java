@@ -2,6 +2,7 @@ package com.minho.backend.api.auth.domain.dto;
 
 import java.time.ZonedDateTime;
 
+import com.minho.backend.api.common.AuthType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,8 @@ public class AuthInfo {
 
     private final String key;
 
+    private final AuthType authType;
+
     private final String email;
 
     private final String name;
@@ -30,6 +33,22 @@ public class AuthInfo {
     private final ZonedDateTime signedinAt;
 
     private final ZonedDateTime signedoutAt;
+
+    private final String refreshToken;
+
+    private final ZonedDateTime refreshTokenExpiresAt;
+
+    private final String oauthId;
+
+    private final String oauthName;
+
+    private final String oauthAccessToken;
+
+    private final ZonedDateTime oauthAccessTokenExpiresAt;
+
+    private final String oauthRefreshToken;
+
+    private final ZonedDateTime oauthRefreshTokenExpiresAt;
 
     private final ZonedDateTime trashedAt;
 

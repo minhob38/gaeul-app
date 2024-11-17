@@ -1,8 +1,9 @@
 package com.minho.backend.api.auth.adapter.oauth;
 
-import com.minho.backend.api.auth.domain.port.OAuthAccessTokenResponse;
+import com.minho.backend.api.auth.domain.port.OAuthToken;
 import com.minho.backend.api.auth.domain.port.OAuthPort;
-import com.minho.backend.api.auth.domain.port.OAuthUserResponse;
+import com.minho.backend.api.auth.domain.port.OAuthUser;
+import com.minho.backend.api.common.AuthType;
 import com.minho.backend.config.environment.EnvironmentConfig;
 import com.minho.backend.constant.Constant;
 import com.minho.backend.exception.ServerException;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,7 +36,7 @@ public class GoogleOAuthAdapter implements OAuthPort {
     }
 
     @Override
-    public OAuthAccessTokenResponse getOAuthAccessToken(String authorizationCode) throws ServerException {
+    public OAuthToken getOAuthToken(String authorizationCode) throws ServerException {
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("client_id", EnvironmentConfig.getOauthGoogleClientId());
         requestBody.put("client_secret", EnvironmentConfig.getOauthGoogleClientSecret());
@@ -48,25 +50,30 @@ public class GoogleOAuthAdapter implements OAuthPort {
         log.debug("### access token: {} ###", response.getAccessToken());
         log.debug("### scope: {} ###", response.getScope());
 
-        return OAuthAccessTokenResponse.builder()
+        return OAuthToken.builder()
             .accessToken(response.getAccessToken())
             .refreshToken(response.getRefreshToken())
-            .expiresIn(response.getExpiresIn())
+            .accessTokenExpiresAt(ZonedDateTime.now().plusSeconds(response.getExpiresIn()))
+            .refreshTokenExpiresAt(null)
             .tokenType(response.getTokenType())
             .build();
 
     }
 
     @Override
-    public OAuthUserResponse getOAuthUser(String accessToken) throws ServerException {
-        this.restApi.authenticateHeader("Authorization", "Bearer " + accessToken);
+    public OAuthUser getOAuthUser(OAuthToken oAuthToken) throws ServerException {
+        this.restApi.authenticateHeader("Authorization", "Bearer " + oAuthToken.getAccessToken());
         GoogleUserResponse response = this.restApi.get(Constant.GOOGLE_OAUTH_USER_ENDPOINT, GoogleUserResponse.class);
 
-        System.out.println(response.toString());
-        return OAuthUserResponse.builder()
+        return OAuthUser.builder()
+            .authType(AuthType.google)
             .id(response.getId())
             .email(response.getEmail())
             .name(response.getName())
+            .accessToken(oAuthToken.getAccessToken())
+            .accessTokenExpiresAt(oAuthToken.getAccessTokenExpiresAt())
+            .refreshToken(oAuthToken.getRefreshToken())
+            .refreshTokenExpiresAt(oAuthToken.getRefreshTokenExpiresAt())
             .build();
     }
 

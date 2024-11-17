@@ -2,6 +2,7 @@ package com.minho.backend.config.dataseed;
 
 import com.minho.backend.api.auth.domain.entity.User;
 import com.minho.backend.api.auth.domain.port.AuthPersistencePort;
+import com.minho.backend.api.common.AuthType;
 import com.minho.backend.util.AuthUtil;
 import java.time.ZonedDateTime;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class DataInitializer implements CommandLineRunner {
         String password = this.authUtil.encodePassword("qwerasdf");
         User user = User.builder()
             .key("dysufedgoyafjp0d")
+            .authType(AuthType.conventional)
             .email("gaeul@gmail.com")
             .name("gaeul")
             .password(password)
